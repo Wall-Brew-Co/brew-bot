@@ -1,13 +1,131 @@
 (ns brew-bot.core
   (:gen-class))
 
-(def ^:const american-base-grains
-  {:black-barley {:name "Black Barley"
-                  :gravity 1.023
-                  :notes "Imparts dryness. Unmalted - use in porters and dry stouts."}
-   :black-patent-malt {:name "Black Patent Malt"
-                       :gravity 1.026
-                       :notes "Provides color and sharp flavor in stouts and porters."}})
+(def ^:const base-grains
+  {:acid-malt {:name "Acid Malt"
+               :gravity 1.027}
+   :amber-malt {:name "Amber Malt"
+                :gravity 1.035}
+   :aromatic-malt {:name "Aromatic Malt"
+                   :gravity 1.036}
+   :barley-hulls {:name "Barley Hulls"
+                  :gravity 1.000}
+   :barley-flaked {:name "Barley, Flaked"
+                   :gravity 1.032}
+   :barley-raw {:name "Barley, Raw"
+                :gravity 1.028}
+   :barley-torrefied {:name "Barley, Torrefied"
+                      :gravity 1.036}
+   :biscuit-malt {:name "Biscuit Malt"
+                  :gravity 1.036}
+   :black-patent-malt {:name "Black (Patent) Malt"
+                       :gravity 1.025}
+   :black-barley-stout {:name "Black Barley (Stout)"
+                        :gravity 1.025}
+   :brown-malt {:name "Brown Malt"
+                :gravity 1.032}
+   :brumalt {:name "Brumalt"
+             :gravity 1.033}
+   :cara-pils-dextrine {:name "Cara-Pils/Dextrine"
+                        :gravity 1.033}
+   :caraamber {:name "Caraamber"
+               :gravity 1.035}
+   :carafoam {:name "Carafoam"
+              :gravity 1.033}
+   :caramel-crystal-malt-10l {:name "Caramel/Crystal Malt – 10L"
+                              :gravity 1.035}
+   :caramel-crystal-malt-20l {:name "Caramel/Crystal Malt – 20L"
+                              :gravity 1.035}
+   :caramel-crystal-malt-30l {:name "Caramel/Crystal Malt – 30L"
+                              :gravity 1.035}
+   :caramel-crystal-malt-40l {:name "Caramel/Crystal Malt – 40L"
+                              :gravity 1.034}
+   :caramel-crystal-malt-60l {:name "Caramel/Crystal Malt – 60L"
+                              :gravity 1.034}
+   :caramel-crystal-malt-80l {:name "Caramel/Crystal Malt – 80L"
+                              :gravity 1.034}
+   :caramel-crystal-malt--120l {:name "Caramel/Crystal Malt -120L"
+                                :gravity 1.033}
+   :caramunich-malt {:name "Caramunich Malt"
+                     :gravity 1.033}
+   :carared {:name "Carared"
+             :gravity 1.035}
+   :caravienne-malt {:name "Caravienne Malt"
+                     :gravity 1.034}
+   :chocolate-malt {:name "Chocolate Malt"
+                    :gravity 1.028}
+   :chocolate-malt {:name "Chocolate Malt"
+                    :gravity 1.034}
+   :corn-flaked {:name "Corn, Flaked"
+                 :gravity 1.037}
+   :grits {:name "Grits"
+           :gravity 1.037}
+   :melanoiden-malt {:name "Melanoiden Malt"
+                     :gravity 1.037}
+   :mild-malt {:name "Mild Malt"
+               :gravity 1.037}
+   :munich-malt {:name "Munich Malt"
+                 :gravity 1.037}
+   :munich-malt-10l {:name "Munich Malt – 10L"
+                     :gravity 1.035}
+   :munich-malt-20l {:name "Munich Malt – 20L"
+                     :gravity 1.035}
+   :oats-flaked {:name "Oats, Flaked"
+                 :gravity 1.037}
+   :oats-malted {:name "Oats, Malted"
+                 :gravity 1.037}
+   :pale-malt-2-row-bel {:name "Pale Malt (2 Row) Bel"
+                         :gravity 1.037}
+   :pale-malt-2-row-uk {:name "Pale Malt (2 Row) UK"
+                        :gravity 1.036}
+   :pale-malt-2-row-us {:name "Pale Malt (2 Row) US"
+                        :gravity 1.036}
+   :pale-malt-6-row-us {:name "Pale Malt (6 Row) US"
+                        :gravity 1.035}
+   :peat-smoked-malt {:name "Peat Smoked Malt"
+                      :gravity 1.034}
+   :pilsner-2-row-belgian {:name "Pilsner (2 Row) Belgian"
+                           :gravity 1.036}
+   :pilsner-2-row-german {:name "Pilsner (2 Row) German"
+                          :gravity 1.037}
+   :pilsner-2-row-uk {:name "Pilsner (2 Row) UK"
+                      :gravity 1.036}
+   :rice-hulls {:name "Rice Hulls"
+                :gravity 1.000}
+   :rice-flaked {:name "Rice, Flaked"
+                 :gravity 1.032}
+   :roasted-barley {:name "Roasted Barley"
+                    :gravity 1.025}
+   :rye-malt {:name "Rye Malt"
+              :gravity 1.029}
+   :rye-flaked {:name "Rye, Flaked"
+                :gravity 1.036}
+   :smoked-malt {:name "Smoked Malt"
+                 :gravity 1.037}
+   :special-b-malt {:name "Special B Malt"
+                    :gravity 1.030}
+   :special-roast {:name "Special Roast"
+                   :gravity 1.033}
+   :toasted-malt {:name "Toasted Malt"
+                  :gravity 1.033}
+   :victory-malt {:name "Victory Malt"
+                  :gravity 1.034}
+   :vienna-malt {:name "Vienna Malt"
+                 :gravity 1.036}
+   :wheat-malt-belgian {:name "Wheat Malt, Belgian"
+                        :gravity 1.037}
+   :wheat-malt-dark {:name "Wheat Malt, Dark"
+                     :gravity 1.039}
+   :wheat-malt-german {:name "Wheat Malt, German"
+                       :gravity 1.039}
+   :wheat-flaked {:name "Wheat, Flaked"
+                  :gravity 1.035}
+   :wheat-roasted {:name "Wheat, Roasted"
+                   :gravity 1.025}
+   :wheat-torrified {:name "Wheat, Torrified"
+                     :gravity 1.036}
+   :white-wheat-malt {:name "White Wheat Malt"
+                      :gravity 1.040}})
 
 (def ^:const hops
   {:ahtanum {:name "Ahtanum"
