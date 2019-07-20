@@ -45,7 +45,7 @@
    :caramel-crystal-malt-80l {:name "Caramel/Crystal Malt – 80L"
                               :gravity 1.034}
    :caramel-crystal-malt-120l {:name "Caramel/Crystal Malt - 120L"
-                                :gravity 1.033}
+                               :gravity 1.033}
    :caramunich-malt {:name "Caramunich Malt"
                      :gravity 1.033}
    :carared {:name "Carared"
@@ -72,7 +72,7 @@
                  :gravity 1.037}
    :oats-malted {:name "Oats, Malted"
                  :gravity 1.037}
-   :pale-malt-2-row-bel {:name "Pale Malt (2 Row) Bel"
+   :pale-malt-2-row-belgian {:name "Pale Malt (2 Row) Belgian"
                          :gravity 1.037}
    :pale-malt-2-row-uk {:name "Pale Malt (2 Row) UK"
                         :gravity 1.036}
@@ -272,20 +272,35 @@
     (update map key update-fn)
     (assoc map key val)))
 
+(defn scale-ingredient
+  [ingredients weight-limit current-weight]
+  (loop [ingredient-map ingredients
+         weight current-weight]
+    (if (< weight weight-limit)
+      (let [addition (rand-nth ingredient-amounts)
+            mod-ingredient (rand-nth (keys ingredient-map))]
+        (recur (update ingredient-map mod-ingredient + addition)
+               (+ weight addition)))
+      ingredient-map)))
+
 (defn generate-ingredients-and-quantities
-  [ingredient-set weight-cutoff]
-  (let [ingredients (keys ingredient-set)
-        ingredient (rand-nth ingredients)
-        ingredient-addition (rand-nth ingredient-amounts)]
-    (loop [ingredient-map {}
-           weight 0.0]
-      (if (< weight weight-cutoff)
-        (recur (update-or-assoc ingredient-map ingredient ingredient-addition #(+ ingredient-addition %))
-               (+ weight ingredient-addition))
-        ingredient-map))))
+  [ingredient-set weight-cutoff ingredient-limit]
+  (loop [ingredient-map {}
+         weight 0.0
+         ingredient-count 0]
+    (let [ingredients (keys ingredient-set)
+          ingredient (rand-nth ingredients)
+          ingredient-addition (rand-nth ingredient-amounts)]
+      (if (< ingredient-count ingredient-limit)
+        (if (< weight weight-cutoff)
+          (recur (update-or-assoc ingredient-map ingredient ingredient-addition #(+ ingredient-addition %))
+                 (+ weight ingredient-addition)
+                 (count (keys ingredient-map)))
+          ingredient-map)
+        (scale-ingredient ingredient-map weight-cutoff weight)))))
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println (generate-ingredients-and-quantities base-grains 5.0))
-  (println (generate-ingredients-and-quantities hops 4.0)))
+  (println (generate-ingredients-and-quantities base-grains 12.0 4))
+  (println (generate-ingredients-and-quantities hops 3.0 3)))
