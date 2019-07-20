@@ -44,7 +44,7 @@
                               :gravity 1.034}
    :caramel-crystal-malt-80l {:name "Caramel/Crystal Malt – 80L"
                               :gravity 1.034}
-   :caramel-crystal-malt--120l {:name "Caramel/Crystal Malt -120L"
+   :caramel-crystal-malt-120l {:name "Caramel/Crystal Malt - 120L"
                                 :gravity 1.033}
    :caramunich-malt {:name "Caramunich Malt"
                      :gravity 1.033}
@@ -54,8 +54,6 @@
                      :gravity 1.034}
    :chocolate-malt {:name "Chocolate Malt"
                     :gravity 1.028}
-   :chocolate-malt {:name "Chocolate Malt"
-                    :gravity 1.034}
    :corn-flaked {:name "Corn, Flaked"
                  :gravity 1.037}
    :grits {:name "Grits"
