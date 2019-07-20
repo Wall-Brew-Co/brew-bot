@@ -1,7 +1,8 @@
 (ns brew-bot.core
+  (:require [clojure.set :as cset])
   (:gen-class))
 
-(def ^:const base-grains
+(def  base-grains
   {:acid-malt {:name "Acid Malt"
                :gravity 1.027}
    :amber-malt {:name "Amber Malt"
@@ -125,7 +126,7 @@
    :white-wheat-malt {:name "White Wheat Malt"
                       :gravity 1.040}})
 
-(def ^:const hops
+(def  hops
   {:ahtanum {:name "Ahtanum"
              :alpha 5.7
              :beta 5.0}
@@ -256,7 +257,7 @@
                 :alpha 6.0
                 :beta 4.5}})
 
-(def ^:const extracts
+(def  extracts
   {:amber-dry-extract {:name "Amber Dry Extract"
                        :gravity 1.044}
    :amber-liquid-extract {:name "Amber Liquid Extract"
@@ -280,7 +281,7 @@
    :wheat-liquid-extract {:name "Wheat Liquid Extract"
                           :gravity 1.036}})
 
-(def ^:const yeasts
+(def  yeasts
   {:wyeast-labs-german-ale {:name "German Ale"
                             :product-number "1007"
                             :manufacturer "Wyeast Labs"}
@@ -690,10 +691,10 @@
                               :product-number "WLP940"
                               :manufacturer "White Labs"}})
 
-(def ^:const ingredient-amounts
+(def  ingredient-amounts
   [0.25 0.5 0.75 1.0])
 
-(def ^:const hop-times
+(def  hop-times
   ["90 minutes" "60 minutes" "45 minutes" "30 minutes" "15 minutes" "10 minutes" "5 minutes" "1 minute" "Flame out" "Secondary"])
 
 (defn update-or-assoc
@@ -702,7 +703,7 @@
     (update map key update-fn)
     (assoc map key val)))
 
-(defn scale-ingredient
+(defn scale-ingredients
   [ingredients weight-limit current-weight]
   (loop [ingredient-map ingredients
          weight current-weight]
@@ -727,10 +728,22 @@
                  (+ weight ingredient-addition)
                  (count (keys ingredient-map)))
           ingredient-map)
-        (scale-ingredient ingredient-map weight-cutoff weight)))))
+        (scale-ingredients ingredient-map weight-cutoff weight)))))
+
+(defn generate-beer-recipe
+  [grain-weight-limit grain-item-limit extract-weight-limit extract-item-limit hop-weight-limit hop-item-limit]
+  (let [grain-bill (generate-ingredients-and-quantities base-grains grain-weight-limit grain-item-limit)
+        extract-bill (generate-ingredients-and-quantities extracts extract-weight-limit extract-item-limit)
+        hop-bill (generate-ingredients-and-quantities hops hop-weight-limit hop-item-limit)
+        yeast (rand-nth (keys yeasts))
+        _ (println grain-bill)
+        _ (println extract-bill)
+        _ (println (map #(str (first %) " " (second %) "oz " (rand-nth hop-times)) hop-bill))
+        _ (println yeast)]
+        :placeholder))
+
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println (generate-ingredients-and-quantities base-grains 12.0 4))
-  (println (generate-ingredients-and-quantities hops 3.0 3)))
+  (generate-beer-recipe 10.0 3 5.0 1 1.5 2))
