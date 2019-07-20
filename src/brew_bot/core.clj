@@ -289,4 +289,5 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println (generate-ingredients-and-quantities american-base-grains 5.0)))
+  (println (generate-ingredients-and-quantities base-grains 5.0))
+  (println (generate-ingredients-and-quantities hops 4.0)))
