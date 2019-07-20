@@ -73,7 +73,7 @@
    :oats-malted {:name "Oats, Malted"
                  :gravity 1.037}
    :pale-malt-2-row-belgian {:name "Pale Malt (2 Row) Belgian"
-                         :gravity 1.037}
+                             :gravity 1.037}
    :pale-malt-2-row-uk {:name "Pale Malt (2 Row) UK"
                         :gravity 1.036}
    :pale-malt-2-row-us {:name "Pale Malt (2 Row) US"
@@ -256,9 +256,29 @@
                 :alpha 6.0
                 :beta 4.5}})
 
-(def ^:const extract
-  {:dark-malt {:name "Dark Malt Extract"
-               :gravity 1.043}})
+(def ^:const extracts
+  {:amber-dry-extract {:name "Amber Dry Extract"
+                       :gravity 1.044}
+   :amber-liquid-extract {:name "Amber Liquid Extract"
+                          :gravity 1.036}
+   :dark-dry-extract {:name "Dark Dry Extract"
+                      :gravity 1.044}
+   :dark-liquid-extract {:name "Dark Liquid Extract"
+                         :gravity 1.036}
+   :extra-light-dry-extract {:name "Extra Light Dry Extract"
+                             :gravity 1.044}
+   :light-dry-extract {:name "Light Dry Extract"
+                       :gravity 1.044}
+   :pale-liquid-extract {:name "Pale Liquid Extract"
+                         :gravity 1.036}
+   :pilsner-liquid-extract {:name "Pilsner Liquid Extract"
+                            :gravity 1.036}
+   :rice-extract-syrup {:name "Rice Extract Syrup"
+                        :gravity 1.032}
+   :wheat-dry-extract {:name "Wheat Dry Extract"
+                       :gravity 1.044}
+   :wheat-liquid-extract {:name "Wheat Liquid Extract"
+                          :gravity 1.036}})
 
 (def ^:const ingredient-amounts
   [0.25 0.5 0.75 1.0])
