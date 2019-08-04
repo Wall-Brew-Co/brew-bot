@@ -47,7 +47,10 @@
       (/ 1000.0)))
 
 (defn calculate-gravity
-  [gallons grains extracts]
-  (let [grains-gravity    (reduce + 0.0 (map #(potential-gravity-to-gravity-points (:gravity (second %)) (:weight (second %))) grains))
+  ([gallons grains extracts]
+    (calculate-gravity gallons grains extracts 0.7)) ;; We assume a mashing efficiency of 70% on average https://beerandbrewing.com/ask-the-experts-mash-efficiency/
+
+  ([gallons grains extracts efficiency]
+  (let [grains-gravity    (* efficiency (reduce + 0.0 (map #(potential-gravity-to-gravity-points (:gravity (second %)) (:weight (second %))) grains)))
         extracts-gravity  (reduce + 0.0 (map #(potential-gravity-to-gravity-points (:gravity (second %)) (:weight (second %))) extracts))]
-    (gravity-points-to-potential-gravity (+ grains-gravity extracts-gravity) gallons)))
+    (gravity-points-to-potential-gravity (+ grains-gravity extracts-gravity) gallons))))
