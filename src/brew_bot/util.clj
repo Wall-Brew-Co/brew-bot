@@ -7,6 +7,11 @@
   [m]
   (rand-nth (keys m)))
 
+(defn join-ingredient-maps
+  "Given an ingredient map, lookup the source ingredient and combine it with the weight"
+  [ingredient-bill ingredient-source]
+  (reduce-kv (fn [m k v] (assoc m k (assoc (get ingredient-source k) :weight v))) {} ingredient-bill))
+
 (defn update-or-assoc
   "If `k` exists in `m` apply the `update-fn`.
    Else, assoc `v` to that `k` in `m`"
@@ -26,3 +31,23 @@
         (recur (update i-map mod-ingredient + addition)
                (+ weight addition)))
       i-map)))
+
+(defn potential-gravity-to-gravity-points
+  [potential-og weight]
+  (-> potential-og
+      (* 1000)
+      (- 1000)
+      (* weight)))
+
+(defn gravity-points-to-potential-gravity
+  [og-points gallons]
+  (-> og-points
+      (/ gallons)
+      (+ 1000)
+      (/ 1000.0)))
+
+(defn calculate-gravity
+  [gallons grains extracts]
+  (let [grains-gravity    (reduce + 0.0 (map #(potential-gravity-to-gravity-points (:gravity (second %)) (:weight (second %))) grains))
+        extracts-gravity  (reduce + 0.0 (map #(potential-gravity-to-gravity-points (:gravity (second %)) (:weight (second %))) extracts))]
+    (gravity-points-to-potential-gravity (+ grains-gravity extracts-gravity) gallons)))

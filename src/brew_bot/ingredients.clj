@@ -690,13 +690,13 @@
                               :product-number "WLP940"
                               :manufacturer "White Labs"}})
 
-(def  ingredient-amounts
+(def ingredient-amounts
   [0.25
    0.5
    0.75
    1.0])
 
-(def  hop-times
+(def hop-times
   ["90 minutes"
    "60 minutes"
    "45 minutes"
