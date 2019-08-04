@@ -9,11 +9,11 @@
   (let [grains   (util/join-ingredient-maps grain-bill   ingredients/base-grains)
         extracts (util/join-ingredient-maps extract-bill ingredients/extracts)
         hops     (util/join-ingredient-maps hop-bill     ingredients/hops)]
-  {:grains   grains
-   :extracts extracts
-   :hops     hops
-   :yeast    yeast
-   :original-gravity (util/calculate-gravity gallons grains extracts)}))
+    {:grains   grains
+     :extracts extracts
+     :hops     hops
+     :yeast    yeast
+     :original-gravity (util/calculate-gravity gallons grains extracts)}))
 
 (defn generate-ingredients-and-quantities
   ([ingredient-set weight-cutoff]

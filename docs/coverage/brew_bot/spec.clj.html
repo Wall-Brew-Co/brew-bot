@@ -1,0 +1,68 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../coverage.css"/>  <title> brew_bot/spec.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;brew-bot.spec
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;&quot;Common&nbsp;specs&#x2F;api&nbsp;checks&nbsp;for&nbsp;core&nbsp;functions&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.spec.alpha&nbsp;:as&nbsp;s]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                005&nbsp;&nbsp;(s&#x2F;def&nbsp;::ingredient-name&nbsp;string?)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                007&nbsp;&nbsp;(s&#x2F;def&nbsp;::gravity
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                008&nbsp;&nbsp;&nbsp;&nbsp;(s&#x2F;and&nbsp;number?
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(&gt;=&nbsp;%&nbsp;1.0)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                011&nbsp;&nbsp;(s&#x2F;def&nbsp;::weight
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;(s&#x2F;and&nbsp;number?
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(&gt;=&nbsp;%&nbsp;0.25)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                015&nbsp;&nbsp;(s&#x2F;def&nbsp;::hop-acid
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;(s&#x2F;and&nbsp;number?
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(&gt;=&nbsp;%&nbsp;1.0)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                019&nbsp;&nbsp;(s&#x2F;def&nbsp;::product-number&nbsp;string?)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                020&nbsp;&nbsp;(s&#x2F;def&nbsp;::manufacturer&nbsp;string?)
+                </span><br/>
+ </body>
+</html>
