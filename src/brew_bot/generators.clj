@@ -1,19 +1,27 @@
 (ns brew-bot.generators
   "Beer recipe generators"
-  (:require [brew-bot.ingredients :as ingredients]
+  (:require [bigml.sampling.simple :as bss]
+            [brew-bot.ingredients :as ingredients]
             [brew-bot.util :as util]))
 
 (defn format-recipe
   "Given maps of ingredient : weight pairs, format a recipe and derive other important information"
   [gallons grain-bill extract-bill hop-bill yeast]
-  (let [grains   (util/join-ingredient-maps grain-bill   ingredients/base-grains)
-        extracts (util/join-ingredient-maps extract-bill ingredients/extracts)
-        hops     (util/join-ingredient-maps hop-bill     ingredients/hops)]
+  (let [grains   (util/join-ingredient-maps grain-bill ingredients/base-grains :weight)
+        extracts (util/join-ingredient-maps extract-bill ingredients/extracts :weight)
+        hops     (util/join-ingredient-maps hop-bill ingredients/hops :weight)]
     {:grains   grains
      :extracts extracts
      :hops     hops
      :yeast    yeast
      :original-gravity (util/calculate-gravity gallons grains extracts)}))
+
+(defn update-selection-probability
+  [probabilities ingredient-map include-all?]
+  (let [weighted-ingredients (util/join-ingredient-maps probabilities ingredient-map :probability)]
+    (if include-all?
+      (merge ingredient-map weighted-ingredients)
+      weighted-ingredients)))
 
 (defn generate-ingredients-and-quantities
   ([ingredient-set weight-cutoff]
@@ -27,7 +35,7 @@
              (< ingredient-count ingredient-limit))
        (if (< weight weight-cutoff)
          (let [selected-ingredient (util/rand-key ingredient-set)
-               ingredient-addition (rand-nth ingredients/ingredient-amounts)
+               ingredient-addition (first (bss/sample ingredients/ingredient-amounts :replace true))
                updated-map (util/update-or-assoc ingredient-map selected-ingredient ingredient-addition #(+ ingredient-addition %))]
            (recur updated-map
                   (+ weight ingredient-addition)
@@ -52,4 +60,16 @@
         extract-bill (generate-ingredients-and-quantities ingredients/extracts    extract-weight-limit extract-item-limit)
         hop-bill     (generate-ingredients-and-quantities ingredients/hops        hop-weight-limit     hop-item-limit)
         yeast        (util/rand-key ingredients/yeasts)]
+    (format-recipe gallons grain-bill extract-bill hop-bill yeast)))
+
+(defn generate-weighted-guided-recipe
+  [gallons grain-limits extract-limits hop-limits yeast-limits]
+  (let [grain-selections   (update-selection-probability (:probabilities grain-limits) ingredients/base-grains false)
+        extract-selections (update-selection-probability (:probabilities extract-limits) ingredients/extracts false)
+        hop-selections     (update-selection-probability (:probabilities hop-limits) ingredients/hops false)
+        yeast-selections   (update-selection-probability (:probabilities yeast-limits) ingredients/yeasts false)
+        grain-bill   (generate-ingredients-and-quantities grain-selections (:weight grain-limits))
+        extract-bill (generate-ingredients-and-quantities extract-selections (:weight extract-limits))
+        hop-bill     (generate-ingredients-and-quantities hop-selections (:weight hop-limits))
+        yeast        (first (bss/sample yeast-selections))]
     (format-recipe gallons grain-bill extract-bill hop-bill yeast)))

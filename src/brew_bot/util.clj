@@ -1,16 +1,17 @@
 (ns brew-bot.util
   "Common fns required across recipe generation strategies"
-  (:require [brew-bot.ingredients :as ingredients]))
+  (:require [bigml.sampling.simple :as bss]
+            [brew-bot.ingredients :as ingredients]))
 
 (defn rand-key
-  "Pick a random key from a map"
+  "Pick a random key from a map, weighted by the :probability key of the value"
   [m]
-  (rand-nth (keys m)))
+  (first (bss/sample (keys m) :replace true :weigh #(or (:probability (get m %)) 1))))
 
 (defn join-ingredient-maps
   "Given an ingredient map, lookup the source ingredient and combine it with the weight"
-  [ingredient-bill ingredient-source]
-  (reduce-kv (fn [m k v] (assoc m k (assoc (get ingredient-source k) :weight v))) {} ingredient-bill))
+  [ingredient-bill ingredient-source key]
+  (reduce-kv (fn [m k v] (assoc m k (assoc (get ingredient-source k) key v))) {} ingredient-bill))
 
 (defn update-or-assoc
   "If `k` exists in `m` apply the `update-fn`.
