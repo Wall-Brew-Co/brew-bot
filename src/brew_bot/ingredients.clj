@@ -1,7 +1,7 @@
 (ns brew-bot.ingredients
   "Basic ingredients needed to brew beer")
 
-(def grains
+(def ^:const grains
   {:acid-malt {:name "Acid Malt"
                :gravity 1.027}
    :amber-malt {:name "Amber Malt"
@@ -125,7 +125,7 @@
    :white-wheat-malt {:name "White Wheat Malt"
                       :gravity 1.040}})
 
-(def hops
+(def ^:const hops
   {:ahtanum {:name "Ahtanum"
              :alpha 5.7
              :beta 5.0}
@@ -256,7 +256,7 @@
                 :alpha 6.0
                 :beta 4.5}})
 
-(def extracts
+(def ^:const extracts
   {:amber-dry-extract {:name "Amber Dry Extract"
                        :gravity 1.044}
    :amber-liquid-extract {:name "Amber Liquid Extract"
@@ -280,7 +280,7 @@
    :wheat-liquid-extract {:name "Wheat Liquid Extract"
                           :gravity 1.036}})
 
-(def yeasts
+(def ^:const yeasts
   {:wyeast-labs-german-ale {:name "German Ale"
                             :product-number "1007"
                             :manufacturer "Wyeast Labs"}
@@ -690,25 +690,25 @@
                               :product-number "WLP940"
                               :manufacturer "White Labs"}})
 
-(def grains-keys
+(def ^:const grains-keys
   (set (keys grains)))
 
-(def hops-keys
+(def ^:const hops-keys
   (set (keys hops)))
 
-(def extracts-keys
+(def ^:const extracts-keys
   (set (keys extracts)))
 
-(def yeasts-keys
+(def ^:const yeasts-keys
   (set (keys yeasts)))
 
-(def ingredient-amounts
+(def ^:const ingredient-amounts
   [0.25
    0.5
    0.75
    1.0])
 
-(def hop-times
+(def ^:const hop-times
   ["90 minutes"
    "60 minutes"
    "45 minutes"
