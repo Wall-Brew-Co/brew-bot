@@ -32,7 +32,7 @@
                 009&nbsp;&nbsp;&nbsp;&nbsp;[gallons&nbsp;grain-bill&nbsp;extract-bill&nbsp;hop-bill&nbsp;yeast]
                 </span><br/>
 <span class="covered" title="6 out of 6 forms covered">
-                010&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[grains&nbsp;&nbsp;&nbsp;(util&#x2F;join-ingredient-maps&nbsp;grain-bill&nbsp;ingredients&#x2F;base-grains&nbsp;:weight)
+                010&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[grains&nbsp;&nbsp;&nbsp;(util&#x2F;join-ingredient-maps&nbsp;grain-bill&nbsp;ingredients&#x2F;grains&nbsp;:weight)
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
                 011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extracts&nbsp;(util&#x2F;join-ingredient-maps&nbsp;extract-bill&nbsp;ingredients&#x2F;extracts&nbsp;:weight)
@@ -49,11 +49,11 @@
 <span class="covered" title="1 out of 1 forms covered">
                 015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:hops&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hops
                 </span><br/>
-<span class="covered" title="1 out of 1 forms covered">
-                016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:yeast&nbsp;&nbsp;&nbsp;&nbsp;yeast
+<span class="covered" title="6 out of 6 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:yeasts&nbsp;&nbsp;&nbsp;{yeast&nbsp;(get&nbsp;ingredients&#x2F;yeasts&nbsp;yeast)}
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
-                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:original-gravity&nbsp;(util&#x2F;calculate-gravity&nbsp;gallons&nbsp;grains&nbsp;extracts)}))
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:gravity&nbsp;&nbsp;(util&#x2F;calculate-gravity&nbsp;gallons&nbsp;grains&nbsp;extracts)}))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 018&nbsp;&nbsp;
@@ -149,13 +149,13 @@
                 048&nbsp;&nbsp;&nbsp;&nbsp;[gallons&nbsp;grain-weight-limit&nbsp;extract-weight-limit&nbsp;hop-weight-limit]
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
-                049&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[grain-bill&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;base-grains&nbsp;grain-weight-limit)
+                049&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[grain-bill&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;grains&nbsp;grain-weight-limit)
                 </span><br/>
 <span class="covered" title="4 out of 4 forms covered">
-                050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extract-bill&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;extracts&nbsp;&nbsp;&nbsp;&nbsp;extract-weight-limit)
+                050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extract-bill&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;extracts&nbsp;extract-weight-limit)
                 </span><br/>
 <span class="covered" title="4 out of 4 forms covered">
-                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop-bill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;hops&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop-weight-limit)
+                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop-bill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;hops&nbsp;hop-weight-limit)
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
                 052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yeast&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(util&#x2F;rand-key&nbsp;ingredients&#x2F;yeasts)]
@@ -179,13 +179,13 @@
                 058&nbsp;&nbsp;&nbsp;&nbsp;[gallons&nbsp;grain-weight-limit&nbsp;grain-item-limit&nbsp;extract-weight-limit&nbsp;extract-item-limit&nbsp;hop-weight-limit&nbsp;hop-item-limit]
                 </span><br/>
 <span class="covered" title="6 out of 6 forms covered">
-                059&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[grain-bill&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;base-grains&nbsp;grain-weight-limit&nbsp;&nbsp;&nbsp;grain-item-limit)
+                059&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[grain-bill&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;grains&nbsp;grain-weight-limit&nbsp;grain-item-limit)
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
-                060&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extract-bill&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;extracts&nbsp;&nbsp;&nbsp;&nbsp;extract-weight-limit&nbsp;extract-item-limit)
+                060&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extract-bill&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;extracts&nbsp;extract-weight-limit&nbsp;extract-item-limit)
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
-                061&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop-bill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;hops&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop-weight-limit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop-item-limit)
+                061&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop-bill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;ingredients&#x2F;hops&nbsp;hop-weight-limit&nbsp;hop-item-limit)
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
                 062&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yeast&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(util&#x2F;rand-key&nbsp;ingredients&#x2F;yeasts)]
@@ -203,7 +203,7 @@
                 066&nbsp;&nbsp;&nbsp;&nbsp;[gallons&nbsp;grain-limits&nbsp;extract-limits&nbsp;hop-limits&nbsp;yeast-limits]
                 </span><br/>
 <span class="not-covered" title="0 out of 8 forms covered">
-                067&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[grain-selections&nbsp;&nbsp;&nbsp;(update-selection-probability&nbsp;(:probabilities&nbsp;grain-limits)&nbsp;ingredients&#x2F;base-grains&nbsp;false)
+                067&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[grain-selections&nbsp;&nbsp;&nbsp;(update-selection-probability&nbsp;(:probabilities&nbsp;grain-limits)&nbsp;ingredients&#x2F;grains&nbsp;false)
                 </span><br/>
 <span class="not-covered" title="0 out of 7 forms covered">
                 068&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extract-selections&nbsp;(update-selection-probability&nbsp;(:probabilities&nbsp;extract-limits)&nbsp;ingredients&#x2F;extracts&nbsp;false)
@@ -223,8 +223,8 @@
 <span class="not-covered" title="0 out of 6 forms covered">
                 073&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop-bill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(generate-ingredients-and-quantities&nbsp;hop-selections&nbsp;(:weight&nbsp;hop-limits))
                 </span><br/>
-<span class="not-covered" title="0 out of 5 forms covered">
-                074&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yeast&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(first&nbsp;(bss&#x2F;sample&nbsp;yeast-selections))]
+<span class="not-covered" title="0 out of 3 forms covered">
+                074&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yeast&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(util&#x2F;rand-key&nbsp;yeast-selections)]
                 </span><br/>
 <span class="not-covered" title="0 out of 7 forms covered">
                 075&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(format-recipe&nbsp;gallons&nbsp;grain-bill&nbsp;extract-bill&nbsp;hop-bill&nbsp;yeast)))

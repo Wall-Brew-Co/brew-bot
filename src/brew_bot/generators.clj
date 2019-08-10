@@ -7,14 +7,14 @@
 (defn format-recipe
   "Given maps of ingredient : weight pairs, format a recipe and derive other important information"
   [gallons grain-bill extract-bill hop-bill yeast]
-  (let [grains   (util/join-ingredient-maps grain-bill ingredients/base-grains :weight)
+  (let [grains   (util/join-ingredient-maps grain-bill ingredients/grains :weight)
         extracts (util/join-ingredient-maps extract-bill ingredients/extracts :weight)
         hops     (util/join-ingredient-maps hop-bill ingredients/hops :weight)]
     {:grains   grains
      :extracts extracts
-     :hops hops
-     :yeast {yeast (get ingredients/yeasts yeast)}
-     :gravity (util/calculate-gravity gallons grains extracts)}))
+     :hops     hops
+     :yeasts   {yeast (get ingredients/yeasts yeast)}
+     :gravity  (util/calculate-gravity gallons grains extracts)}))
 
 (defn update-selection-probability
   [probabilities ingredient-map include-all?]
@@ -46,9 +46,9 @@
 (defn generate-random-recipe
   "Generate a purely random beer recipe with grains, extracts, and hops close to their respective limits"
   [gallons grain-weight-limit extract-weight-limit hop-weight-limit]
-  (let [grain-bill   (generate-ingredients-and-quantities ingredients/base-grains grain-weight-limit)
-        extract-bill (generate-ingredients-and-quantities ingredients/extracts    extract-weight-limit)
-        hop-bill     (generate-ingredients-and-quantities ingredients/hops        hop-weight-limit)
+  (let [grain-bill   (generate-ingredients-and-quantities ingredients/grains grain-weight-limit)
+        extract-bill (generate-ingredients-and-quantities ingredients/extracts extract-weight-limit)
+        hop-bill     (generate-ingredients-and-quantities ingredients/hops hop-weight-limit)
         yeast        (util/rand-key ingredients/yeasts)]
     (format-recipe gallons grain-bill extract-bill hop-bill yeast)))
 
@@ -56,20 +56,20 @@
   "Generate a purely random beer recipe with grains, extracts,
    and hops close to their respective weight limits, with a constricted number of ingredients"
   [gallons grain-weight-limit grain-item-limit extract-weight-limit extract-item-limit hop-weight-limit hop-item-limit]
-  (let [grain-bill   (generate-ingredients-and-quantities ingredients/base-grains grain-weight-limit   grain-item-limit)
-        extract-bill (generate-ingredients-and-quantities ingredients/extracts    extract-weight-limit extract-item-limit)
-        hop-bill     (generate-ingredients-and-quantities ingredients/hops        hop-weight-limit     hop-item-limit)
+  (let [grain-bill   (generate-ingredients-and-quantities ingredients/grains grain-weight-limit grain-item-limit)
+        extract-bill (generate-ingredients-and-quantities ingredients/extracts extract-weight-limit extract-item-limit)
+        hop-bill     (generate-ingredients-and-quantities ingredients/hops hop-weight-limit hop-item-limit)
         yeast        (util/rand-key ingredients/yeasts)]
     (format-recipe gallons grain-bill extract-bill hop-bill yeast)))
 
 (defn generate-weighted-guided-recipe
   [gallons grain-limits extract-limits hop-limits yeast-limits]
-  (let [grain-selections   (update-selection-probability (:probabilities grain-limits) ingredients/base-grains false)
+  (let [grain-selections   (update-selection-probability (:probabilities grain-limits) ingredients/grains false)
         extract-selections (update-selection-probability (:probabilities extract-limits) ingredients/extracts false)
         hop-selections     (update-selection-probability (:probabilities hop-limits) ingredients/hops false)
         yeast-selections   (update-selection-probability (:probabilities yeast-limits) ingredients/yeasts false)
         grain-bill   (generate-ingredients-and-quantities grain-selections (:weight grain-limits))
         extract-bill (generate-ingredients-and-quantities extract-selections (:weight extract-limits))
         hop-bill     (generate-ingredients-and-quantities hop-selections (:weight hop-limits))
-        yeast        (first (bss/sample yeast-selections))]
+        yeast        (util/rand-key yeast-selections)]
     (format-recipe gallons grain-bill extract-bill hop-bill yeast)))

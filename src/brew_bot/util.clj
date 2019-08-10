@@ -9,9 +9,9 @@
   (first (bss/sample (keys m) :replace true :weigh #(or (:probability (get m %)) 1))))
 
 (defn join-ingredient-maps
-  "Given an ingredient map, lookup the source ingredient and combine it with the weight"
-  [ingredient-bill ingredient-source key]
-  (reduce-kv (fn [m k v] (assoc m k (assoc (get ingredient-source k) key v))) {} ingredient-bill))
+  "Given an ingredient map, lookup the source ingredient and combine it with the added-key"
+  [ingredient-bill ingredient-source added-key]
+  (reduce-kv (fn [m k v] (assoc m k (assoc (get ingredient-source k) added-key v))) {} ingredient-bill))
 
 (defn update-or-assoc
   "If `k` exists in `m` apply the `update-fn`.

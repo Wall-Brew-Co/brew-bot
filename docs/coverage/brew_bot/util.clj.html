@@ -38,13 +38,13 @@
                 011&nbsp;&nbsp;(defn&nbsp;join-ingredient-maps
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                012&nbsp;&nbsp;&nbsp;&nbsp;&quot;Given&nbsp;an&nbsp;ingredient&nbsp;map,&nbsp;lookup&nbsp;the&nbsp;source&nbsp;ingredient&nbsp;and&nbsp;combine&nbsp;it&nbsp;with&nbsp;the&nbsp;weight&quot;
+                012&nbsp;&nbsp;&nbsp;&nbsp;&quot;Given&nbsp;an&nbsp;ingredient&nbsp;map,&nbsp;lookup&nbsp;the&nbsp;source&nbsp;ingredient&nbsp;and&nbsp;combine&nbsp;it&nbsp;with&nbsp;the&nbsp;added-key&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                013&nbsp;&nbsp;&nbsp;&nbsp;[ingredient-bill&nbsp;ingredient-source&nbsp;key]
+                013&nbsp;&nbsp;&nbsp;&nbsp;[ingredient-bill&nbsp;ingredient-source&nbsp;added-key]
                 </span><br/>
 <span class="covered" title="17 out of 17 forms covered">
-                014&nbsp;&nbsp;&nbsp;&nbsp;(reduce-kv&nbsp;(fn&nbsp;[m&nbsp;k&nbsp;v]&nbsp;(assoc&nbsp;m&nbsp;k&nbsp;(assoc&nbsp;(get&nbsp;ingredient-source&nbsp;k)&nbsp;key&nbsp;v)))&nbsp;{}&nbsp;ingredient-bill))
+                014&nbsp;&nbsp;&nbsp;&nbsp;(reduce-kv&nbsp;(fn&nbsp;[m&nbsp;k&nbsp;v]&nbsp;(assoc&nbsp;m&nbsp;k&nbsp;(assoc&nbsp;(get&nbsp;ingredient-source&nbsp;k)&nbsp;added-key&nbsp;v)))&nbsp;{}&nbsp;ingredient-bill))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 015&nbsp;&nbsp;

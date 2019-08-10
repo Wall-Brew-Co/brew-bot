@@ -1,7 +1,7 @@
 (ns brew-bot.ingredients
   "Basic ingredients needed to brew beer")
 
-(def base-grains
+(def grains
   {:acid-malt {:name "Acid Malt"
                :gravity 1.027}
    :amber-malt {:name "Amber Malt"
@@ -689,6 +689,18 @@
    :white-labs-mexican-lager {:name "Mexican Lager"
                               :product-number "WLP940"
                               :manufacturer "White Labs"}})
+
+(def grains-keys
+  (set (keys grains)))
+
+(def hops-keys
+  (set (keys hops)))
+
+(def extracts-keys
+  (set (keys extracts)))
+
+(def yeasts-keys
+  (set (keys yeasts)))
 
 (def ingredient-amounts
   [0.25
