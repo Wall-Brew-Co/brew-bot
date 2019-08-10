@@ -12,9 +12,9 @@
         hops     (util/join-ingredient-maps hop-bill ingredients/hops :weight)]
     {:grains   grains
      :extracts extracts
-     :hops     hops
-     :yeast    yeast
-     :original-gravity (util/calculate-gravity gallons grains extracts)}))
+     :hops hops
+     :yeast {yeast (get ingredients/yeasts yeast)}
+     :gravity (util/calculate-gravity gallons grains extracts)}))
 
 (defn update-selection-probability
   [probabilities ingredient-map include-all?]
