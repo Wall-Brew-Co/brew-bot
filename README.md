@@ -1,6 +1,6 @@
 # brew-bot
 
-FIXME: description
+Bot that spits out brew recipies for 5 gallon batches. Made originally for wallbrew.com
 
 ## Installation
 
