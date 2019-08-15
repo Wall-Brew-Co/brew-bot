@@ -1,6 +1,6 @@
 # brew-bot
 
-Bot that spits out brew recipies for n-gallon batches. Made originally for [wallbrew.com](https://wallbrew.com/)
+Bot that spits out brew recipes for n-gallon batches. Made originally for [wallbrew.com](https://wallbrew.com/)
 
 ## Installation
 
