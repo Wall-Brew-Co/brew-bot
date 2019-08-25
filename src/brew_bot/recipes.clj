@@ -25,7 +25,7 @@
                                   :vanguard {:name "Vanguard" :alpha 6.0 :beta 7.0 :weight 0.75}}
                            :yeasts {:white-labs-super-high-gravity-ale {:name "Super High Gravity Ale" :product-number "WLP099" :manufacturer "White Labs"}}
                            :gravity 1.058905}
-   :mk2-semi-reasonable-ale {:grains {:munich-malt {:name Munich Malt :gravity 1.037 :weight 3.25}
+   :mk2-semi-reasonable-ale {:grains {:munich-malt {:name "Munich Malt" :gravity 1.037 :weight 3.25}
                                       :caramel-crystal-malt-60l {:name "Caramel/Crystal Malt - 60L" :gravity 1.034 :weight 4.0}
                                       :rice-hulls {:name "Rice Hulls" :gravity 1.0 :weight 0.75}
                                       :caramel-crystal-malt-10l {:name "Caramel/Crystal Malt - 10L" :gravity 1.035 :weight 0.75}
