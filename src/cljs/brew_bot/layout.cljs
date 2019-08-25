@@ -28,7 +28,7 @@
 
 (defn form-example
   []
-  [:div
+  [:div {:style {:padding-left "10px"}}
     [:h2 "Form"]
     (ant/create-form (user-form true))])
 
@@ -48,17 +48,18 @@
 (defn side-menu
   []
   [ant/menu {:mode "inline" :theme "dark" :style {:height "100%"}}
-    [ant/menu-item "Menu Item"]
-    [ant/menu-sub-menu {:title "Sub Menu"}
-      [ant/menu-item "Item 1"]
-      [ant/menu-item "Item 2"]]])
+    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :about])} "Learn About Me"]
+    [ant/menu-sub-menu {:title "Generate Recipes"}
+      [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :random-recipe])}             "Purely Random"]
+      [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :constrained-random-recipe])} "Constrained Random"]
+      [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :weighted-random-recipe])}    "Weighted Random"]]])
 
 (defn main-panel
   []
-  (let [app-name @(rf/subscribe [:app-name])]
+  (let [current-page @(rf/subscribe [:current-page])]
     (fn []
       [ant/locale-provider {:locale (ant/locales "en_US")}
-      [ant/layout
+      [ant/layout {:style {:height "100%" :width "100%"}}
         [ant/affix
           [ant/layout-header {:class "banner"}
             (r/as-element

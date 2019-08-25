@@ -1,5 +1,9 @@
-(ns brew-bot.db)
+(ns brew-bot.db
+  (:require [brew-bot.recipe-generation.ingredients :as ingredients]))
 
 (def default-db
-  {:app-name "brew-bot"
-   :current-page :home})
+  {:current-page :home
+   :recipe-sources {:grains   ingredients/grains
+                    :extracts ingredients/extracts
+                    :hops     ingredients/hops
+                    :yeasts   ingredients/yeasts}})
