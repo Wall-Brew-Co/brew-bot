@@ -1,4 +1,4 @@
-(ns brew-bot.recipes
+(ns brew-bot.recipe-generation.recipes
   "A data store for recipes by style generated and otherwise")
 
 (def brew-bot-originals

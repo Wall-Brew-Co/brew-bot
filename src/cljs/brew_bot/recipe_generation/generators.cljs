@@ -1,8 +1,8 @@
-(ns brew-bot.generators
+(ns brew-bot.recipe-generation.generators
   "Beer recipe generators"
   (:require [bigml.sampling.simple :as bss]
-            [brew-bot.ingredients :as ingredients]
-            [brew-bot.util :as util]))
+            [brew-bot.recipe-generation.ingredients :as ingredients]
+            [brew-bot.recipe-generation.util :as util]))
 
 (defn format-recipe
   "Given maps of ingredient : weight pairs, format a recipe and derive other important information"

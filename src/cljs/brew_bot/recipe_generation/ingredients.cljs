@@ -1,4 +1,4 @@
-(ns brew-bot.ingredients
+(ns brew-bot.recipe-generation.ingredients
   "Basic ingredients needed to brew beer")
 
 (def ^:const grains

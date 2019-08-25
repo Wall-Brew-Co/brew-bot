@@ -1,7 +1,7 @@
-(ns brew-bot.util
+(ns brew-bot.recipe-generation.util
   "Common fns required across recipe generation strategies"
   (:require [bigml.sampling.simple :as bss]
-            [brew-bot.ingredients :as ingredients]))
+            [brew-bot.recipe-generation.ingredients :as ingredients]))
 
 (defn rand-key
   "Pick a random key from a map, weighted by the :probability key of the value"
