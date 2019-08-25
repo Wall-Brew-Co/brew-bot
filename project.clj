@@ -3,7 +3,8 @@
   :url "https://github.com/nnichols/brew-bot"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[cljsjs/react "15.6.2-4"]
+  :dependencies [[antizer "0.3.1"]
+                 [cljsjs/react "15.6.2-4"]
                  [cljsjs/react-dom "15.6.2-4"]
                  [org.clojure/clojure "1.10.1"]
                  [cljx-sampling "0.1.0"]
@@ -12,8 +13,10 @@
                  [reagent "0.7.0"]
                  [reagent-utils "0.3.1"]]
 
-  :plugins [[lein-cljsbuild "1.1.7"]
-            [lein-figwheel "0.5.19" :exclusions [cider/cider-nrepl]]]
+  :plugins [[lein-cljsbuild "1.1.7"]]
+
+  :aliases {"dev-build"  ["do" "clean" ["cljsbuild" "once" "dev"]]
+            "prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]}
 
   :min-lein-version "2.5.3"
   :bikeshed {:long-lines false}
@@ -21,26 +24,18 @@
   :main ^:skip-aot brew-bot.main
   :target-path "target/%s"
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "test/js"]
-  :profiles {:uberjar {:aot :all}}
+
   :cljsbuild {:builds [{:id "dev"
                         :source-paths ["src/cljs"]
-
-                        :figwheel {:on-jsload "brew-bot.main/mount-root"}
-
                         :compiler {:main brew-bot.main
                                    :output-to "resources/public/js/compiled/app.js"
-                                   :output-dir "resources/public/js/compiled/out"
-                                   :asset-path "js/compiled/out"
-                                   :source-map-timestamp true
-                                   :optimizations :whitespace
+                                   :optimizations :none
                                    :parallel-build true}}
 
-                       {:id "min"
+                       {:id "prod"
                         :source-paths ["src/cljs"]
                         :compiler {:main brew-bot.main
                                    :output-to "resources/public/js/compiled/app.js"
                                    :optimizations :advanced
                                    :pretty-print false
-                                   :parallel-build true}}]}
- :figwheel {:css-dirs ["resources/public/css"]
-            :nrepl-port 7888})
+                                   :parallel-build true}}]})
