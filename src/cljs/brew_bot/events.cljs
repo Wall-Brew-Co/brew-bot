@@ -6,3 +6,8 @@
  :initialize-db
  (fn  [_ _]
    db/default-db))
+
+(rf/reg-event-db
+  :update-current-page
+  (fn [db [_ page]]
+    (assoc db :current-page page)))

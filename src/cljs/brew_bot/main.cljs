@@ -5,12 +5,16 @@
             [re-frame.core :as rf]
 
             ;; All Event/Sub namespaces must be included to load properly
+            [brew-bot.debug]
             [brew-bot.events]
             [brew-bot.subs]))
+
+(enable-console-print!)
 
 (defn mount-root
   "Render the main app panel, and mount it to the window"
   []
+  (rf/clear-subscription-cache!)
   (r/render [layout/main-panel] (.getElementById js/document "app")))
 
 (defn ^:export init

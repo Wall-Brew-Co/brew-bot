@@ -15,8 +15,7 @@
 
   :plugins [[lein-cljsbuild "1.1.7"]]
 
-  :aliases {"dev-build"  ["do" "clean" ["cljsbuild" "once" "dev"]]
-            "prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]}
+  :aliases {"prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]}
 
   :min-lein-version "2.5.3"
   :bikeshed {:long-lines false}
@@ -25,14 +24,7 @@
   :target-path "target/%s"
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "test/js"]
 
-  :cljsbuild {:builds [{:id "dev"
-                        :source-paths ["src/cljs"]
-                        :compiler {:main brew-bot.main
-                                   :output-to "resources/public/js/compiled/app.js"
-                                   :optimizations :none
-                                   :parallel-build true}}
-
-                       {:id "prod"
+  :cljsbuild {:builds [{:id "prod"
                         :source-paths ["src/cljs"]
                         :compiler {:main brew-bot.main
                                    :output-to "resources/public/js/compiled/app.js"
