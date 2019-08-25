@@ -6,7 +6,7 @@
   :dependencies [[cljsjs/react "15.6.2-4"]
                  [cljsjs/react-dom "15.6.2-4"]
                  [org.clojure/clojure "1.10.1"]
-                 [bigml/sampling "3.2"]
+                 [cljx-sampling "0.1.0"]
                  [org.clojure/clojurescript "1.10.520" :scope "provided"]
                  [re-frame "0.10.5"]
                  [reagent "0.7.0"]
@@ -18,7 +18,7 @@
   :min-lein-version "2.5.3"
   :bikeshed {:long-lines false}
   :eastwood {:add-linters [:unused-fn-args :unused-private-vars]}
-  :main ^:skip-aot brew-bot.core
+  :main ^:skip-aot brew-bot.main
   :target-path "target/%s"
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "test/js"]
   :profiles {:uberjar {:aot :all}}
@@ -32,13 +32,15 @@
                                    :output-dir "resources/public/js/compiled/out"
                                    :asset-path "js/compiled/out"
                                    :source-map-timestamp true
-                                   :optimizations :none}}
+                                   :optimizations :whitespace
+                                   :parallel-build true}}
 
                        {:id "min"
                         :source-paths ["src/cljs"]
                         :compiler {:main brew-bot.main
                                    :output-to "resources/public/js/compiled/app.js"
                                    :optimizations :advanced
-                                   :pretty-print false}}]}
+                                   :pretty-print false
+                                   :parallel-build true}}]}
  :figwheel {:css-dirs ["resources/public/css"]
             :nrepl-port 7888})

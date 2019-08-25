@@ -1,7 +1,6 @@
 (ns brew-bot.recipe-generation.generators
   "Beer recipe generators"
-  (:require [bigml.sampling.simple :as bss]
-            [brew-bot.recipe-generation.ingredients :as ingredients]
+  (:require [brew-bot.recipe-generation.ingredients :as ingredients]
             [brew-bot.recipe-generation.util :as util]))
 
 (defn format-recipe
@@ -35,7 +34,7 @@
              (< ingredient-count ingredient-limit))
        (if (< weight weight-cutoff)
          (let [selected-ingredient (util/rand-key ingredient-set)
-               ingredient-addition (first (bss/sample ingredients/ingredient-amounts :replace true))
+               ingredient-addition (rand-nth ingredients/ingredient-amounts)
                updated-map (util/update-or-assoc ingredient-map selected-ingredient ingredient-addition #(+ ingredient-addition %))]
            (recur updated-map
                   (+ weight ingredient-addition)
