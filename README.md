@@ -4,33 +4,21 @@ Bot that spits out brew recipes for n-gallon batches. Made originally for [wallb
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Production build:
+```
+lein prod-build
+```
 
-## Usage
+Dev/Figwheel build:
+```
+lein dev-build
+lein figwheel
+```
 
-FIXME: explanation
-
-    $ java -jar brew-bot-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+Then open `index.html` in the browser of your choice.
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright © 2019 Nick Nichols
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
