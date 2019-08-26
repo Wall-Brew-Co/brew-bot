@@ -1,7 +1,6 @@
 # Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via issue,
-email, or any other method with the owners of this repository before making a change.
+When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
@@ -22,7 +21,8 @@ If you have questions which aren't in the documentation, open a ticket or submit
 ### Want to contribute but don't know where to start?
 
 If you're looking for ways to contribute, try adding/fixing tests.
-Additionally improving documentation or adding examples as you learn a new project can is an easy way to pitch in. If you're looking to pitch in more extensively, check out the open [issues and feature requests](https://github.com/nnichols/brew-bot/issues) and take a crack at one of them.
+Additionally improving documentation or adding examples as you learn a new project can is an easy way to pitch in.
+If you're looking to pitch in more extensively, check out the open [issues and feature requests](https://github.com/nnichols/brew-bot/issues) and take a crack at one of them.
 
 ## Code of Conduct
 
