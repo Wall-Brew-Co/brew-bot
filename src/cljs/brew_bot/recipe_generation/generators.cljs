@@ -1,7 +1,7 @@
 (ns brew-bot.recipe-generation.generators
   "Beer recipe generators"
   (:require [brew-bot.recipe-generation.ingredients :as ingredients]
-            [brew-bot.recipe-generation.util :as util]))
+            [brew-bot.util :as util]))
 
 (defn format-recipe
   "Given maps of ingredient : weight pairs, format a recipe and derive other important information"

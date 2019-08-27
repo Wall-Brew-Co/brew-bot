@@ -6,4 +6,10 @@
    :recipe-sources {:grains   ingredients/grains
                     :extracts ingredients/extracts
                     :hops     ingredients/hops
-                    :yeasts   ingredients/yeasts}})
+                    :yeasts   ingredients/yeasts}
+   :current-recipe {:grain-opts   {}
+                    :extract-opts {}
+                    :hop-opts     {}
+                    :yeast-opts   {}
+                    :gallons      0
+                    :has-started? false}})

@@ -7,7 +7,8 @@
             ;; All Event/Sub namespaces must be included to load properly
             [brew-bot.debug]
             [brew-bot.events]
-            [brew-bot.subs]))
+            [brew-bot.subs]
+            [brew-bot.recipe-generation.subs]))
 
 (enable-console-print!)
 

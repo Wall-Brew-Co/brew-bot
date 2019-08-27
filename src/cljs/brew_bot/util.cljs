@@ -1,5 +1,5 @@
-(ns brew-bot.recipe-generation.util
-  "Common fns required across recipe generation strategies"
+(ns brew-bot.util
+  "Common fns required across brew-bot"
   (:require [cljx-sampling.core :as rnd]
             [brew-bot.recipe-generation.ingredients :as ingredients]))
 

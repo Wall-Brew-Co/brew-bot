@@ -1,75 +1,61 @@
 (ns brew-bot.layout
   (:require [antizer.reagent :as ant]
+            [brew-bot.recipe-generation.views :as recipe-generator]
+            [brew-bot.visual-identity :as vi]
             [reagent.core :as r]
             [re-frame.core :as rf]))
 
-(defn user-form
-  [display-buttons?]
-  (fn [props]
-    (let [form (ant/get-form)
-          form-style {:label-col {:span 6}
-                      :wrapper-col {:span 13}}]
-        [ant/form {:layout "horizontal"}
-          [ant/form-item (merge form-style {:label "Name"})
-            (ant/decorate-field form "name" {:rules [{:required true}]}
-              [ant/input])]
-          [ant/form-item (merge form-style {:label "Email"})
-            (ant/decorate-field form "email" {:rules [{:required true} {:type "email"}]}
-              [ant/input])]
-          (if display-buttons?
-            [ant/form-item {:wrapper-col {:offset 6}}
-              [ant/row
-                [ant/col {:span 4}
-                  [ant/button {:type "primary" :on-click #(ant/validate-fields form)}
-                    "Submit"]]
-                [ant/col {:offset 1}
-                  [ant/button {:on-click #(ant/reset-fields form)}
-                    "Reset"]]]])])))
-
-(defn form-example
+(defn about-me
   []
-  [:div {:style {:padding-left "10px"}}
-    [:h2 "Form"]
-    (ant/create-form (user-form true))])
+  [:div
+   [:h2 "About Me"]
+   [:p "Welcome to brew-bot!"]])
 
-(defn render-full-row
-  [example]
-  [ant/col {:span 24}
-    [:div.box {:key (random-uuid)}
-      [:div.box-content
-        [example]]]])
-
-(defn content-area
+(defn app-banner
   []
-  [ant/layout-content {:class "content-area"}
-    [ant/row {:gutter 12}
-      (render-full-row form-example)]])
+  [ant/layout-header {:class "banner"}
+   (r/as-element
+    [ant/row
+     [ant/col {:span 12}
+      [:h2 {:style {:color "white" :margin-bottom "-12px"}} "Brew Bot"]]
+     [ant/col {:span 1 :offset 11}
+      [:a {:href "https://github.com/nnichols/brew-bot"}
+       [ant/icon {:class "banner-logo" :type "github"}]]]])])
+
+(defn app-footer
+  []
+  [ant/layout-footer {:style {:background-color vi/dark-blue}}
+   (r/as-element
+    [ant/row {:style {:align "bottom" :text-align "center" :color vi/dim-gray}}
+     [ant/col
+      [:p {:style {:font-size "10pt"}} "Brew Bot"]]])])
 
 (defn side-menu
-  []
-  [ant/menu {:mode "inline" :theme "dark" :style {:height "100%"}}
-    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :about])} "Learn About Me"]
-    [ant/menu-sub-menu {:title "Generate Recipes"}
-      [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :random-recipe])}             "Purely Random"]
-      [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :constrained-random-recipe])} "Constrained Random"]
-      [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :weighted-random-recipe])}    "Weighted Random"]]])
+  [has-recipe-changed?]
+  [ant/menu {:mode "inline" :theme "dark"}
+   [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :about])} "Learn About Me"]
+   [ant/menu-sub-menu {:title "Generate Recipes"}
+    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :random-recipe])}             "Purely Random"]
+    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :constrained-random-recipe])} "Constrained Random"]
+    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :weighted-random-recipe])}    "Weighted Random"]]])
 
 (defn main-panel
   []
-  (let [current-page @(rf/subscribe [:current-page])]
+  (let [current-page (rf/subscribe [:current-page])
+        has-recipe-changed? (rf/subscribe [:current-recipe])]
     (fn []
       [ant/locale-provider {:locale (ant/locales "en_US")}
-      [ant/layout {:style {:height "100%" :width "100%"}}
-        [ant/affix
-          [ant/layout-header {:class "banner"}
-            (r/as-element
-              [ant/row
-                [ant/col {:span 12}
-                  [:h2 {:style {:color "white" :margin-bottom "-12px"}} "Brew Bot"]]
-                [ant/col {:span 1 :offset 11}
-                  [:a {:href "https://github.com/nnichols/brew-bot"}
-                    [ant/icon {:class "banner-logo" :type "github"}]]]])]]
+       [ant/layout {:style {:min-height "100vh" :min-width "100vw"}}
+        [ant/affix [app-banner]]
         [ant/layout
-          [ant/layout-sider [side-menu]]
-          [ant/layout {:style {:width "60%"}}
-            [content-area]]]]])))
+         [ant/layout-sider [side-menu @has-recipe-changed?]]
+         [ant/layout {:style {:width "60%"}}
+          [ant/layout-content {:class "content-area"}
+           [ant/row {:gutter 12 :style {:padding-left "20px" :padding-top "20px"}}
+            (condp = @current-page
+              :about                     (about-me)
+              :random-recipe             (recipe-generator/recipe-generator-body @current-page)
+              :constrained-random-recipe (recipe-generator/recipe-generator-body @current-page)
+              :weighted-random-recipe    (recipe-generator/recipe-generator-body @current-page)
+              (about-me))]]]]
+        [app-footer]]])))
