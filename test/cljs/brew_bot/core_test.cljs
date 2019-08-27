@@ -1,5 +1,5 @@
 (ns brew-bot.core-test
-  (:require [clojure.test :refer :all]
+  (:require [cljs.test :refer-macros [is deftest testing]]
             [clojure.spec.alpha :as csa]
             [brew-bot.spec :as s]
             [brew-bot.core :as bb]))

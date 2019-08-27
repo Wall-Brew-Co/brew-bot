@@ -30,12 +30,14 @@
             :eastwood {:add-linters [:unused-fn-args :unused-private-vars]}
             :main ^:skip-aot brew-bot.main
             :target-path "target/%s"
-            :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "test/js"]
+            :clean-targets ^{:protect false} ["resources/public/js/compiled" "resources/test" "target"]
 
             :figwheel {:http-server-root "public"
                        :nrepl-port 7002
                        :css-dirs ["resources/public/css"]
                        :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
+
+            :doo {:build "test"}
 
             :cljsbuild {:builds [{:id "prod"
                                   :source-paths ["src/cljs"]
@@ -55,4 +57,12 @@
                                              :source-map true
                                              :optimizations :none
                                              :parallel-build true
-                                             :pretty-print true}}]})
+                                             :pretty-print true}}
+
+                                  {:id "test"
+                                   :source-paths ["src/cljs" "test/cljs"]
+                                   :compiler {:main "brew-bot.runner"
+                                              :output-to "resources/test/app.js"
+                                              :output-dir "resources/test/js/compiled/out"
+                                              :optimizations :none
+                                              :parallel-build true}}]})

@@ -23,6 +23,7 @@
 /lib/
 /out/
 /resources/public/js/compiled/**
+/resources/test/**
 /target
 /target/
 figwheel_server.log
@@ -32,3 +33,4 @@ pom.xml.asc
 /node_modules/
 package-lock.json
 /brew-bot-*/
+doo-index.html
