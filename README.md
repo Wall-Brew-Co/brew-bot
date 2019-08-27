@@ -17,6 +17,13 @@ lein figwheel
 
 Then open `index.html` in the browser of your choice.
 
+## Testing
+
+Production build:
+```
+lein test-build
+```
+
 ## License
 
 Copyright © 2019 Nick Nichols
