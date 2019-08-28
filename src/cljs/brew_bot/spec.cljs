@@ -11,6 +11,10 @@
   (s/and number?
          #(>= % 1.0)))
 
+(s/def ::lovibond
+  (s/and number?
+         #(>= % 0.5)))
+
 (s/def ::alpha
   (s/and number?
          #(>= % 1.0)))
@@ -23,8 +27,12 @@
   (s/and number?
          #(>= % 0.25)))
 
+(s/def ::time-boiled
+  (s/and number?
+         ((set ingredients/hop-times) %)))
+
 (s/def ::grain
-  (s/keys :req-un [::name ::gravity]
+  (s/keys :req-un [::name ::gravity ::lovibond]
           :opt-un [::weight]))
 
 (s/def ::grains
@@ -32,13 +40,13 @@
 
 (s/def ::hop
   (s/keys :req-un [::name ::alpha ::beta]
-          :opt-un [::weight]))
+          :opt-un [::weight ::time-boiled]))
 
 (s/def ::hops
   (s/map-of ingredients/hops-keys ::hop))
 
 (s/def ::extract
-  (s/keys :req-un [::name ::gravity]
+  (s/keys :req-un [::name ::gravity ::lovibond]
           :opt-un [::weight]))
 
 (s/def ::extracts

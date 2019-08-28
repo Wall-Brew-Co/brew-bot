@@ -48,10 +48,35 @@
       (/ 1000.0)))
 
 (defn calculate-gravity
+  "Calculate the OG by calculating the combined gravity points of each ingredient, and converting that to a normalized gravity: e.g. 1.040"
   ([gallons grains extracts]
    (calculate-gravity gallons grains extracts 0.7)) ;; We assume a mashing efficiency of 70% on average https://beerandbrewing.com/ask-the-experts-mash-efficiency/
 
   ([gallons grains extracts efficiency]
-   (let [grains-gravity    (* efficiency (reduce + 0.0 (map #(potential-gravity-to-gravity-points (:gravity (second %)) (:weight (second %))) grains)))
-         extracts-gravity  (reduce + 0.0 (map #(potential-gravity-to-gravity-points (:gravity (second %)) (:weight (second %))) extracts))]
+   (let [reducing-fn      (fn [acc k v] (+ acc (potential-gravity-to-gravity-points (:gravity v) (:weight v))))
+         grains-gravity   (* efficiency (reduce-kv reducing-fn 0.0 grains))
+         extracts-gravity (reduce-kv reducing-fn 0.0 extracts)]
      (gravity-points-to-potential-gravity (+ grains-gravity extracts-gravity) gallons))))
+
+(defn calculate-estimated-abv
+  "A rough estimate of ABV from OG as delineated here: https://homebrew.stackexchange.com/questions/12569/calculating-potential-abv"
+  [original-gravity]
+  (-> original-gravity
+      (* 1000)
+      (- 1000)
+      (* 0.75 0.135)))
+
+(defn calculate-hop-bittering-units
+  "Calculate the number of IBUs a particular hop contributes to a beer based on: https://www.realbeer.com/hops/bcalc_js.html"
+  [gallons gravity hop]
+  (let [alpha (:alpha hop)
+        weight (:weight hop)
+        time-boiled (:time-boiled hop)
+        alpha-density (/ (* alpha weight 7490) gallons)
+        utilization-percent (* 1.65 (Math/pow 0.000125 gravity) (- 1 (Math/exp (* -0.04 time-boiled))))]
+    (* alpha-density utilization-percent)))
+
+(defn calculate-recipe-bittering-units
+  [gallons gravity hops]
+  (let [reducing-fn (fn [acc k v] (+ acc (calculate-hop-bittering-units gallons gravity v)))]
+    (reduce-kv reducing-fn 0 hops)))
