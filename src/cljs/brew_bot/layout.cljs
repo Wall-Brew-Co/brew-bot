@@ -9,7 +9,8 @@
   []
   [:div
    [:h2 "About Me"]
-   [:p "Welcome to brew-bot!"]])
+   [:p "Welcome to brew-bot! I'm an autonomous beer recipe generator developed by "
+    [:a {:href "https://github.com/nnichols" :target "_blank"} "Nick Nichols"]]])
 
 (defn app-banner
   []
