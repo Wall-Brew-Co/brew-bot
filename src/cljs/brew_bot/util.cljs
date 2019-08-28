@@ -80,3 +80,16 @@
   [gallons gravity hops]
   (let [reducing-fn (fn [acc k v] (+ acc (calculate-hop-bittering-units gallons gravity v)))]
     (reduce-kv reducing-fn 0 hops)))
+
+(defn calculate-malt-color-units
+  "Calculate the MCU color units of all fermentables: https://www.homebrewing.org/SRM-Beer-Color-Scale_ep_81-1.html"
+  [gallons grains extracts]
+  (let [reducing-fn (fn [acc k v] (+ acc (* (:weight v) (:lovibond v))))
+        grain-mcu (reduce-kv reducing-fn 0 grains)
+        extract-mcu (reduce-kv reducing-fn 0 extracts)]
+    (/ (+ grain-mcu extract-mcu) gallons)))
+
+(defn calculate-standard-reference-method-color-units
+  "Calculate the SRM color units of all fermentables: https://www.brewersfriend.com/srm-calculator/"
+  [gallons grains extracts]
+  (* 1.4922 (Math/pow (calculate-malt-color-units gallons grains extracts) 0.6859)))
