@@ -7,166 +7,166 @@
                :lovibond 2.1}
    :amber-malt {:name "Amber Malt"
                 :gravity 1.035
-              :lovibond 22.0}
+                :lovibond 22.0}
    :aromatic-malt {:name "Aromatic Malt"
                    :gravity 1.036
-                 :lovibond 23}
+                   :lovibond 23}
    :barley-flaked {:name "Barley, Flaked"
                    :gravity 1.032
-                 :lovibond 1.7}
+                   :lovibond 1.7}
    :barley-raw {:name "Barley, Raw"
                 :gravity 1.028
-              :lovibond 1.7}
+                :lovibond 1.7}
    :barley-torrefied {:name "Barley, Torrefied"
                       :gravity 1.036
-                    :lovibond 1.7}
+                      :lovibond 1.7}
    :biscuit-malt {:name "Biscuit Malt"
                   :gravity 1.036
-                :lovibond 25}
+                  :lovibond 25}
    :black-patent-malt {:name "Black (Patent) Malt"
                        :gravity 1.025
-                     :lovibond 500}
+                       :lovibond 500}
    :black-barley-stout {:name "Black Barley (Stout)"
                         :gravity 1.025
-                      :lovibond 500}
+                        :lovibond 500}
    :brown-malt {:name "Brown Malt"
                 :gravity 1.032
-              :lovibond 65}
+                :lovibond 65}
    :cara-pils-dextrine {:name "Cara-Pils/Dextrine"
                         :gravity 1.033
-                      :lovibond 1.5}
+                        :lovibond 1.5}
    :cara-amber {:name "Cara-Amber"
-               :gravity 1.035
-             :lovibond 30}
+                :gravity 1.035
+                :lovibond 30}
    :cara-foam {:name "Cara-Foam"
-              :gravity 1.033
-            :lovibond 2}
+               :gravity 1.033
+               :lovibond 2}
    :cara-munich-malt {:name "Cara-Munich Malt"
-                     :gravity 1.033
-                   :lovibond 56}
+                      :gravity 1.033
+                      :lovibond 56}
    :cara-red {:name "Cara-Red"
-             :gravity 1.035
-           :lovibond 20}
+              :gravity 1.035
+              :lovibond 20}
    :cara-viennea-malt {:name "Cara-Vienna Malt"
-                     :gravity 1.034
-                   :lovibond 22}
+                       :gravity 1.034
+                       :lovibond 22}
    :caramel-crystal-malt-10l {:name "Caramel/Crystal Malt – 10L"
                               :gravity 1.035
-                            :lovibond 10}
+                              :lovibond 10}
    :caramel-crystal-malt-20l {:name "Caramel/Crystal Malt – 20L"
                               :gravity 1.035
-                            :lovibond 20}
+                              :lovibond 20}
    :caramel-crystal-malt-30l {:name "Caramel/Crystal Malt – 30L"
                               :gravity 1.035
-                            :lovibond 30}
+                              :lovibond 30}
    :caramel-crystal-malt-40l {:name "Caramel/Crystal Malt – 40L"
                               :gravity 1.034
-                            :lovibond 40}
+                              :lovibond 40}
    :caramel-crystal-malt-60l {:name "Caramel/Crystal Malt – 60L"
                               :gravity 1.034
-                            :lovibond 60}
+                              :lovibond 60}
    :caramel-crystal-malt-80l {:name "Caramel/Crystal Malt – 80L"
                               :gravity 1.034
-                            :lovibond 60}
+                              :lovibond 60}
    :caramel-crystal-malt-120l {:name "Caramel/Crystal Malt - 120L"
                                :gravity 1.033
-                             :lovibond 120}
+                               :lovibond 120}
    :chocolate-malt {:name "Chocolate Malt"
                     :gravity 1.028
-                  :lovibond 350}
+                    :lovibond 350}
    :melanoiden-malt {:name "Melanoiden Malt"
                      :gravity 1.037
-                   :lovibond 25}
+                     :lovibond 25}
    :mild-malt {:name "Mild Malt"
                :gravity 1.037
-             :lovibond 3}
+               :lovibond 3}
    :munich-malt {:name "Munich Malt"
                  :gravity 1.037
-               :lovibond 6}
+                 :lovibond 6}
    :munich-malt-10l {:name "Munich Malt – 10L"
                      :gravity 1.035
-                   :lovibond 10}
+                     :lovibond 10}
    :munich-malt-20l {:name "Munich Malt – 20L"
                      :gravity 1.035
-                   :lovibond 20}
+                     :lovibond 20}
    :oats-flaked {:name "Oats, Flaked"
                  :gravity 1.037
-               :lovibond 1}
+                 :lovibond 1}
    :oats-malted {:name "Oats, Malted"
                  :gravity 1.037
-               :lovibond 1}
+                 :lovibond 1}
    :pale-malt-2-row-belgian {:name "Pale Malt (2 Row) Belgian"
                              :gravity 1.037
-                           :lovibond 2}
+                             :lovibond 2}
    :pale-malt-2-row-uk {:name "Pale Malt (2 Row) UK"
                         :gravity 1.036
-                      :lovibond 2}
+                        :lovibond 2}
    :pale-malt-2-row-us {:name "Pale Malt (2 Row) US"
                         :gravity 1.036
-                      :lovibond 2}
+                        :lovibond 2}
    :pale-malt-6-row-us {:name "Pale Malt (6 Row) US"
                         :gravity 1.035
-                      :lovibond 1.8}
+                        :lovibond 1.8}
    :peat-smoked-malt {:name "Peat Smoked Malt"
                       :gravity 1.034
-                    :lovibond 2.8}
+                      :lovibond 2.8}
    :pilsner-2-row-belgian {:name "Pilsner (2 Row) Belgian"
                            :gravity 1.036
-                         :lovibond 2}
+                           :lovibond 2}
    :pilsner-2-row-german {:name "Pilsner (2 Row) German"
                           :gravity 1.037
-                        :lovibond 2}
+                          :lovibond 2}
    :pilsner-2-row-uk {:name "Pilsner (2 Row) UK"
                       :gravity 1.036
-                    :lovibond 2}
+                      :lovibond 2}
    :rice-hulls {:name "Rice Hulls"
                 :gravity 1.000
-              :lovibond 2}
+                :lovibond 2}
    :rice-flaked {:name "Rice, Flaked"
                  :gravity 1.032
-               :lovibond 1}
+                 :lovibond 1}
    :roasted-barley {:name "Roasted Barley"
                     :gravity 1.025
-                  :lovibond 300}
+                    :lovibond 300}
    :rye-malt {:name "Rye Malt"
               :gravity 1.029
-            :lovibond 3.5}
+              :lovibond 3.5}
    :rye-flaked {:name "Rye, Flaked"
                 :gravity 1.036
-              :lovibond 3.5}
+                :lovibond 3.5}
    :smoked-malt {:name "Smoked Malt"
                  :gravity 1.037
-               :lovibond 9}
+                 :lovibond 9}
    :special-b-malt {:name "Special B Malt"
                     :gravity 1.030
-                  :lovibond 330}
+                    :lovibond 330}
    :special-roast {:name "Special Roast"
                    :gravity 1.033
-                 :lovibond 375}
+                   :lovibond 375}
    :victory-malt {:name "Victory Malt"
                   :gravity 1.034
-                :lovibond 25}
+                  :lovibond 25}
    :vienna-malt {:name "Vienna Malt"
                  :gravity 1.036
-               :lovibond 3.5}
+                 :lovibond 3.5}
    :wheat-malt-belgian {:name "Wheat Malt, Belgian"
                         :gravity 1.037
-                      :lovibond 2.3}
+                        :lovibond 2.3}
    :wheat-malt-dark {:name "Wheat Malt, Dark"
                      :gravity 1.039
-                   :lovibond 3}
+                     :lovibond 3}
    :wheat-malt-german {:name "Wheat Malt, German"
                        :gravity 1.039
-                     :lovibond 3}
+                       :lovibond 3}
    :wheat-flaked {:name "Wheat, Flaked"
                   :gravity 1.035
-                :lovibond 2}
+                  :lovibond 2}
    :wheat-roasted {:name "Wheat, Roasted"
                    :gravity 1.025
-                 :lovibond 300}
+                   :lovibond 300}
    :wheat-torrified {:name "Wheat, Torrified"
                      :gravity 1.036
-                   :lovibond 1.7}
+                     :lovibond 1.7}
    :white-wheat-malt {:name "White Wheat Malt"
                       :gravity 1.040
                       :lovibond 2.8}})
@@ -305,31 +305,31 @@
 (def ^:const extracts
   {:amber-dry-extract {:name "Amber Dry Extract"
                        :gravity 1.044
-                     :lovibond 35}
+                       :lovibond 35}
    :amber-liquid-extract {:name "Amber Liquid Extract"
                           :gravity 1.036
-                        :lovibond 35}
+                          :lovibond 35}
    :dark-dry-extract {:name "Dark Dry Extract"
                       :gravity 1.044
-                    :lovibond 60}
+                      :lovibond 60}
    :dark-liquid-extract {:name "Dark Liquid Extract"
                          :gravity 1.036
-                       :lovibond 60}
+                         :lovibond 60}
    :extra-light-dry-extract {:name "Extra Light Dry Extract"
                              :gravity 1.044
-                           :lovibond 6}
+                             :lovibond 6}
    :light-dry-extract {:name "Light Dry Extract"
                        :gravity 1.044
-                     :lovibond 6}
+                       :lovibond 6}
    :pale-liquid-extract {:name "Pale Liquid Extract"
                          :gravity 1.036
-                       :lovibond 3}
+                         :lovibond 3}
    :pilsner-liquid-extract {:name "Pilsner Liquid Extract"
                             :gravity 1.036
-                          :lovibond 3}
+                            :lovibond 3}
    :wheat-dry-extract {:name "Wheat Dry Extract"
                        :gravity 1.044
-                     :lovibond 12}
+                       :lovibond 12}
    :wheat-liquid-extract {:name "Wheat Liquid Extract"
                           :gravity 1.036
                           :lovibond 12}})
