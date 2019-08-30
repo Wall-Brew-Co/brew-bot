@@ -11,3 +11,7 @@
   :update-current-page
   (fn [db [_ page]]
     (assoc db :current-page page)))
+
+(rf/reg-event-db
+  :no-op
+  (fn [db _] db))
