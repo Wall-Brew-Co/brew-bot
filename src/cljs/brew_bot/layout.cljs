@@ -55,10 +55,10 @@
           [ant/layout-content {:class "content-area"}
            [ant/row {:gutter 12 :style {:padding-left "20px" :padding-top "20px"}}
             (condp = @current-page
-              :about                     (about-me)
-              :random                    (recipe-generator/recipe-generator-body @current-page)
-              :limited-random            (recipe-generator/recipe-generator-body @current-page)
-              :weighted-random           (recipe-generator/recipe-generator-body @current-page)
-              :weighted-guided           (recipe-generator/recipe-generator-body @current-page)
+              :about              (about-me)
+              :random             [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :limited-random     [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :weighted-random    [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :weighted-guided    [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
               (about-me))]]]]
         [app-footer]]])))

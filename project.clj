@@ -23,8 +23,8 @@
                       [lein-figwheel "0.5.14"]]
 
             :aliases {"prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]
-                      "dev-build"  ["do" "clean" ["cljsbuild" "once" "dev"]]
-                      "test-build" ["do" "clean" ["doo" "once"]]}
+                      "dev-build"  ["do" "clean" ["cljsbuild" "once" "dev"] "figwheel"]
+                      "test-build" ["do" "clean" ["cljsbuild" "once" "dev"] ["doo" "once"]]}
 
             :min-lein-version "2.5.3"
             :main ^:skip-aot brew-bot.main

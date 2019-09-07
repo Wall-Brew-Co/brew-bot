@@ -1,26 +1,17 @@
 (ns brew-bot.recipe-generation.events
-  (:require [brew-bot.recipe-generation.generators :as recipe]
+  (:require [brew-bot.recipe-generation.generators :as generators]
             [re-frame.core :as rf]))
 
 (rf/reg-event-db
- :update-purchase-limits
- (fn [db [_ recipe-options]]
-   (-> db
-       (assoc-in [:current-recipe :gallons]      (:gallons recipe-options))
-       (assoc-in [:current-recipe :grain-opts]   (:grain-opts recipe-options))
-       (assoc-in [:current-recipe :extract-opts] (:extract-opts recipe-options))
-       (assoc-in [:current-recipe :hop-opts]     (:hop-opts recipe-options))
-       (assoc-in [:current-recipe :yeast-opts]   (:yeast-opts recipe-options)))))
+  :update-current-recipe
+  (fn [db [_ path val]]
+    (update db :current-recipe #(assoc-in % path val))))
 
 (rf/reg-event-fx
  :generate-recipe
  (fn [{db :db} [_ generator-type]]
-   (let [current-recipe (:current-recipe db)
-         generated-recipe (recipe/generate-beer-recipe generator-type
-                                                       (:gallons      current-recipe)
-                                                       (:grain-opts   current-recipe)
-                                                       (:extract-opts current-recipe)
-                                                       (:hop-opts     current-recipe)
-                                                       (:yeast-opts   current-recipe))]
-     {:db (assoc db :generated-recipe generated-recipe)
-      :dispatch [:update-current-page :completed-recipe]})))
+   (let [s (:current-recipe db)
+         recipe (generators/generate-random-recipe (:gallons s) (:grain-opts s) (:extract-opts s) (:hop-opts s) (:yeast-opts s))
+         _ (println recipe)]
+   {:db (assoc db :generated-recipe recipe)
+    :dispatch [:update-current-page :recipe-preview]})))

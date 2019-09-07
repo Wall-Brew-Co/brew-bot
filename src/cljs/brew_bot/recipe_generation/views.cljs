@@ -3,52 +3,35 @@
             [reagent.core :as r]
             [re-frame.core :as rf]))
 
-(def input-number-opts
-  {:initial-value    5
-   :min              0
-   :max              100
-   :decimalSeparator "."})
+(def ^:const input-number-opts
+  {:default-value 5
+   :step          0.5
+   :min           0
+   :max           100})
 
-(def form-style
-  {:label-col {:span 6}
-   :wrapper-col {:span 13}})
+(defn numeric-input-column
+  ([label event in-opts]
+   [:div {:style {:vertical-align "middle" :flex-basis "20%"}}
+    [:h4 label]
+    [ant/input-number (merge input-number-opts in-opts {:on-change event})]])
 
-(defn check-and-fire!
-  "Check an ant form, and if it validates, fire event"
-  [form event]
-  (let [error-check-fn (fn [errors values]
-                         (when (and (nil? errors) (some? values))
-                           (rf/dispatch event)))]
-    (ant/validate-fields form error-check-fn)))
-
-(defn numeric-form-item
-  [form title label]
-  [ant/form-item (merge form-style {:label label})
-   (ant/decorate-field form title {:rules [{:required true} {:type "number"}]}
-                       [ant/input-number input-number-opts])])
-
-(defn random-recipe-builder
-  [generator-type]
-  (fn [generator-type]
-    (let [form (ant/get-form)]
-      [ant/form {:layout "horizontal"}
-       [numeric-form-item form "gallons" "How many gallons are you brewing?"]
-       [numeric-form-item form "grain"   "How many pounds of grain are you buying?"]
-       [numeric-form-item form "extract" "How many pounds of malt extract are you buying?"]
-       [numeric-form-item form "hops"    "How many ounces of hop pellets are you buying?"]
-       [ant/form-item {:wrapper-col {:offset 6}}
-        [ant/row
-         [ant/col {:span 4}
-          [ant/button {:type "primary" :on-click #(check-and-fire! form [:generate-recipe generator-type])} "Submit"]]
-         [ant/col {:offset 1}
-          [ant/button {:on-click #(ant/reset-fields form)} "Reset"]]]]])))
+  ([label event]
+   (numeric-input-column label event {})))
 
 (defn recipe-generator-body
-  [generator-type]
+  [generator-type has-changed?]
   [:div {:style {:padding-left "10px"}}
-   [:h2 "Recipe Generator"]
-     (condp = generator-type
-       :random (ant/create-form (random-recipe-builder generator-type))
-
-       [:div {:style {:padding-left "10px"}}
-        [:h2 "Recipe Generator"]])])
+   [:h2 (if has-changed? "Recipe Generator*" "Recipe Generator")]
+   [:div {:style {:padding "5px"}}
+    [:div {:style {:padding-top     "10px"
+                   :display         "flex"
+                   :justify-content "space-between"}}
+     [numeric-input-column "Gallons to brew"   #(rf/dispatch [:update-current-recipe [:gallons] %])]
+     [numeric-input-column "Pounds of grain"   #(rf/dispatch [:update-current-recipe [:grain-opts :weight] %])]
+     [numeric-input-column "Pounds of extract" #(rf/dispatch [:update-current-recipe [:extract-opts :weight] %]) {:default-value 3.0}]
+     [numeric-input-column "Ounces of hops"    #(rf/dispatch [:update-current-recipe [:hop-opts :weight] %]) {:default-value 3.0}]]
+   [:div {:style {:padding-top     "10px"
+                  :display         "flex"
+                  :justify-content "space-around"}}
+     [ant/button {:type "primary" :on-click #(rf/dispatch [:generate-recipe generator-type])} "Generate Recipe"]
+     [ant/button {:type "danger" :on-click #(rf/dispatch [:reset-db generator-type])} "Reset"]]]])
