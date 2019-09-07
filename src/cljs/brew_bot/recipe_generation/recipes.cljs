@@ -1,4 +1,4 @@
-(ns brew-bot.recipes
+(ns brew-bot.recipe-generation.recipes
   "A data store for recipes by style generated and otherwise")
 
 (def brew-bot-originals
@@ -9,12 +9,10 @@
                                     :caramel-crystal-malt-40l {:name "Caramel/Crystal Malt - 40L" :gravity 1.034 :weight 1.25}
                                     :roasted-barley {:name "Roasted Barley" :gravity 1.025 :weight 0.5}
                                     :caramel-crystal-malt-30l {:name "Caramel/Crystal Malt - 30L" :gravity 1.035 :weight 0.75}
-                                    :corn-flaked {:name "Corn Flaked" :gravity 1.037 :weight 1.0}
                                     :munich-malt-10l {:name "Munich Malt - 10L" :gravity 1.035 :weight 0.75}
                                     :pale-malt-6-row-us {:name "Pale Malt (6 Row) US" :gravity 1.035 :weight 1.75}
                                     :pilsner-2-row-uk {:name "Pilsner (2 Row) UK" :gravity 1.036 :weight 0.25}
                                     :pale-malt-2-row-us {:name "Pale Malt (2 Row) US" :gravity 1.036 :weight 1.0}
-                                    :brumalt {:name "Brumalt" :gravity 1.033 :weight 0.75}
                                     :barley-torrefied {:name "Barley, Torrefied" :gravity 1.036 :weight 1.0}
                                     :acid-malt {:name "Acid Malt" :gravity 1.027 :weight 1.0}}
                            :hops {:mosaic {:name "Mosaic" :alpha 13.5 :beta 3.9 :weight 0.25}
@@ -25,7 +23,7 @@
                                   :vanguard {:name "Vanguard" :alpha 6.0 :beta 7.0 :weight 0.75}}
                            :yeasts {:white-labs-super-high-gravity-ale {:name "Super High Gravity Ale" :product-number "WLP099" :manufacturer "White Labs"}}
                            :gravity 1.058905}
-   :mk2-semi-reasonable-ale {:grains {:munich-malt {:name Munich Malt :gravity 1.037 :weight 3.25}
+   :mk2-semi-reasonable-ale {:grains {:munich-malt {:name "Munich Malt" :gravity 1.037 :weight 3.25}
                                       :caramel-crystal-malt-60l {:name "Caramel/Crystal Malt - 60L" :gravity 1.034 :weight 4.0}
                                       :rice-hulls {:name "Rice Hulls" :gravity 1.0 :weight 0.75}
                                       :caramel-crystal-malt-10l {:name "Caramel/Crystal Malt - 10L" :gravity 1.035 :weight 0.75}
