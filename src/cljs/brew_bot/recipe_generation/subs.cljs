@@ -10,3 +10,8 @@
  :current-recipe
  (fn [db _]
    (:current-recipe db)))
+
+(rf/reg-sub
+ :generated-recipe
+ (fn [db _]
+   (:generated-recipe db)))

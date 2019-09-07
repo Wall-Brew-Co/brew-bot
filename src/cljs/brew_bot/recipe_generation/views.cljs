@@ -35,3 +35,26 @@
                   :justify-content "space-around"}}
      [ant/button {:type "primary" :on-click #(rf/dispatch [:generate-recipe generator-type])} "Generate Recipe"]
      [ant/button {:type "danger" :on-click #(rf/dispatch [:reset-db generator-type])} "Reset"]]]])
+
+(defn ingredient-bill
+  [title ingredients]
+  [:div {:style {:padding-top "10px"}}
+    [:h3 title]
+    [:div (str ingredients)]])
+
+(defn recipe-display-page
+  []
+  (let [generated-recipe @(rf/subscribe [:generated-recipe])]
+    (when generated-recipe
+      (let [grains           (:grains generated-recipe)
+        extracts         (:extracts generated-recipe)
+        hops             (:hops generated-recipe)
+        yeasts           (:yeasts generated-recipe)
+        gravity          (:gravity generated-recipe)]
+      [:div {:style {:padding-left "10px"}}
+       [:h2 "Your Recipe"]
+       [:div {:style {:padding "5px"}}
+         [ingredient-bill "Grains" grains]
+         [ingredient-bill "Extracts" extracts]
+         [ingredient-bill "Hops" hops]
+         [ingredient-bill "Yeast" yeasts]]]))))

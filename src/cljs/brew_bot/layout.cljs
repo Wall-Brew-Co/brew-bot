@@ -20,7 +20,7 @@
      [ant/col {:span 12}
       [:h2 {:style {:color "white" :margin-bottom "-12px"}} "Brew Bot"]]
      [ant/col {:span 1 :offset 11}
-      [:a {:href "https://github.com/nnichols/brew-bot"}
+      [:a {:href "https://github.com/nnichols/brew-bot" :target "_blank"}
        [ant/icon {:class "banner-logo" :type "github"}]]]])])
 
 (defn app-footer
@@ -29,7 +29,8 @@
    (r/as-element
     [ant/row {:style {:align "bottom" :text-align "center" :color vi/dim-gray}}
      [ant/col
-      [:p {:style {:font-size "10pt"}} "Brew Bot"]]])])
+      [:p {:style {:font-size "10pt"}}
+        [:a {:href "https://github.com/nnichols/brew-bot" :target "_blank"} "Brew Bot"]]]])])
 
 (defn side-menu
   [has-recipe-changed?]
@@ -46,6 +47,7 @@
   (let [current-page (rf/subscribe [:current-page])
         has-recipe-changed? (rf/subscribe [:current-recipe])]
     (fn []
+      (let [recipe-page? (#{:random :limited-random :weighted-random :weighted-guided} @current-page)]
       [ant/locale-provider {:locale (ant/locales "en_US")}
        [ant/layout {:style {:min-height "100vh" :min-width "100vw"}}
         [ant/affix [app-banner]]
@@ -54,11 +56,9 @@
          [ant/layout {:style {:width "60%"}}
           [ant/layout-content {:class "content-area"}
            [ant/row {:gutter 12 :style {:padding-left "20px" :padding-top "20px"}}
-            (condp = @current-page
-              :about              (about-me)
-              :random             [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
-              :limited-random     [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
-              :weighted-random    [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
-              :weighted-guided    [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
-              (about-me))]]]]
-        [app-footer]]])))
+            (cond
+              (= :about @current-page)          [about-me]
+              recipe-page?                      [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              (= :recipe-preview @current-page) [recipe-generator/recipe-display-page]
+              :else                             [about-me])]]]]
+        [app-footer]]]))))

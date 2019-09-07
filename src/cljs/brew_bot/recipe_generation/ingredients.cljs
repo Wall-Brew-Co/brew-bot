@@ -503,12 +503,12 @@
    :brewtek-british-microbrewery-ale {:name "British Microbrewery Ale"
                                       :product-number "CL-0110"
                                       :manufacturer "Brewtek"}
-   :brewtek-british-pale-ale--1 {:name "British Pale Ale 1"
-                                 :product-number "CL-0120"
-                                 :manufacturer "Brewtek"}
-   :brewtek-british-pale-ale--2 {:name "British Pale Ale 2"
-                                 :product-number "CL-0130"
-                                 :manufacturer "Brewtek"}
+   :brewtek-british-pale-ale-1 {:name "British Pale Ale 1"
+                                :product-number "CL-0120"
+                                :manufacturer "Brewtek"}
+   :brewtek-british-pale-ale-2 {:name "British Pale Ale 2"
+                                :product-number "CL-0130"
+                                :manufacturer "Brewtek"}
    :brewtek-british-real-ale {:name "British Real Ale"
                               :product-number "CL-0150"
                               :manufacturer "Brewtek"}
@@ -524,15 +524,15 @@
    :brewtek-canadian-ale {:name "Canadian Ale"
                           :product-number "CL-0260"
                           :manufacturer "Brewtek"}
-   :brewtek-belgian-ale--1 {:name "Belgian Ale 1"
-                            :product-number "CL-0300"
-                            :manufacturer "Brewtek"}
-   :brewtek-belgian-ale--2 {:name "Belgian Ale 2"
-                            :product-number "CL-0320"
-                            :manufacturer "Brewtek"}
-   :brewtek-belgian-ale--3 {:name "Belgian Ale 3"
-                            :product-number "CL-0340"
-                            :manufacturer "Brewtek"}
+   :brewtek-belgian-ale-1 {:name "Belgian Ale 1"
+                           :product-number "CL-0300"
+                           :manufacturer "Brewtek"}
+   :brewtek-belgian-ale-2 {:name "Belgian Ale 2"
+                           :product-number "CL-0320"
+                           :manufacturer "Brewtek"}
+   :brewtek-belgian-ale-3 {:name "Belgian Ale 3"
+                           :product-number "CL-0340"
+                           :manufacturer "Brewtek"}
    :brewtek-saison {:name "Saison"
                     :product-number "CL-0380"
                     :manufacturer "Brewtek"}
@@ -587,12 +587,12 @@
    :dcl-yeast-safale-german-ale {:name "SafAle German Ale"
                                  :product-number "K-97"
                                  :manufacturer "DCL Yeast"}
-   :lallemand-lalvin-lalvin---k1v-1116 {:name "Lalvin - K1V-1116"
-                                        :product-number "K1V-1116"
-                                        :manufacturer "Lallemand-Lalvin"}
-   :lallemand-lalvin-lalvin-rc-212--bourgovin- {:name "Lalvin RC 212 Bourgovin "
-                                                :product-number "RC 212"
-                                                :manufacturer "Lallemand-Lalvin"}
+   :lallemand-lalvin-lalvin--k1v-1116 {:name "Lalvin - K1V-1116"
+                                       :product-number "K1V-1116"
+                                       :manufacturer "Lallemand-Lalvin"}
+   :lallemand-lalvin-lalvin-rc-212-bourgovin- {:name "Lalvin RC 212 Bourgovin "
+                                               :product-number "RC 212"
+                                               :manufacturer "Lallemand-Lalvin"}
    :dcl-yeast-safale-english-ale {:name "SafAle English Ale"
                                   :product-number "S-04"
                                   :manufacturer "DCL Yeast"}
