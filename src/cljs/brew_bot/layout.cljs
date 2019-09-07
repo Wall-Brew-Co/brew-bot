@@ -55,8 +55,8 @@
            [ant/row {:gutter 12 :style {:padding-left "20px" :padding-top "20px"}}
             (condp = @current-page
               :about                     (about-me)
-              :random-recipe             (recipe-generator/recipe-generator-body @current-page)
-              :constrained-random-recipe (recipe-generator/recipe-generator-body @current-page)
-              :weighted-random-recipe    (recipe-generator/recipe-generator-body @current-page)
+              :random-recipe             [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :constrained-random-recipe [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :weighted-random-recipe    [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
               (about-me))]]]]
         [app-footer]]])))

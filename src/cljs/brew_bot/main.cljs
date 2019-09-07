@@ -8,6 +8,7 @@
             [brew-bot.debug]
             [brew-bot.events]
             [brew-bot.subs]
+            [brew-bot.recipe-generation.events]
             [brew-bot.recipe-generation.subs]))
 
 (enable-console-print!)
