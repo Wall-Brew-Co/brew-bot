@@ -8,12 +8,17 @@
   [gallons grain-bill extract-bill hop-bill yeast]
   (let [grains   (util/join-ingredient-maps grain-bill ingredients/grains :weight)
         extracts (util/join-ingredient-maps extract-bill ingredients/extracts :weight)
-        hops     (util/join-ingredient-maps hop-bill ingredients/hops :weight)]
-    {:grains   grains
-     :extracts extracts
-     :hops     hops
-     :yeasts   {yeast (get ingredients/yeasts yeast)}
-     :gravity  (util/calculate-gravity gallons grains extracts)}))
+        hops     (util/join-ingredient-maps hop-bill ingredients/hops :weight)
+        gravity  (util/calculate-gravity gallons grains extracts)
+        yeast    {yeast (get ingredients/yeasts yeast)}]
+    {:grains    grains
+     :extracts  extracts
+     :hops      hops
+     :yeasts    yeast
+     :gravity   gravity
+     :sru-color (util/calculate-standard-reference-method-color-units gallons grains extracts)
+     :ibu       (util/calculate-recipe-bittering-units gallons gravity hops)
+     :abv       (util/calculate-estimated-abv gravity)}))
 
 (defn update-selection-probability
   [probabilities ingredient-map include-all?]

@@ -11,7 +11,6 @@
  :generate-recipe
  (fn [{db :db} [_ generator-type]]
    (let [s (:current-recipe db)
-         recipe (generators/generate-random-recipe (:gallons s) (:grain-opts s) (:extract-opts s) (:hop-opts s) (:yeast-opts s))
-         _ (println recipe)]
+         recipe (generators/generate-random-recipe (:gallons s) (:grain-opts s) (:extract-opts s) (:hop-opts s) (:yeast-opts s))]
    {:db (assoc db :generated-recipe recipe)
     :dispatch [:update-current-page :recipe-preview]})))

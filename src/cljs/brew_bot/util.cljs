@@ -93,3 +93,9 @@
   "Calculate the SRM color units of all fermentables: https://www.brewersfriend.com/srm-calculator/"
   [gallons grains extracts]
   (* 1.4922 (Math/pow (calculate-malt-color-units gallons grains extracts) 0.6859)))
+
+(defn pluralize
+  [amount string]
+  (if (< 1 amount)
+    (str string "s")
+    string))
