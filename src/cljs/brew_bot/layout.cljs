@@ -36,9 +36,10 @@
   [ant/menu {:mode "inline" :theme "dark"}
    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :about])} "Learn About Me"]
    [ant/menu-sub-menu {:title "Generate Recipes"}
-    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :random-recipe])}             "Purely Random"]
-    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :constrained-random-recipe])} "Constrained Random"]
-    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :weighted-random-recipe])}    "Weighted Random"]]])
+    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :random])}          "Purely Random"]
+    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :limited-random])}  "Constrained Random"]
+    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :weighted-random])} "Weighted Random"]
+    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :weighted-guided])} "Weighted Guided"]]])
 
 (defn main-panel
   []
@@ -54,9 +55,10 @@
           [ant/layout-content {:class "content-area"}
            [ant/row {:gutter 12 :style {:padding-left "20px" :padding-top "20px"}}
             (condp = @current-page
-              :about                     (about-me)
-              :random-recipe             [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
-              :constrained-random-recipe [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
-              :weighted-random-recipe    [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :about              (about-me)
+              :random             [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :limited-random     [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :weighted-random    [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
+              :weighted-guided    [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
               (about-me))]]]]
         [app-footer]]])))

@@ -29,7 +29,7 @@
 
 (s/def ::time-boiled
   (s/and number?
-         ((set ingredients/hop-times) %)))
+         #((set ingredients/hop-times) %)))
 
 (s/def ::grain
   (s/keys :req-un [::name ::gravity ::lovibond]
