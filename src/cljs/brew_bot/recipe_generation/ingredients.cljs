@@ -190,6 +190,9 @@
    :cascade {:name "Cascade"
              :alpha 7.0
              :beta 7.0}
+   :celeia {:name "Celeia"
+            :alpha 5.5
+            :beta 3.5}
    :centennial {:name "Centennial"
                 :alpha 11.5
                 :beta 4.5}
@@ -274,6 +277,9 @@
    :simcoe {:name "Simcoe"
             :alpha 14.0
             :beta 5.0}
+   :spalt {:name "Spalt"
+          :alpha 4.1
+          :beta 4.0}
    :sterling {:name "Sterling"
               :alpha 5.0
               :beta 6.0}
