@@ -72,9 +72,9 @@
         extract-selections (update-selection-probability (:probabilities extract-limits) ingredients/extracts false)
         hop-selections     (update-selection-probability (:probabilities hop-limits)     ingredients/hops false)
         yeast-selections   (update-selection-probability (:probabilities yeast-limits)   ingredients/yeasts false)
-        grain-bill   (generate-ingredients-and-quantities grain-selections   (:weight grain-limits))
-        extract-bill (generate-ingredients-and-quantities extract-selections (:weight extract-limits))
-        hop-bill     (generate-ingredients-and-quantities hop-selections     (:weight hop-limits))
+        grain-bill   (generate-ingredients-and-quantities grain-selections   (:weight grain-limits)   (:count grain-limits))
+        extract-bill (generate-ingredients-and-quantities extract-selections (:weight extract-limits) (:count extract-limits))
+        hop-bill     (generate-ingredients-and-quantities hop-selections     (:weight hop-limits)     (:count hop-limits))
         yeast        (util/rand-key yeast-selections)]
     (format-recipe gallons grain-bill extract-bill hop-bill yeast)))
 
@@ -84,9 +84,9 @@
         extract-selections (update-selection-probability (:probabilities extract-limits) ingredients/extracts true)
         hop-selections     (update-selection-probability (:probabilities hop-limits)     ingredients/hops true)
         yeast-selections   (update-selection-probability (:probabilities yeast-limits)   ingredients/yeasts true)
-        grain-bill   (generate-ingredients-and-quantities grain-selections   (:weight grain-limits))
-        extract-bill (generate-ingredients-and-quantities extract-selections (:weight extract-limits))
-        hop-bill     (generate-ingredients-and-quantities hop-selections     (:weight hop-limits))
+        grain-bill   (generate-ingredients-and-quantities grain-selections   (:weight grain-limits)   (:count grain-limits))
+        extract-bill (generate-ingredients-and-quantities extract-selections (:weight extract-limits) (:count extract-limits))
+        hop-bill     (generate-ingredients-and-quantities hop-selections     (:weight hop-limits)     (:count hop-limits))
         yeast        (util/rand-key yeast-selections)]
     (format-recipe gallons grain-bill extract-bill hop-bill yeast)))
 
