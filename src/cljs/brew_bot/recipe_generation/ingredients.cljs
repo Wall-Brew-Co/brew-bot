@@ -278,8 +278,8 @@
             :alpha 14.0
             :beta 5.0}
    :spalt {:name "Spalt"
-          :alpha 4.1
-          :beta 4.0}
+           :alpha 4.1
+           :beta 4.0}
    :sterling {:name "Sterling"
               :alpha 5.0
               :beta 6.0}
