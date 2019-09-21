@@ -8,15 +8,18 @@
   (fn [db [_ path val]]
     (update db :current-recipe #(assoc-in % path val))))
 
+(rf/reg-event-db
+  :toggle-ingredient-selection
+  (fn [db [_ ingredient-type ingredient-key]]
+    (let [is-included? (get-in db [:current-recipe ingredient-type :probabilities ingredient-key])]
+      (if is-included?
+        (update-in db [:current-recipe ingredient-type :probabilities] dissoc ingredient-key)
+        (update-in db [:current-recipe ingredient-type :probabilities] assoc ingredient-key 1)))))
+
 (rf/reg-event-fx
  :generate-recipe
  (fn [{db :db} [_ generator-type]]
    (let [s (:current-recipe db)
-         recipe (generators/generate-random-recipe (:gallons s) (:grain-opts s) (:extract-opts s) (:hop-opts s) (:yeast-opts s))
-         marzen (generators/generate-weighted-guided-recipe 5 {:weight 5.0 :count 3 :probabilities (:grains weights/marzen)}
-                                                              {:weight 3.5 :count 1 :probabilities (:extracts weights/marzen)}
-                                                              {:weight 1.0 :count 4 :probabilities (:hops weights/marzen)}
-                                                              {:probabilities (:yeasts weights/marzen)})
-         _ (println marzen)]
-   {:db (assoc db :generated-recipe marzen)
+         recipe (generators/generate-random-recipe (:gallons s) (:grains s) (:extracts s) (:hops s) (:yeasts s))]
+   {:db (assoc db :generated-recipe recipe)
     :dispatch [:update-current-page :recipe-preview]})))

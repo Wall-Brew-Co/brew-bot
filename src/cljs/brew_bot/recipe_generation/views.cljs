@@ -10,18 +10,41 @@
   {:default-value 5
    :step          0.5
    :min           0
-   :max           100})
+   :max           1000000})
 
 (def ^:const integer-number-opts
   {:default-value 5
    :step          1
    :min           0
-   :max           10})
+   :max           1000000})
 
 (def ^:const recipe-generator-section-style
-  {:style {:padding-top     "10px"
+  {:style {:padding-top     "18px"
            :display         "flex"
-           :justify-content "space-between"}})
+           :justify-content "flex-start"}})
+
+(defn ingredient-checkbox-list-item
+  [ingredient-type ingredient-key]
+  (let [current-recipe         @(rf/subscribe [:current-recipe])
+        ingredients            @(rf/subscribe [:source-ingredients])
+        ingredient-probability (get-in current-recipe [ingredient-type :probabilities])
+        ingredient-data        (get-in ingredients [ingredient-type ingredient-key])
+        ingredient-name        (:name ingredient-data)
+        id                     (str ingredient-name "-checkbox")
+        alt-text               (reduce-kv (fn [acc k v] (str acc (name k) ": " v "\n")) "" ingredient-data)]
+    [:li {:style {:display        "block"
+                  :width          "25%"
+                  :float          "left"
+                  :padding-bottom "4px"}
+          :title alt-text}
+     ^{:key id} [:input {:id        id
+                         :type      "checkbox"
+                         :checked   (contains? ingredient-probability ingredient-key)
+                         :style     {:cursor "pointer"}
+                         :on-change #(rf/dispatch [:toggle-ingredient-selection ingredient-type ingredient-key])}]
+     [:label {:for id
+              :style {:cursor       "pointer"
+                      :padding-left "8px"}} ingredient-name]]))
 
 (defn numeric-input-column
   ([label event in-opts]
@@ -40,16 +63,42 @@
   []
   [:div recipe-generator-section-style
    [numeric-input-column "Gallons to brew"   #(rf/dispatch [:update-current-recipe [:gallons] %])]
-   [numeric-input-column "Pounds of grain"   #(rf/dispatch [:update-current-recipe [:grain-opts :weight] %])]
-   [numeric-input-column "Pounds of extract" #(rf/dispatch [:update-current-recipe [:extract-opts :weight] %]) {:default-value 3.0}]
-   [numeric-input-column "Ounces of hops"    #(rf/dispatch [:update-current-recipe [:hop-opts :weight] %]) {:default-value 3.0}]])
+   [numeric-input-column "Pounds of grain"   #(rf/dispatch [:update-current-recipe [:grains :weight] %])]
+   [numeric-input-column "Pounds of extract" #(rf/dispatch [:update-current-recipe [:extracts :weight] %]) {:default-value 3.0}]
+   [numeric-input-column "Ounces of hops"    #(rf/dispatch [:update-current-recipe [:hops :weight] %]) {:default-value 3.0}]])
 
 (defn recipe-generator-counts
   []
   [:div recipe-generator-section-style
-   [numeric-input-column "Maximum grain types"   #(rf/dispatch [:update-current-recipe [:grain-opts :count] %])   {:mode :integer}]
-   [numeric-input-column "Maximum extract types" #(rf/dispatch [:update-current-recipe [:extract-opts :count] %]) {:mode :integer}]
-   [numeric-input-column "Maximum hop types"     #(rf/dispatch [:update-current-recipe [:hop-opts :count] %])     {:mode :integer}]])
+   [numeric-input-column "Maximum grain types"   #(rf/dispatch [:update-current-recipe [:grains :count] %])   {:mode :integer}]
+   [numeric-input-column "Maximum extract types" #(rf/dispatch [:update-current-recipe [:extracts :count] %]) {:mode :integer}]
+   [numeric-input-column "Maximum hop types"     #(rf/dispatch [:update-current-recipe [:hops :count] %])     {:mode :integer}]])
+
+(defn recipe-generator-ingredients
+  []
+  (let [ingredients @(rf/subscribe [:source-ingredients])]
+  [:div {:style {:display "flex"
+                 :flex-direction "column"}}
+  [:div {:style {:padding-top "10px"}}
+   [:h3 "Grains to include"]
+   (into [:ul]
+         (for [grain (sort (keys (:grains ingredients)))]
+           ^{:key (random-uuid)} [ingredient-checkbox-list-item :grains grain]))]
+  [:div {:style {:padding-top "10px"}}
+   [:h3 "Extracts to include"]
+   (into [:ul]
+         (for [extract (sort (keys (:extracts ingredients)))]
+           ^{:key (random-uuid)} [ingredient-checkbox-list-item :extracts extract]))]
+  [:div {:style {:padding-top "10px"}}
+   [:h3 "Hops to include"]
+   (into [:ul]
+         (for [hop (sort (keys (:hops ingredients)))]
+           ^{:key (random-uuid)} [ingredient-checkbox-list-item :hops hop]))]
+  [:div {:style {:padding-top "10px"}}
+   [:h3 "Yeasts to include"]
+   (into [:ul]
+         (for [yeast (sort (keys (:yeasts ingredients)))]
+           ^{:key (random-uuid)} [ingredient-checkbox-list-item :yeasts yeast]))]]))
 
 (defn recipe-generator-body
   [generator-type has-changed?]
@@ -60,11 +109,10 @@
       [recipe-generator-quantities])
     (when (#{:limited-random :weighted-random :weighted-guided} generator-type)
       [recipe-generator-counts])
-    [:div {:style {:padding-top     "10px"
-                   :display         "flex"
-                   :justify-content "space-around"}}
-     [ant/button {:type "primary" :on-click #(rf/dispatch [:generate-recipe generator-type])} "Generate Recipe"]
-     [ant/button {:type "danger" :on-click #(rf/dispatch [:reset-db generator-type])} "Reset"]]]])
+    (when (#{:weighted-random :weighted-guided} generator-type)
+      [recipe-generator-ingredients])
+    [:div {:style {:padding-top "18px"}}
+     [ant/button {:type "primary" :on-click #(rf/dispatch [:generate-recipe generator-type])} "Generate Recipe"]]]])
 
 (defn ingredient-bill
   [title type ingredients]
