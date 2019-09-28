@@ -4,4 +4,5 @@
             [brew-bot.ingredient-test]))
 
 (doo-tests 'brew-bot.recipe-generation-test
-           'brew-bot.ingredient-test)
+           'brew-bot.ingredient-test
+           'brew-bot.weight-test)

@@ -29,6 +29,9 @@
    :black-barley-stout {:name "Black Barley (Stout)"
                         :gravity 1.025
                         :lovibond 500}
+   :blackprinz-malt {:name "Blackprinz Malt"
+                     :gravity 1.025
+                     :lovibond 500}
    :brown-malt {:name "Brown Malt"
                 :gravity 1.032
                 :lovibond 65}
@@ -68,9 +71,18 @@
    :caramel-crystal-malt-80l {:name "Caramel/Crystal Malt – 80L"
                               :gravity 1.034
                               :lovibond 60}
+   :caramel-crystal-malt-90l {:name "Caramel/Crystal Malt – 90L"
+                              :gravity 1.034
+                              :lovibond 90}
    :caramel-crystal-malt-120l {:name "Caramel/Crystal Malt - 120L"
                                :gravity 1.033
                                :lovibond 120}
+   :caramel-crystal-malt-140l {:name "Caramel/Crystal Malt - 140L"
+                               :gravity 1.032
+                               :lovibond 140}
+   :caramel-crystal-malt-160l {:name "Caramel/Crystal Malt - 160L"
+                               :gravity 1.032
+                               :lovibond 160}
    :chocolate-malt {:name "Chocolate Malt"
                     :gravity 1.028
                     :lovibond 350}
@@ -196,6 +208,9 @@
    :centennial {:name "Centennial"
                 :alpha 11.5
                 :beta 4.5}
+   :challenger {:name "Challenger"
+                :alpha 2.1
+                :beta 3.7}
    :chelan {:name "Chelan"
             :alpha 14.5
             :beta 9.8}
@@ -256,6 +271,9 @@
    :newport {:name "Newport"
              :alpha 17.0
              :beta 9.1}
+   :northdown {:name "Northdown"
+               :alpha 8.5
+               :beta 4.75}
    :northern-brewer {:name "Northern Brewer"
                      :alpha 10.0
                      :beta 5.0}
@@ -315,6 +333,15 @@
    :amber-liquid-extract {:name "Amber Liquid Extract"
                           :gravity 1.036
                           :lovibond 35}
+   :belgian-candi-syrup-45l {:name "Belgian Candi Syrup - 45L"
+                             :gravity 1.032
+                             :lovibond 45}
+   :belgian-candi-syrup-90l {:name "Belgian Candi Syrup - 90L"
+                             :gravity 1.032
+                             :lovibond 90}
+   :belgian-candi-syrup-180l {:name "Belgian Candi Syrup - 180L"
+                              :gravity 1.032
+                              :lovibond 180}
    :dark-dry-extract {:name "Dark Dry Extract"
                       :gravity 1.044
                       :lovibond 60}
@@ -330,6 +357,9 @@
    :pale-liquid-extract {:name "Pale Liquid Extract"
                          :gravity 1.036
                          :lovibond 3}
+   :rye-liquid-extract {:name "Rye Liquid Extract"
+                        :gravity 1.036
+                        :lovibond 9}
    :pilsner-liquid-extract {:name "Pilsner Liquid Extract"
                             :gravity 1.036
                             :lovibond 3}
@@ -377,9 +407,6 @@
    :wyeast-labs-american-ale-ii {:name "American Ale II"
                                  :product-number "1272"
                                  :manufacturer "Wyeast Labs"}
-   :wyeast-labs-gf-all-american-ale {:name "GF All American Ale"
-                                     :product-number "1272"
-                                     :manufacturer "Wyeast Labs"}
    :wyeast-labs-thames-valley-ale {:name "Thames Valley Ale"
                                    :product-number "1275"
                                    :manufacturer "Wyeast Labs"}
@@ -593,6 +620,9 @@
    :dcl-yeast-safale-german-ale {:name "SafAle German Ale"
                                  :product-number "K-97"
                                  :manufacturer "DCL Yeast"}
+   :dcl-yeast-safale-american-ale {:name "SafAle American Ale"
+                                   :product-number "US-05"
+                                   :manufacturer "DCL Yeast"}
    :lallemand-lalvin-lalvin--k1v-1116 {:name "Lalvin - K1V-1116"
                                        :product-number "K1V-1116"
                                        :manufacturer "Lallemand-Lalvin"}
@@ -623,6 +653,12 @@
    :white-labs-german-ale-ii {:name "German Ale II"
                               :product-number "WLP003"
                               :manufacturer "White Labs"}
+   :white-labs-irish-ale {:name "Irish Ale"
+                          :product-number "WLP004"
+                          :manufacturer "White Labs"}
+   :white-labs-british-ale {:name "British Ale"
+                            :product-number "WLP005"
+                            :manufacturer "White Labs"}
    :white-labs-bedford-british-ale {:name "Bedford British Ale"
                                     :product-number "WLP006"
                                     :manufacturer "White Labs"}
