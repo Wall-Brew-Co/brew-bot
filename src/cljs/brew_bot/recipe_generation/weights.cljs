@@ -1,7 +1,7 @@
 (ns brew-bot.recipe-generation.weights
   "Pre-determined style weights based on beer recipe observation")
 
-(def marzen
+(def ^:const marzen
   {:hops {:tettnang-us  10.68892182
           :hallertau-us 25.05236668
           :saaz-us      7.357483668
@@ -50,7 +50,7 @@
             :wyeast-labs-california-lager        2
             :white-labs-german-ale-ii            2}})
 
-(def imperial-stout
+(def ^:const imperial-stout
   {:hops {:summit	8.668264848
           :ctz	35.01041397
           :crystal	2.260123324
@@ -83,14 +83,14 @@
           :northern-brewer	37.26524427
           :amarillo	7.79283969
           :galena	13.28972229}
-   :grains {:maris-otter-pale	2073.765264
-            :chocolate	205.6115221
+   :grains {:maris-otter-pale-malt	2073.765264
+            :chocolate-malt	205.6115221
             :roasted-barley	160.9479421
             :pilsner-2-row-german	129.8737755
             :oats-flaked	128.5158822
-            :munich-light-10l	61.93602601
-            :caramel-crystal-120l	58.19790713
-            :caramel-crystal-60l	52.22459082
+            :munich-malt-10l	61.93602601
+            :caramel-crystal-malt-120l	58.19790713
+            :caramel-crystal-malt-60l	52.22459082
             :black-patent-malt	37.62979099
             :special-b-malt	37.24649711
             :barley-flaked	32.26592949
@@ -98,30 +98,28 @@
             :black-barley-stout	27.29275063
             :wheat-malt-german	27.22254874
             :munich-malt	23.15435392
-            :caramel-crystal-80l	22.40323863
+            :caramel-crystal-malt-80l	22.40323863
             :cara-munich-malt	22.10240692
             :pale-malt-2-row-us	21.50401104
             :brown-malt	20.17431758
             :rye-flaked	19.91103146
-            :cara-pils-dextrine	19.90203331
+            :cara-pils-dextrine	33.90203331
             :biscuit-malt	15.93613913
-            :caramel-crystal-160l	15.89849363
-            :caramel-crystal-40l	15.00440953
-            :carapils-dextrine-malt	14.92312445
+            :caramel-crystal-malt-160l	15.89849363
+            :caramel-crystal-malt-40l	15.00440953
             :smoked-malt	12.90217967
             :blackprinz-malt	12.54992107
             :victory-malt	12.28874535
             :amber-malt	11.43045657
             :pale-malt-6-row-us	9.497942599
             :aromatic-malt	8.212025898
-            :dark-munich	8.182271256
-            :caramel-crystal-20l	7.496295823
+            :caramel-crystal-malt-20l	7.496295823
             :rice-hulls	6.928331118
             :wheat-flaked	6.74841726
             :peat-smoked-malt	6.324228438
-            :caramel-crystal-90l	6.014565575
-            :caramel-crystal-30l	5.469940765
-            :caramel-crystal-10l	3.812267075
+            :caramel-crystal-malt-90l	6.014565575
+            :caramel-crystal-malt-30l	5.469940765
+            :caramel-crystal-malt-10l	3.812267075
             :special-roast	3.632575536
             :cara-amber	2.754887001
             :rye-malt	2.606911427

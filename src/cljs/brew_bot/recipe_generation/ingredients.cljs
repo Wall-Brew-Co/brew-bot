@@ -86,6 +86,9 @@
    :chocolate-malt {:name "Chocolate Malt"
                     :gravity 1.028
                     :lovibond 350}
+   :maris-otter-pale-malt {:name "Maris Otter Pale Malt"
+                           :gravity 1.030
+                           :lovibond 3}
    :melanoiden-malt {:name "Melanoiden Malt"
                      :gravity 1.037
                      :lovibond 25}
