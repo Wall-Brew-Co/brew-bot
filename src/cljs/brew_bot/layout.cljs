@@ -45,7 +45,7 @@
 (defn main-panel
   []
   (let [current-page (rf/subscribe [:current-page])
-        has-recipe-changed? (rf/subscribe [:current-recipe])]
+        has-recipe-changed? (rf/subscribe [:has-recipe-changed?])]
     (fn []
       (let [recipe-page? (#{:random :limited-random :weighted-random :weighted-guided} @current-page)]
         [ant/locale-provider {:locale (ant/locales "en_US")}

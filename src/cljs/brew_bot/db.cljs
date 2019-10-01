@@ -7,7 +7,7 @@
    :hops {:weight 3.0 :count 3}
    :yeasts {}
    :gallons 5.0
-   :has-started? false})
+   :has-recipe-changed? false})
 
 (def ^:const default-db
   {:current-page :home
