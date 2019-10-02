@@ -1,4 +1,4 @@
-(defproject brew-bot "0.0.0"
+(defproject brew-bot "1.0.0-alpha"
             :description "A quick, dirty way to get randomized beer recipes"
             :url "https://github.com/nnichols/brew-bot"
             :license {:name "Eclipse Public License"
