@@ -7,7 +7,7 @@
 
 (defn about-me
   []
-  [:div
+  [:div {:style {:max-width "50em"}}
    [:h2 "About Me"]
    [:p "Welcome to brew-bot! I'm an autonomous beer recipe generator developed by "
     [:a {:href "https://github.com/nnichols" :target "_blank"} "Nick Nichols"]]])
@@ -18,10 +18,10 @@
    (r/as-element
     [ant/row
      [ant/col {:span 12}
-      [:h2 {:style {:color "white" :margin-bottom "-12px"}} "Brew Bot"]]
+      [:h2 {:style {:color "white" :margin-bottom "-12px"}} "Brew Bot (Alpha)"]]
      [ant/col {:span 1 :offset 11}
       [:a {:href "https://github.com/nnichols/brew-bot" :target "_blank"}
-       [ant/icon {:class "banner-logo" :type "github"}]]]])])
+       [ant/icon {:class "banner-logo" :type "github" :title "Visit us on GitHub"}]]]])])
 
 (defn app-footer
   []
@@ -30,7 +30,8 @@
     [ant/row {:style {:align "bottom" :text-align "center" :color vi/dim-gray}}
      [ant/col
       [:p {:style {:font-size "10pt"}}
-       [:a {:href "https://github.com/nnichols/brew-bot" :target "_blank"} "Brew Bot"]]]])])
+       [:a {:href "https://github.com/nnichols/brew-bot/issues" :target "_blank"}
+         "Found something broken? Open an issue!"]]]])])
 
 (defn side-menu
   [has-recipe-changed?]
