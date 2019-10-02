@@ -9,7 +9,8 @@
             [brew-bot.events]
             [brew-bot.subs]
             [brew-bot.recipe-generation.events]
-            [brew-bot.recipe-generation.subs]))
+            [brew-bot.recipe-generation.subs]
+            [brew-bot.recipe-generation.weights]))
 
 (enable-console-print!)
 

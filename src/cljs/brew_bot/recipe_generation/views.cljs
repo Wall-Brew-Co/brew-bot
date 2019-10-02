@@ -49,44 +49,52 @@
                       :padding-left "8px"}} ingredient-name]]))
 
 (defn ingredient-probability-field
-  [ingredient-type ingredient-key]
-  (let [current-recipe         @(rf/subscribe [:current-recipe])
-        ingredients            @(rf/subscribe [:source-ingredients])
-        ingredient-probability (get-in current-recipe [ingredient-type :probabilities])
+  [ingredient-type ingredient-key ingredient-probability]
+  (let [ingredients            @(rf/subscribe [:source-ingredients])
         ingredient-name        (get-in ingredients [ingredient-type ingredient-key :name])]
     [:li recipe-generator-li-style
      [:div {:style {:vertical-align "middle" :flex-basis "20%"}}
       [:h4 ingredient-name]
       [ant/input-number (merge integer-number-opts
-                               {:on-change #(rf/dispatch [:update-current-recipe [ingredient-type :probabilities ingredient-key] %])})]]]))
+                               {:value ingredient-probability
+                                :on-change #(rf/dispatch [:update-current-recipe [ingredient-type :probabilities ingredient-key] %])})]]]))
 
 (defn numeric-input-column
-  ([label event in-opts]
+  ([label event value in-opts]
    (let [numeric-mode (or (:mode in-opts) :decimal)
          number-defaults (cond
                            (= :decimal numeric-mode) decimal-number-opts
                            (= :integer numeric-mode) integer-number-opts)]
      [:div {:style {:vertical-align "middle" :flex-basis "20%"}}
       [:h4 label]
-      [ant/input-number (merge number-defaults in-opts {:on-change event})]]))
+      [ant/input-number (merge number-defaults in-opts {:on-change event :value value})]]))
 
-  ([label event]
-   (numeric-input-column label event {})))
+  ([label event value]
+   (numeric-input-column label event value {})))
 
 (defn recipe-generator-quantities
   []
-  [:div recipe-generator-section-style
-   [numeric-input-column "Gallons to brew"   #(rf/dispatch [:update-current-recipe [:gallons] %])]
-   [numeric-input-column "Pounds of grain"   #(rf/dispatch [:update-current-recipe [:grains :weight] %])]
-   [numeric-input-column "Pounds of extract" #(rf/dispatch [:update-current-recipe [:extracts :weight] %]) {:default-value 3.0}]
-   [numeric-input-column "Ounces of hops"    #(rf/dispatch [:update-current-recipe [:hops :weight] %]) {:default-value 3.0}]])
+  (let [current-recipe  @(rf/subscribe [:current-recipe])
+        gallons         (get-in current-recipe [:gallons])
+        grains-weight   (get-in current-recipe [:grains :weight])
+        extracts-weight (get-in current-recipe [:extracts :weight])
+        hops-weight     (get-in current-recipe [:hops :weight])]
+    [:div recipe-generator-section-style
+     [numeric-input-column "Gallons to brew"   #(rf/dispatch [:update-current-recipe [:gallons] %]) gallons]
+     [numeric-input-column "Pounds of grain"   #(rf/dispatch [:update-current-recipe [:grains :weight] %]) grains-weight]
+     [numeric-input-column "Pounds of extract" #(rf/dispatch [:update-current-recipe [:extracts :weight] %]) extracts-weight {:default-value 3.0}]
+     [numeric-input-column "Ounces of hops"    #(rf/dispatch [:update-current-recipe [:hops :weight] %]) hops-weight {:default-value 3.0}]]))
 
 (defn recipe-generator-counts
   []
-  [:div recipe-generator-section-style
-   [numeric-input-column "Maximum grain types"   #(rf/dispatch [:update-current-recipe [:grains :count] %])   {:mode :integer}]
-   [numeric-input-column "Maximum extract types" #(rf/dispatch [:update-current-recipe [:extracts :count] %]) {:mode :integer}]
-   [numeric-input-column "Maximum hop types"     #(rf/dispatch [:update-current-recipe [:hops :count] %])     {:mode :integer}]])
+  (let [current-recipe  @(rf/subscribe [:current-recipe])
+        grains-count    (get-in current-recipe [:grains :count])
+        extracts-count  (get-in current-recipe [:extracts :count])
+        hops-count      (get-in current-recipe [:hops :count])]
+    [:div recipe-generator-section-style
+     [numeric-input-column "Maximum grain types"   #(rf/dispatch [:update-current-recipe [:grains :count] %]) grains-count {:mode :integer}]
+     [numeric-input-column "Maximum extract types" #(rf/dispatch [:update-current-recipe [:extracts :count] %]) extracts-count {:mode :integer}]
+     [numeric-input-column "Maximum hop types"     #(rf/dispatch [:update-current-recipe [:hops :count] %]) hops-count {:mode :integer}]]))
 
 (defn recipe-generator-selections
   []
@@ -129,25 +137,25 @@
         [:h3 "Grain selection probabilities"]
         (into [:ul]
               (for [grain (sort (keys grains))]
-                ^{:key (random-uuid)} [ingredient-probability-field :grains grain]))])
+                ^{:key (random-uuid)} [ingredient-probability-field :grains grain (get grains grain)]))])
      (when (seq extracts)
        [:div {:style {:padding-top "10px"}}
         [:h3 "Extract selection probabilities"]
         (into [:ul]
               (for [extract (sort (keys extracts))]
-                ^{:key (random-uuid)} [ingredient-probability-field :extracts extract]))])
+                ^{:key (random-uuid)} [ingredient-probability-field :extracts extract (get extracts extract)]))])
      (when (seq hops)
        [:div {:style {:padding-top "10px"}}
         [:h3 "Hop selection probabilities"]
         (into [:ul]
               (for [hop (sort (keys hops))]
-                ^{:key (random-uuid)} [ingredient-probability-field :hops hop]))])
+                ^{:key (random-uuid)} [ingredient-probability-field :hops hop (get hops hop)]))])
      (when (seq yeasts)
        [:div {:style {:padding-top "10px"}}
         [:h3 "Yeast selection probabilities"]
         (into [:ul]
               (for [yeast (sort (keys yeasts))]
-                ^{:key (random-uuid)} [ingredient-probability-field :yeasts yeast]))])]))
+                ^{:key (random-uuid)} [ingredient-probability-field :yeasts yeast (get yeasts yeast)]))])]))
 
 (defn recipe-generator-ingredients
   []
