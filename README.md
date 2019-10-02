@@ -11,6 +11,8 @@
 Bot that spits out brew recipes for n-gallon batches.
 Originally made for [wallbrew.com](https://wallbrew.com/)
 
+The alpha release is now [available!](https://nnichols.github.io/brew-bot/)
+
 brew-bot is a re-frame SPA used to generate random beer recipes based on various weighting schemes:
 
 * **Purely Random** - brew-bot will randomly select ingredients and quantities up to the set weight limit.
