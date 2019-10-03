@@ -226,6 +226,9 @@
    :cluster {:name "Cluster"
              :alpha 8.5
              :beta 5.5}
+   :columbus {:name "Columbus"
+              :alpha 16
+              :beta 5.2}
    :crystal {:name "Crystal"
              :alpha 5.5
              :beta 6.5}
@@ -241,6 +244,9 @@
    :fuggle-us {:name "Fuggle US"
                :alpha 5.5
                :beta 2.0}
+   :galaxy {:name "Galaxy"
+            :alpha 13.5
+            :beta 5.9}
    :galena {:name "Galena"
             :alpha 13.5
             :beta 8.7}

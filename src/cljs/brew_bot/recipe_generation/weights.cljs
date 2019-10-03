@@ -160,3 +160,42 @@
             :white-labs-burton-ale	7
             :brewtek-noth-eastern-micro-ale	6
             :wyeast-labs-british-ale-ii	2}})
+
+(def brown-ale
+  {:hops {:ahtanum	10.6730357
+ :amarillo	59.32107901
+ :brewers-gold-us	4.592045725
+ :cascade	177.8211761
+ :centennial	93.83879764
+ :challenger	9.530779412
+ :chinook	41.46710277
+ :citra	34.91948989
+ :cluster	9.332803517
+ :columbus	34.52480455
+ :crystal	7.482878146
+ :hallertau-us	22.96108481
+ :golding-us	94.33164737
+ :el-dorado	3.582324839
+ :fuggle-us	60.25474516
+ :galaxy	8.976776378
+ :galena	5.260593275
+ :glacier	4.000186552
+ :horizon	9.353582842
+ :liberty	28.63257703
+ :magnum-us	29.0935131
+ :mosaic	19.8598831
+ :mt-hood	18.52624521
+ :northern-brewer	38.34263675
+ :nugget	15.48488348
+ :palisade	3.274752689
+ :perle-us	13.72181009
+ :saaz-us	23.48388754
+ :simcoe	34.96119763
+ :spalt	1.642964685
+ :sterling	4.433114214
+ :summit	4.332426358
+ :tettnang-us	11.18438226
+ :vanguard	2.931831239
+ :warrior	8.628345567
+ :willamette	96.33202155}
+  :grains {
