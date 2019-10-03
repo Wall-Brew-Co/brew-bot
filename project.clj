@@ -51,7 +51,7 @@
                                   :source-paths ["src/cljs"]
                                   :figwheel {:on-jsload "brew_bot.main/init"}
                                   :compiler {:main "brew-bot.main"
-                                             :asset-path "public/js/compiled/out"
+                                             :asset-path "js/compiled/out"
                                              :output-to "resources/public/js/compiled/app.js"
                                              :output-dir "resources/public/js/compiled/out"
                                              :source-map true
