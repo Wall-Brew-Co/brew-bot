@@ -37,7 +37,7 @@
                        :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
             :doo {:build "test"
-                  :alias {:default [:phantom]}}
+                  :alias {:default [:lumo]}}
 
             :cljsbuild {:builds [{:id "prod"
                                   :source-paths ["src/cljs"]
