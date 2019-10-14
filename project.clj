@@ -19,7 +19,7 @@
 
             :plugins [[com.jakemccrary/lein-test-refresh "0.19.0"]
                       [lein-cljsbuild "1.1.7"]
-                      [lein-doo "0.1.8"]
+                      [lein-doo "0.1.10"]
                       [lein-figwheel "0.5.14"]]
 
             :aliases {"prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]
@@ -37,7 +37,7 @@
                        :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
             :doo {:build "test"
-                  :alias {:default [:lumo]}}
+                  :alias {:default [:chrome-headless]}}
 
             :cljsbuild {:builds [{:id "prod"
                                   :source-paths ["src/cljs"]
