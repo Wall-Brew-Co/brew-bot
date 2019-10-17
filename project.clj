@@ -37,7 +37,16 @@
                        :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
             :doo {:build "test"
-                  :alias {:default [:chrome-headless]}}
+                  :alias {:default [:chrome-headless-no-sandbox]}
+                  :karma {:launchers {:chrome-headless-no-sandbox {:plugin "karma-chrome-launcher"
+                                                                   :name   "ChromeHeadlessNoSandbox"}}
+                          :config    {"captureTimeout"             210000
+                                      "browserDisconnectTolerance" 3
+                                      "browserDisconnectTimeout"   210000
+                                      "browserNoActivityTimeout"   210000
+                                      "customLaunchers"            {"ChromeHeadlessNoSandbox"
+                                                                    {"base"  "ChromeHeadless"
+                                                                     "flags" ["--no-sandbox" "--disable-dev-shm-usage"]}}}}}
 
             :cljsbuild {:builds [{:id "prod"
                                   :source-paths ["src/cljs"]
