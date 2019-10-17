@@ -38,6 +38,7 @@
 
             :doo {:build "test"
                   :alias {:default [:chrome-headless-no-sandbox]}
+                  :paths {:karma "./node_modules/karma/bin/karma"}
                   :karma {:launchers {:chrome-headless-no-sandbox {:plugin "karma-chrome-launcher"
                                                                    :name   "ChromeHeadlessNoSandbox"}}
                           :config    {"captureTimeout"             210000
