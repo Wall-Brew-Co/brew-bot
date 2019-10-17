@@ -6,11 +6,11 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-cljs-test": "^0.1.0"
+    "karma-cljs-test": "^0.1.0",
+    "karma-firefox-launcher": "^1.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
