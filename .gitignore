@@ -31,6 +31,5 @@ pom.xml
 pom.xml.asc
 /node_modules
 /node_modules/
-package-lock.json
 /brew-bot-*/
 doo-index.html

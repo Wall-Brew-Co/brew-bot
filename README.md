@@ -35,11 +35,19 @@ lein dev-build
 lein figwheel
 ```
 
-Then open `index.html` in the browser of your choice.
+Then, open `resources/public/index.html` in the browser of your choice.
 
 ## Testing
 
-Test build + execution via [PhantomJS](https://phantomjs.org/):
+[doo](https://github.com/bensu/doo), a Leiningen plugin used to run ClojureScript tests in many JS environments, is already in `project.clj`.
+[Karma](https://karma-runner.github.io/latest/index.html) is used as the test runner, and is included in `package.json`.
+
+To install Karma, simply install the Node package:
+```
+npm install
+```
+
+Then build the application and run the tests:
 ```
 lein test-build
 ```

@@ -19,7 +19,7 @@
 
             :plugins [[com.jakemccrary/lein-test-refresh "0.19.0"]
                       [lein-cljsbuild "1.1.7"]
-                      [lein-doo "0.1.8"]
+                      [lein-doo "0.1.10"]
                       [lein-figwheel "0.5.14"]]
 
             :aliases {"prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]
@@ -37,7 +37,17 @@
                        :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
             :doo {:build "test"
-                  :alias {:default [:phantom]}}
+                  :alias {:default [:chrome-headless-no-sandbox]}
+                  :paths {:karma "./node_modules/karma/bin/karma"}
+                  :karma {:launchers {:chrome-headless-no-sandbox {:plugin "karma-chrome-launcher"
+                                                                   :name   "ChromeHeadlessNoSandbox"}}
+                          :config    {"captureTimeout"             210000
+                                      "browserDisconnectTolerance" 3
+                                      "browserDisconnectTimeout"   210000
+                                      "browserNoActivityTimeout"   210000
+                                      "customLaunchers"            {"ChromeHeadlessNoSandbox"
+                                                                    {"base"  "ChromeHeadless"
+                                                                     "flags" ["--no-sandbox" "--disable-dev-shm-usage"]}}}}}
 
             :cljsbuild {:builds [{:id "prod"
                                   :source-paths ["src/cljs"]
