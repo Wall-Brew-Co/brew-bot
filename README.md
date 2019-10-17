@@ -1,5 +1,5 @@
 # brew-bot - The algorithmic beer recipe generator
-<a href="https://icons8.com/icon/66359/wooden-beer-keg"><img src="resources/icons8-wooden-beer-keg.png"></a>
+<a href="https://icons8.com/icon/66359/wooden-beer-keg"><img src="resources/public/icons8-wooden-beer-keg.png"></a>
 
 ![Github Runner](https://github.com/nnichols/brew-bot/workflows/Clojure%20CI/badge.svg)
 
