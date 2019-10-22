@@ -19,12 +19,14 @@
 
             :plugins [[com.jakemccrary/lein-test-refresh "0.19.0"]
                       [lein-cljsbuild "1.1.7"]
-                      [lein-doo "0.1.10"]
                       [lein-figwheel "0.5.14"]]
 
             :aliases {"prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]
                       "dev-build"  ["do" "clean" ["cljsbuild" "once" "dev"] "figwheel"]
-                      "test-build" ["do" "clean" ["cljsbuild" "once" "dev"] ["doo" "once"]]}
+                      "test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"]]}
+
+            :profiles {:dev {:dependencies [[doo "0.1.8"]]
+                             :plugins      [[lein-doo "0.1.10"]]}}
 
             :min-lein-version "2.5.3"
             :main ^:skip-aot brew-bot.main
@@ -71,6 +73,7 @@
 
                                  {:id "test"
                                   :source-paths ["src/cljs" "test/cljs"]
+                                  :figwheel {:on-jsload "brew_bot.main/init"}
                                   :compiler {:main "brew-bot.runner"
                                              :output-to "resources/test/app.js"
                                              :output-dir "resources/test/js/compiled/out"
