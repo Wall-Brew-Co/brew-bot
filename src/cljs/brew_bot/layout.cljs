@@ -17,8 +17,8 @@
   [ant/layout-header {:class "banner"}
    (r/as-element
     [ant/row
-     [ant/col {:span 12}
-      [:h2 {:style {:color "white" :margin-bottom "-12px"}} "Brew Bot (Alpha)"]]
+     [ant/col {:span 11}
+      [:h2 {:style {:color "white" :margin-bottom "-12px"}} "Brew Bot"]]
      [ant/col {:span 1 :offset 11}
       [:a {:href "https://github.com/nnichols/brew-bot" :target "_blank"}
        [ant/icon {:class "banner-logo" :type "github" :title "Visit us on GitHub"}]]]])])
@@ -50,7 +50,7 @@
     (fn []
       (let [recipe-page? (#{:random :limited-random :weighted-random :weighted-guided} @current-page)]
         [ant/locale-provider {:locale (ant/locales "en_US")}
-         [ant/layout {:style {:min-height "100vh" :min-width "100vw"}}
+         [ant/layout {:style {:min-height "100vh" :min-width "800px"}}
           [ant/affix [app-banner]]
           [ant/layout
            [ant/layout-sider [side-menu @has-recipe-changed?]]

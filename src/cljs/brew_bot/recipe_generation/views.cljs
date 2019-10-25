@@ -25,7 +25,7 @@
 
 (def ^:const recipe-generator-li-style
   {:style {:display        "block"
-           :width          "25%"
+           :width          "33%"
            :float          "left"
            :padding-bottom "4px"}})
 
@@ -185,7 +185,7 @@
                :let [display-name (:name ingredient)
                      weight       (:weight ingredient)
                      weight-unit  (util/pluralize weight (if (= type :hops) "ounce" "pound"))]]
-           ^{:key ingredient} [:li (str display-name " - " weight " " weight-unit)]))])
+           ^{:key ingredient} [:li (str display-name ": " weight " " weight-unit)]))])
 
 (defn recipe-display-page
   []
