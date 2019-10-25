@@ -4,28 +4,28 @@
             :license {:name "Eclipse Public License"
                       :url "http://www.eclipse.org/legal/epl-v10.html"}
             :dependencies [[antizer "0.3.1"]
-                           [cider/piggieback "0.3.8"]
-                           [cljsjs/react "15.6.2-4"]
-                           [cljsjs/react-dom "15.6.2-4"]
+                           [cider/piggieback "0.4.2"]
+                           [cljsjs/react "16.9.0-0"]
+                           [cljsjs/react-dom "16.9.0-0"]
                            [cljx-sampling "0.1.0"]
                            [day8.re-frame/http-fx "0.1.6"]
                            [day8.re-frame/test "0.1.5"]
-                           [figwheel-sidecar "0.5.14"]
+                           [figwheel-sidecar "0.5.19"]
                            [org.clojure/clojure "1.10.1"]
                            [org.clojure/clojurescript "1.10.520" :scope "provided"]
-                           [re-frame "0.10.5"]
-                           [reagent "0.7.0"]
-                           [reagent-utils "0.3.1"]]
+                           [re-frame "0.10.9"]
+                           [reagent "0.8.1"]
+                           [reagent-utils "0.3.3"]]
 
             :plugins [[com.jakemccrary/lein-test-refresh "0.19.0"]
                       [lein-cljsbuild "1.1.7"]
-                      [lein-figwheel "0.5.14"]]
+                      [lein-figwheel "0.5.19"]]
 
             :aliases {"prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]
                       "dev-build"  ["do" "clean" ["cljsbuild" "once" "dev"] "figwheel"]
                       "test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"]]}
 
-            :profiles {:dev {:dependencies [[doo "0.1.8"]]
+            :profiles {:dev {:dependencies [[doo "0.1.11"]]
                              :plugins      [[lein-doo "0.1.10"]]}}
 
             :min-lein-version "2.5.3"
