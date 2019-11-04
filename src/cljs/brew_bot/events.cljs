@@ -4,7 +4,7 @@
 
 (rf/reg-event-db
  :initialize-db
- (fn [_ _]
+ (fn [db [_]]
    db/default-db))
 
 (rf/reg-event-fx

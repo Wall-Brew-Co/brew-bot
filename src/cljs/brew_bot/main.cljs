@@ -1,6 +1,8 @@
 (ns brew-bot.main
   "Application launcher for the web UI"
   (:require [brew-bot.layout :as layout]
+            [brew-bot.routes :as routes]
+            [district0x.re-frame.google-analytics-fx]
             [reagent.core :as r]
             [re-frame.core :as rf]
 
@@ -18,11 +20,12 @@
   "Render the main app panel, and mount it to the window"
   []
   (rf/clear-subscription-cache!)
-  (r/render [layout/main-panel] (.getElementById js/document "app")))
+  (r/render [#'layout/main-panel] (.getElementById js/document "app")))
 
 (defn ^:export init
   "Initialize the app db, and mount the application.
   Exported to preserve fn name through advanced compilation name munging"
   []
-  (rf/dispatch-sync [:initialize-db])
+  (district0x.re-frame.google-analytics-fx/set-enabled! true)
+  (rf/dispatch [:initialize-db])
   (mount-root))
