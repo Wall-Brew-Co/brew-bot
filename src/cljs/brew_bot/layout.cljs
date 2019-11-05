@@ -31,17 +31,30 @@
      [ant/col
       [:p {:style {:font-size "10pt"}}
        [:a {:href "https://github.com/nnichols/brew-bot/issues" :target "_blank"}
-         "Found something broken? Open an issue!"]]]])])
+        "Found something broken? Open an issue!"]]]])])
 
 (defn side-menu
   [has-recipe-changed?]
   [ant/menu {:mode "inline" :theme "dark"}
-   [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :about])} "Learn About Me"]
+   [ant/menu-item {:on-click #(rf/dispatch [:navigate "/about-me"])} "Learn About Me"]
    [ant/menu-sub-menu {:title "Generate Recipes"}
-    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :random])}          "Purely Random"]
-    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :limited-random])}  "Constrained Random"]
-    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :weighted-random])} "Weighted Random"]
-    [ant/menu-item {:on-click #(rf/dispatch [:update-current-page :weighted-guided])} "Weighted Guided"]]])
+    [ant/menu-item {:on-click #(rf/dispatch [:navigate "/generators/random"])}          "Purely Random"]
+    [ant/menu-item {:on-click #(rf/dispatch [:navigate "/generators/limited-random"])}  "Constrained Random"]
+    [ant/menu-item {:on-click #(rf/dispatch [:navigate "/generators/weighted-random"])} "Weighted Random"]
+    [ant/menu-item {:on-click #(rf/dispatch [:navigate "/generators/weighted-guided"])} "Weighted Guided"]]])
+
+(defn main-body
+  [current-page has-recipe-changed?]
+  (fn [current-page has-recipe-changed?]
+    (let [recipe-page? (#{:random :limited-random :weighted-random :weighted-guided} current-page)]
+      [ant/layout {:style {:width "60%"}}
+       [ant/layout-content {:class "content-area"}
+        [ant/row {:gutter 12 :style {:padding-left "20px" :padding-top "20px"}}
+         (cond
+           (= :about current-page)          [about-me]
+           recipe-page?                     [recipe-generator/recipe-generator-body current-page has-recipe-changed?]
+           (= :recipe-preview current-page) [recipe-generator/recipe-display-page]
+           :else                            [about-me])]]])))
 
 (defn main-panel
   []
@@ -54,12 +67,5 @@
           [ant/affix [app-banner]]
           [ant/layout
            [ant/layout-sider [side-menu @has-recipe-changed?]]
-           [ant/layout {:style {:width "60%"}}
-            [ant/layout-content {:class "content-area"}
-             [ant/row {:gutter 12 :style {:padding-left "20px" :padding-top "20px"}}
-              (cond
-                (= :about @current-page)          [about-me]
-                recipe-page?                      [recipe-generator/recipe-generator-body @current-page @has-recipe-changed?]
-                (= :recipe-preview @current-page) [recipe-generator/recipe-display-page]
-                :else                             [about-me])]]]]
+           [main-body @current-page @has-recipe-changed?]]
           [app-footer]]]))))

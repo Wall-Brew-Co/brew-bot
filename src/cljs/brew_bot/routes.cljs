@@ -54,9 +54,13 @@
   {:keys [query-params]}
   [[:initialize-db]])
 
-(secretary/defroute "/generators/:type"
+(secretary/defroute "/generators/:generator-type"
+  {:keys [generator-type]}
+  [[:update-current-page (keyword generator-type)]])
+
+(secretary/defroute "/about-me"
   {:as params}
-  (js/console.log (str "User: " (:type params))))
+  [[:update-current-page :about]])
 
 ;; This must execute last
 (hook-browser-navigation!)
