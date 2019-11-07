@@ -12,7 +12,8 @@
             [brew-bot.subs]
             [brew-bot.recipe-generation.events]
             [brew-bot.recipe-generation.subs]
-            [brew-bot.recipe-generation.weights]))
+            [brew-bot.recipe-generation.weights]
+            [brew-bot.recipes.subs]))
 
 (enable-console-print!)
 

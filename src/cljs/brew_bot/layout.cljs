@@ -1,6 +1,7 @@
 (ns brew-bot.layout
   (:require [antizer.reagent :as ant]
             [brew-bot.recipe-generation.views :as recipe-generator]
+            [brew-bot.recipes.views :as recipes]
             [brew-bot.visual-identity :as vi]
             [reagent.core :as r]
             [re-frame.core :as rf]))
@@ -53,7 +54,7 @@
          (cond
            (= :about current-page)          [about-me]
            recipe-page?                     [recipe-generator/recipe-generator-body current-page has-recipe-changed?]
-           (= :recipe-preview current-page) [recipe-generator/recipe-display-page]
+           (= :recipe-preview current-page) [recipes/recipe-display-page]
            :else                            [about-me])]]])))
 
 (defn main-panel

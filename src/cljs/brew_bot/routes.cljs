@@ -19,7 +19,7 @@
    (let [evts (secretary/dispatch! route)
          _ (println (str "naviagted to " route))]
      {:dispatch-n   evts
-      ;:ga/page-view [route]
+      ;:ga/page-view [route] ;; TODO - config in Google Analytics, and this call
 })))
 
 (rf/reg-event-fx

@@ -12,11 +12,6 @@
    (:current-recipe db)))
 
 (rf/reg-sub
- :generated-recipe
- (fn [db _]
-   (:generated-recipe db)))
-
-(rf/reg-sub
  :has-recipe-changed?
  (fn [db _]
    (get-in db [:current-recipe :has-recipe-changed?])))
