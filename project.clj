@@ -5,11 +5,13 @@
                       :url "http://www.eclipse.org/legal/epl-v10.html"}
             :dependencies [[antizer "0.3.1"]
                            [cider/piggieback "0.4.2"]
+                           [clj-commons/secretary "1.2.4"]
                            [cljsjs/react "16.9.0-0"]
                            [cljsjs/react-dom "16.9.0-0"]
                            [cljx-sampling "0.1.0"]
                            [day8.re-frame/http-fx "0.1.6"]
                            [day8.re-frame/test "0.1.5"]
+                           [district0x.re-frame/google-analytics-fx "1.0.0"]
                            [figwheel-sidecar "0.5.19"]
                            [org.clojure/clojure "1.10.1"]
                            [org.clojure/clojurescript "1.10.520" :scope "provided"]

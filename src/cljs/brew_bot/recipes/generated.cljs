@@ -1,5 +1,5 @@
-(ns brew-bot.recipe-generation.recipes
-  "A data store for recipes by style generated and otherwise")
+(ns brew-bot.recipes.generated
+  "A data store for recipes by brew-bot")
 
 (def brew-bot-originals
   {:mk1-chaos-barley-wine {:grains {:wheat-malt-belgian {:name "Wheat Malt, Belgian" :gravity 1.037 :weight 0.75}
