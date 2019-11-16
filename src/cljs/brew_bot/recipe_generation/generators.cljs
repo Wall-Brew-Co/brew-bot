@@ -1,7 +1,8 @@
 (ns brew-bot.recipe-generation.generators
   "Beer recipe generators"
   (:require [brew-bot.recipe-generation.ingredients :as ingredients]
-            [brew-bot.util :as util]))
+            [brew-bot.util :as util]
+            [nnichols.util :as nu]))
 
 (defn format-recipe
   "Given maps of ingredient : weight pairs, format a recipe and derive other important information"
@@ -40,7 +41,7 @@
        (if (< weight weight-cutoff)
          (let [selected-ingredient (util/rand-key ingredient-set)
                ingredient-addition (rand-nth ingredients/ingredient-amounts)
-               updated-map (util/update-or-assoc ingredient-map selected-ingredient ingredient-addition #(+ ingredient-addition %))]
+               updated-map (nu/update-or-assoc ingredient-map selected-ingredient ingredient-addition #(+ ingredient-addition %))]
            (recur updated-map
                   (+ weight ingredient-addition)
                   (count (keys updated-map))))

@@ -1,4 +1,4 @@
-(defproject brew-bot "1.0.0-alpha-2"
+(defproject brew-bot "1.0.0-beta"
             :description "A quick, dirty way to get randomized beer recipes"
             :url "https://github.com/nnichols/brew-bot"
             :license {:name "Eclipse Public License"
@@ -13,6 +13,7 @@
                            [day8.re-frame/test "0.1.5"]
                            [district0x.re-frame/google-analytics-fx "1.0.0"]
                            [figwheel-sidecar "0.5.19"]
+                           [nnichols "0.1.0"]
                            [org.clojure/clojure "1.10.1"]
                            [org.clojure/clojurescript "1.10.520" :scope "provided"]
                            [re-frame "0.10.9"]

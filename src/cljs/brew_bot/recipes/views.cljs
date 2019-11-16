@@ -1,8 +1,8 @@
 (ns brew-bot.recipes.views
   (:require [antizer.reagent :as ant]
             [brew-bot.util :as util]
-            [brew-bot.visual-identity :as vis]
             [cljs.pprint :as pprint]
+            [nnichols.palette :as palette]
             [reagent.core :as r]
             [re-frame.core :as rf]))
 
@@ -31,7 +31,7 @@
          [:h2 "Your Recipe"]
          [:p "Projections"]
          [:ul {:style {:max-width "200px"
-                       :border (str "5px solid " (vis/srm-color-to-hex color))}}
+                       :border (str "5px solid " (palette/srm-number-to-rgba color))}}
           [:li (str "OG: "  (pprint/cl-format false  "~,3f" (:gravity @generated-recipe)))]
           [:li (str "ABV: " (pprint/cl-format false  "~,2f" (:abv @generated-recipe)) "%")]
           [:li (str "SRM Color: " (int color))]]

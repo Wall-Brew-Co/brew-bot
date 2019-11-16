@@ -13,14 +13,6 @@
   [ingredient-bill ingredient-source added-key]
   (reduce-kv (fn [m k v] (assoc m k (assoc (get ingredient-source k) added-key v))) {} ingredient-bill))
 
-(defn update-or-assoc
-  "If `k` exists in `m` apply the `update-fn`.
-   Else, assoc `v` to that `k` in `m`"
-  [m k v update-fn]
-  (if (get m k)
-    (update m k update-fn)
-    (assoc m k v)))
-
 (defn scale-ingredients
   "Update `ingredient-map` so the combined :weights are randomly scaled up to `weight-limit`"
   [ingredient-map weight-limit]

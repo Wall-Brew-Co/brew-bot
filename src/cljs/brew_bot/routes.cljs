@@ -51,16 +51,37 @@
 
 ;; ROUTES
 (secretary/defroute "/"
-  {:keys [query-params]}
-  [[:initialize-db]])
+                    {:keys [query-params]}
+                    [[:initialize-db]])
+
+(secretary/defroute "/home"
+                    {:as params}
+                    [[:update-current-page :home]])
 
 (secretary/defroute "/generators/:generator-type"
-  {:keys [generator-type]}
-  [[:update-current-page (keyword generator-type)]])
+                    {:keys [generator-type]}
+                    [[:update-current-page (keyword generator-type)]])
 
 (secretary/defroute "/about-me"
-  {:as params}
-  [[:update-current-page :about]])
+                    {:as params}
+                    [[:update-current-page :about]])
+
+(secretary/defroute "/contributors"
+                    {:as params}
+                    [[:update-current-page :contributors]])
+
+(secretary/defroute "/about/random"
+                    {:as params}
+                    [[:update-current-page :random-generators]])
+
+(secretary/defroute "/about/weighted"
+                    {:as params}
+                    [[:update-current-page :weighted-generators]])
+
+;; 404
+(secretary/defroute "*"
+                    {:as params}
+                    [[:update-current-page :not-found]])
 
 ;; This must execute last
 (hook-browser-navigation!)
