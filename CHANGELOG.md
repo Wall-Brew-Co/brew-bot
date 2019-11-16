@@ -1,3 +1,7 @@
+## v1.0.0-beta / 2019 November 16
+
+> Add static assets, routing via secretary
+
 ## v1.0.0-alpha2 / 2019 Oct 02
 
 > Update mobile rendering
