@@ -93,9 +93,11 @@
 
 (defn generate-beer-recipe
   [strategy gallons grain-limits extract-limits hop-limits yeast-limits]
+  (do
+    (println strategy)
   (case strategy ;;TODO - DRY
     :random          (generate-random-recipe gallons grain-limits extract-limits hop-limits yeast-limits)
     :limited-random  (generate-limited-random-recipe gallons grain-limits extract-limits hop-limits yeast-limits)
     :weighted-guided (generate-weighted-guided-recipe gallons grain-limits extract-limits hop-limits yeast-limits)
     :weighted-random (generate-weighted-random-recipe gallons grain-limits extract-limits hop-limits yeast-limits)
-    {:invalid-strategy "Please pick a legal recipe generation strategy"}))
+    {:invalid-strategy "Please pick a legal recipe generation strategy"})))

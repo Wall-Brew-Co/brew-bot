@@ -15,3 +15,8 @@
  :has-recipe-changed?
  (fn [db _]
    (get-in db [:current-recipe :has-recipe-changed?])))
+
+(rf/reg-sub
+ :generator-type
+ (fn [db _]
+   (get-in db [:current-recipe :generator])))

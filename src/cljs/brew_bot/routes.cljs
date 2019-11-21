@@ -60,7 +60,8 @@
 
 (secretary/defroute "/generators/:generator-type"
                     {:keys [generator-type]}
-                    [[:update-current-page (keyword generator-type)]])
+                    [[:update-current-page :generator]
+                     [:set-generator-type  generator-type]])
 
 (secretary/defroute "/about-me"
                     {:as params}

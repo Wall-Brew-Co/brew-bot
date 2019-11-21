@@ -171,15 +171,18 @@
    [recipe-generator-weights]])
 
 (defn recipe-generator-body
-  [generator-type has-changed?]
+  []
+  (fn []
+    (let [generator-type (rf/subscribe [:generator-type])
+          has-changed?   (rf/subscribe [:has-recipe-changed?])]
   [:div {:style {:padding-left "10px"}}
-   [:h2 (if has-changed? "Recipe Generator*" "Recipe Generator")]
+   [:h2 (if @has-changed? "Recipe Generator*" "Recipe Generator")]
    [:div {:style {:padding "5px"}}
-    (when (#{:random :limited-random :weighted-random :weighted-guided} generator-type)
+    (when (#{:random :limited-random :weighted-random :weighted-guided} @generator-type)
       [recipe-generator-quantities])
-    (when (#{:limited-random :weighted-random :weighted-guided} generator-type)
+    (when (#{:limited-random :weighted-random :weighted-guided} @generator-type)
       [recipe-generator-counts])
-    (when (#{:weighted-random :weighted-guided} generator-type)
+    (when (#{:weighted-random :weighted-guided} @generator-type)
       [recipe-generator-ingredients])
     [:div {:style {:padding-top "18px"}}
-     [ant/button {:type "primary" :on-click #(rf/dispatch [:generate-recipe generator-type])} "Generate Recipe"]]]])
+     [ant/button {:type "primary" :on-click #(rf/dispatch [:generate-recipe @generator-type])} "Generate Recipe"]]]])))
