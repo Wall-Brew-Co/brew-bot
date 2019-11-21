@@ -3,7 +3,7 @@
             [brew-bot.recipe-generation.views :as recipe-generator]
             [brew-bot.recipes.views :as recipes]
             [brew-bot.text-pages.static-content :as static]
-            [brew-bot.visual-identity :as vi]
+            [brew-bot.toolbelt.visual-identity :as vi]
             [reagent.core :as r]
             [re-frame.core :as rf]))
 

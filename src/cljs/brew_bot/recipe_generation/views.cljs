@@ -1,6 +1,5 @@
 (ns brew-bot.recipe-generation.views
   (:require [antizer.reagent :as ant]
-            [brew-bot.util :as util]
             [reagent.core :as r]
             [re-frame.core :as rf]))
 

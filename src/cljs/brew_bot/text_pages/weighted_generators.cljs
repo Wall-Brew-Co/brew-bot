@@ -1,6 +1,6 @@
 (ns brew-bot.text-pages.weighted-generators
   "Static text about the weighted recipe generators"
-  (:require [brew-bot.visual-identity :as vi]
+  (:require [brew-bot.toolbelt.visual-identity :as vi]
             [re-frame.core :as rf]))
 
 (defn linked-item

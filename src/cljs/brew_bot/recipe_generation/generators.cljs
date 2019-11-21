@@ -1,7 +1,8 @@
 (ns brew-bot.recipe-generation.generators
   "Beer recipe generators"
   (:require [brew-bot.recipe-generation.ingredients :as ingredients]
-            [brew-bot.util :as util]
+            [brew-bot.toolbelt.calculators :as calc]
+            [brew-bot.toolbelt.util :as util]
             [nnichols.util :as nu]))
 
 (defn format-recipe
@@ -10,16 +11,16 @@
   (let [grains   (util/join-ingredient-maps grain-bill ingredients/grains :weight)
         extracts (util/join-ingredient-maps extract-bill ingredients/extracts :weight)
         hops     (util/join-ingredient-maps hop-bill ingredients/hops :weight)
-        gravity  (util/calculate-gravity gallons grains extracts)
+        gravity  (calc/calculate-gravity gallons grains extracts)
         yeast    {yeast (get ingredients/yeasts yeast)}]
     {:grains    grains
      :extracts  extracts
      :hops      hops
      :yeasts    yeast
      :gravity   gravity
-     :sru-color (util/calculate-standard-reference-method-color-units gallons grains extracts)
-     :ibu       (util/calculate-recipe-bittering-units gallons gravity hops)
-     :abv       (util/calculate-estimated-abv gravity)}))
+     :sru-color (calc/calculate-standard-reference-method-color-units gallons grains extracts)
+     :ibu       (calc/calculate-recipe-bittering-units gallons gravity hops)
+     :abv       (calc/calculate-estimated-abv gravity)}))
 
 (defn update-selection-probability
   [probabilities ingredient-map include-all?]
@@ -36,17 +37,20 @@
    (loop [ingredient-map {}
           weight 0.0
           ingredient-count 0]
-     (if (or (= ingredient-limit :unlimited)
-             (< ingredient-count ingredient-limit))
-       (if (< weight weight-cutoff)
-         (let [selected-ingredient (util/rand-key ingredient-set)
-               ingredient-addition (rand-nth ingredients/ingredient-amounts)
-               updated-map (nu/update-or-assoc ingredient-map selected-ingredient ingredient-addition #(+ ingredient-addition %))]
-           (recur updated-map
-                  (+ weight ingredient-addition)
-                  (count (keys updated-map))))
-         ingredient-map)
-       (util/scale-ingredients ingredient-map weight-cutoff)))))
+     (if (or (= 0 ingredient-limit)
+             (= 0 weight-cutoff))
+       {}
+       (if (or (= ingredient-limit :unlimited)
+               (< ingredient-count ingredient-limit))
+         (if (< weight weight-cutoff)
+           (let [selected-ingredient (util/rand-key ingredient-set)
+                 ingredient-addition (rand-nth ingredients/ingredient-amounts)
+                 updated-map (nu/update-or-assoc ingredient-map selected-ingredient ingredient-addition #(+ ingredient-addition %))]
+             (recur updated-map
+                    (+ weight ingredient-addition)
+                    (count (keys updated-map))))
+           ingredient-map)
+         (util/scale-ingredients ingredient-map weight-cutoff))))))
 
 (defn generate-random-recipe
   "Generate a purely random beer recipe with grains, extracts, and hops close to their respective limits"
@@ -93,11 +97,9 @@
 
 (defn generate-beer-recipe
   [strategy gallons grain-limits extract-limits hop-limits yeast-limits]
-  (do
-    (println strategy)
   (case strategy ;;TODO - DRY
     :random          (generate-random-recipe gallons grain-limits extract-limits hop-limits yeast-limits)
     :limited-random  (generate-limited-random-recipe gallons grain-limits extract-limits hop-limits yeast-limits)
     :weighted-guided (generate-weighted-guided-recipe gallons grain-limits extract-limits hop-limits yeast-limits)
     :weighted-random (generate-weighted-random-recipe gallons grain-limits extract-limits hop-limits yeast-limits)
-    {:invalid-strategy "Please pick a legal recipe generation strategy"})))
+    {:invalid-strategy "Please pick a legal recipe generation strategy"}))

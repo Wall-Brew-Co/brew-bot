@@ -1,6 +1,6 @@
 (ns brew-bot.recipes.views
   (:require [antizer.reagent :as ant]
-            [brew-bot.util :as util]
+            [brew-bot.toolbelt.util :as util]
             [cljs.pprint :as pprint]
             [nnichols.palette :as palette]
             [reagent.core :as r]

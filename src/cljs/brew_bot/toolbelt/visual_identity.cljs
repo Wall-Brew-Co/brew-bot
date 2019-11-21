@@ -1,4 +1,4 @@
-(ns brew-bot.visual-identity
+(ns brew-bot.toolbelt.visual-identity
   "Common CSS styles, colors, etc.")
 
 (def ^:const dim-gray "#9C9C9C")
