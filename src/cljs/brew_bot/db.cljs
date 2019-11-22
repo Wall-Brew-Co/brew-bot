@@ -1,5 +1,5 @@
 (ns brew-bot.db
-  (:require [brew-bot.recipe-generation.ingredients :as ingredients]))
+  (:require [brew-bot.ingredients :as ingredients]))
 
 (def ^:const empty-recipe
   {:grains {:weight 5.0 :count 5}

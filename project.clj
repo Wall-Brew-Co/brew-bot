@@ -26,13 +26,15 @@
 
             :aliases {"prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]
                       "dev-build"  ["do" "clean" ["cljsbuild" "once" "dev"] "figwheel"]
-                      "test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"]]}
+                      "test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
 
             :profiles {:dev {:dependencies [[doo "0.1.11"]]
                              :plugins      [[lein-doo "0.1.10"]]}}
 
             :min-lein-version "2.5.3"
             :main ^:skip-aot brew-bot.main
+            :source-paths ["src/clj" "src/cljc"]
+            :test-paths ["test/clj" "test/cljs" "test/cljc"]
             :target-path "target/%s"
             :clean-targets ^{:protect false} ["resources/public/js/compiled" "resources/test" "target"]
 
@@ -55,7 +57,7 @@
                                                                      "flags" ["--no-sandbox" "--disable-dev-shm-usage"]}}}}}
 
             :cljsbuild {:builds [{:id "prod"
-                                  :source-paths ["src/cljs"]
+                                  :source-paths ["src/cljs" "src/cljc"]
                                   :compiler {:main brew-bot.main
                                              :output-to "resources/public/js/compiled/app.js"
                                              :optimizations :advanced
@@ -63,7 +65,7 @@
                                              :parallel-build true}}
 
                                  {:id "dev"
-                                  :source-paths ["src/cljs"]
+                                  :source-paths ["src/cljs" "src/cljc"]
                                   :figwheel {:on-jsload "brew_bot.main/init"}
                                   :compiler {:main "brew-bot.main"
                                              :asset-path "js/compiled/out"
@@ -75,7 +77,7 @@
                                              :pretty-print true}}
 
                                  {:id "test"
-                                  :source-paths ["src/cljs" "test/cljs"]
+                                  :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
                                   :figwheel {:on-jsload "brew_bot.main/init"}
                                   :compiler {:main "brew-bot.runner"
                                              :output-to "resources/test/app.js"

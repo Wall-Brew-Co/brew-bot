@@ -1,7 +1,8 @@
 (ns brew-bot.weight-test
-  (:require [cljs.test :refer-macros [is deftest testing]]
-            [brew-bot.recipe-generation.ingredients :as bb]
-            [brew-bot.recipe-generation.weights :as weights]))
+  (:require [brew-bot.ingredients :as bb]
+            [brew-bot.weights :as weights]
+            #? (:clj  [clojure.test :refer [deftest is testing run-tests]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing run-tests]])))
 
 (deftest marzen-validity-test
   (testing "Ensure all marzen ingredients exist and are valid"

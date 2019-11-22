@@ -1,6 +1,6 @@
 (ns brew-bot.spec
   "Common specs/api checks for core functions"
-  (:require [brew-bot.recipe-generation.ingredients :as ingredients]
+  (:require [brew-bot.ingredients :as ingredients]
             [clojure.spec.alpha :as s]))
 
 (s/def ::name string?)

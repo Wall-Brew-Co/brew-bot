@@ -1,7 +1,7 @@
-(ns brew-bot.toolbelt.util
+(ns brew-bot.util
   "Common fns required across brew-bot"
   (:require [cljx-sampling.core :as rnd]
-            [brew-bot.recipe-generation.ingredients :as ingredients]))
+            [brew-bot.ingredients :as ingredients]))
 
 (defn rand-key
   "Pick a random key from a map, weighted by the :probability key of the value"

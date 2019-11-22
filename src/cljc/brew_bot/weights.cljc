@@ -1,4 +1,4 @@
-(ns brew-bot.recipe-generation.weights
+(ns brew-bot.weights
   "Pre-determined style weights based on beer recipe observation")
 
 (def ^:const marzen

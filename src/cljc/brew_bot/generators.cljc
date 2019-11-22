@@ -1,8 +1,8 @@
-(ns brew-bot.recipe-generation.generators
+(ns brew-bot.generators
   "Beer recipe generators"
-  (:require [brew-bot.recipe-generation.ingredients :as ingredients]
-            [brew-bot.toolbelt.calculators :as calc]
-            [brew-bot.toolbelt.util :as util]
+  (:require [brew-bot.ingredients :as ingredients]
+            [brew-bot.calculators :as calc]
+            [brew-bot.util :as util]
             [nnichols.util :as nu]))
 
 (defn format-recipe
@@ -19,7 +19,8 @@
      :yeasts    yeast
      :gravity   gravity
      :sru-color (calc/calculate-standard-reference-method-color-units gallons grains extracts)
-     :ibu       (calc/calculate-recipe-bittering-units gallons gravity hops)
+  ;   TODO - Add when hop timings are introduced
+  ;   :ibu       (calc/calculate-recipe-bittering-units gallons gravity hops)
      :abv       (calc/calculate-estimated-abv gravity)}))
 
 (defn update-selection-probability

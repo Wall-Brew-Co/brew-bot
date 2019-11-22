@@ -1,6 +1,6 @@
 (ns brew-bot.text-pages.random-generators
   "Static text about the random recipe generators"
-  (:require [brew-bot.toolbelt.visual-identity :as vi]
+  (:require [brew-bot.visual-identity :as vi]
             [re-frame.core :as rf]))
 
 (defn linked-item

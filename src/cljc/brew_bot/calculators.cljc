@@ -1,4 +1,4 @@
-(ns brew-bot.toolbelt.calculators
+(ns brew-bot.calculators
   "Common calculations performed across brew-bot")
 
 (defn potential-gravity-to-gravity-points
@@ -53,7 +53,7 @@
   "Calculate the MCU color units of all fermentables: https://www.homebrewing.org/SRM-Beer-Color-Scale_ep_81-1.html"
   [gallons grains extracts]
   (let [reducing-fn (fn [acc k v] (+ acc (* (:weight v) (:lovibond v))))
-        grain-mcu (reduce-kv reducing-fn 0 grains)
+        grain-mcu   (reduce-kv reducing-fn 0 grains)
         extract-mcu (reduce-kv reducing-fn 0 extracts)]
     (/ (+ grain-mcu extract-mcu) gallons)))
 

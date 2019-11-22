@@ -1,6 +1,6 @@
 (ns brew-bot.text-pages.home-page
   "Static text displayed on the landing page"
-  (:require [brew-bot.toolbelt.visual-identity :as vi]
+  (:require [brew-bot.visual-identity :as vi]
             [re-frame.core :as rf]))
 
 (defn linked-item

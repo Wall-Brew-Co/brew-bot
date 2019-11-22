@@ -1,8 +1,9 @@
 (ns brew-bot.ingredient-test
-  (:require [cljs.test :refer-macros [is deftest testing]]
-            [clojure.spec.alpha :as csa]
-            [brew-bot.recipe-generation.ingredients :as bb]
-            [brew-bot.spec :as s]))
+  (:require [clojure.spec.alpha :as csa]
+            [brew-bot.ingredients :as bb]
+            [brew-bot.spec :as s]
+            #? (:clj  [clojure.test :refer [deftest is testing run-tests]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing run-tests]])))
 
 (deftest grain-validity-test
   (testing "Ensure all grain definitions are well-formatted"

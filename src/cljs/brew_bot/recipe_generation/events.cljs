@@ -1,7 +1,6 @@
 (ns brew-bot.recipe-generation.events
   (:require [brew-bot.db :as db]
-            [brew-bot.recipe-generation.generators :as generators]
-            [brew-bot.recipe-generation.weights :as weights]
+            [brew-bot.generators :as generators]
             [re-frame.core :as rf]))
 
 (rf/reg-event-db
