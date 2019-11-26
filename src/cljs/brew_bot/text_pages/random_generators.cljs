@@ -1,11 +1,11 @@
 (ns brew-bot.text-pages.random-generators
   "Static text about the random recipe generators"
-  (:require [brew-bot.visual-identity :as vi]
+  (:require [brew-bot.visual-identity.colors :as colors]
             [re-frame.core :as rf]))
 
 (defn linked-item
   [route route-text]
-   [:b {:style {:color vi/dark-blue :text-decoration "underline" :cursor "pointer"}
+   [:b {:style {:color colors/dark-blue :text-decoration "underline" :cursor "pointer"}
         :title (str "Try out the " route-text " recipe generator!")
         :on-click #(rf/dispatch [:navigate route])} route-text])
 

@@ -4,7 +4,7 @@
 (def ^:const empty-recipe
   {:grains {:weight 5.0 :count 5}
    :extracts {:weight 5.0 :count 1}
-   :hops {:weight 3.0 :count 3}
+   :hops {:weight 1.5 :count 3}
    :yeasts {}
    :gallons 5.0
    :has-recipe-changed? false})

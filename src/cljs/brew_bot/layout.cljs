@@ -3,7 +3,7 @@
             [brew-bot.recipe-generation.views :as recipe-generator]
             [brew-bot.recipes.views :as recipes]
             [brew-bot.text-pages.static-content :as static]
-            [brew-bot.visual-identity :as vi]
+            [brew-bot.visual-identity.colors :as colors]
             [reagent.core :as r]
             [re-frame.core :as rf]))
 
@@ -23,9 +23,9 @@
 (defn app-footer
   []
   (fn []
-    [ant/layout-footer {:style {:background-color vi/dark-blue}}
+    [ant/layout-footer {:style {:background-color colors/dark-blue}}
      (r/as-element
-      [ant/row {:style {:align "bottom" :text-align "center" :color vi/dim-gray}}
+      [ant/row {:style {:align "bottom" :text-align "center" :color colors/dim-gray}}
        [ant/col
         [:p {:style {:font-size "10pt"}}
          [:a {:href "https://github.com/nnichols/brew-bot/issues" :target "_blank"}
