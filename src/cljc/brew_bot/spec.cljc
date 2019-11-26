@@ -46,7 +46,7 @@
   (s/map-of ingredients/grains-keys ::grain))
 
 (s/def ::hop
-  (s/keys :req-un [::name ::alpha ::beta]
+  (s/keys :req-un [::name ::alpha ::beta ::tags]
           :opt-un [::weight ::time-boiled]))
 
 (s/def ::hops

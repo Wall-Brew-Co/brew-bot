@@ -23,7 +23,8 @@
   (testing "Ensure all hop definitions are well-formatted"
     (is (every? #(csa/valid? ::s/alpha %) (map :alpha (vals bb/hops))))
     (is (every? #(csa/valid? ::s/beta %)  (map :beta (vals bb/hops))))
-    (is (every? #(csa/valid? ::s/name %)  (map :name (vals bb/hops))))))
+    (is (every? #(csa/valid? ::s/name %)  (map :name (vals bb/hops))))
+    (is (every? #(csa/valid? ::s/tags %)  (map :tags (vals bb/hops))))))
 
 (deftest yeast-validity-test
   (testing "Ensure all yeast definitions are well-formatted"
