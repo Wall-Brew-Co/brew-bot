@@ -15,6 +15,13 @@
   (s/and number?
          #(>= % 0.5)))
 
+(s/def ::tags
+  (s/coll-of keyword?))
+
+(s/def ::suggested-max
+  (s/and number?
+         #(>= % 0.25)))
+
 (s/def ::alpha
   (s/and number?
          #(>= % 1.0)))
@@ -32,7 +39,7 @@
          #((set ingredients/hop-times) %)))
 
 (s/def ::grain
-  (s/keys :req-un [::name ::gravity ::lovibond]
+  (s/keys :req-un [::name ::gravity ::lovibond ::tags ::suggested-max]
           :opt-un [::weight]))
 
 (s/def ::grains

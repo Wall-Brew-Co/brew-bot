@@ -7,9 +7,11 @@
 
 (deftest grain-validity-test
   (testing "Ensure all grain definitions are well-formatted"
-    (is (every? #(csa/valid? ::s/gravity %)  (map :gravity (vals bb/grains))))
-    (is (every? #(csa/valid? ::s/lovibond %) (map :lovibond (vals bb/grains))))
-    (is (every? #(csa/valid? ::s/name %)     (map :name (vals bb/grains))))))
+    (is (every? #(csa/valid? ::s/gravity %)       (map :gravity (vals bb/grains))))
+    (is (every? #(csa/valid? ::s/lovibond %)      (map :lovibond (vals bb/grains))))
+    (is (every? #(csa/valid? ::s/name %)          (map :name (vals bb/grains))))
+    (is (every? #(csa/valid? ::s/tags %)          (map :tags (vals bb/grains))))
+    (is (every? #(csa/valid? ::s/suggested-max %) (map :suggested-max  (vals bb/grains))))))
 
 (deftest extract-validity-test
   (testing "Ensure all extract definitions are well-formatted"
