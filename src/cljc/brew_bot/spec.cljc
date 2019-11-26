@@ -53,8 +53,8 @@
   (s/map-of ingredients/hops-keys ::hop))
 
 (s/def ::extract
-  (s/keys :req-un [::name ::gravity ::lovibond]
-          :opt-un [::weight]))
+  (s/keys :req-un [::name ::gravity ::lovibond ::suggested-max]
+          :opt-un [::weight ::tags]))
 
 (s/def ::extracts
   (s/map-of ingredients/extracts-keys ::extract))
