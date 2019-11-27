@@ -1,6 +1,6 @@
 (ns brew-bot.spec
   "Common specs/api checks for core functions"
-  (:require [brew-bot.recipe-generation.ingredients :as ingredients]
+  (:require [brew-bot.ingredients :as ingredients]
             [clojure.spec.alpha :as s]))
 
 (s/def ::name string?)
@@ -14,6 +14,13 @@
 (s/def ::lovibond
   (s/and number?
          #(>= % 0.5)))
+
+(s/def ::tags
+  (s/coll-of keyword?))
+
+(s/def ::suggested-max
+  (s/and number?
+         #(>= % 0.25)))
 
 (s/def ::alpha
   (s/and number?
@@ -32,22 +39,22 @@
          #((set ingredients/hop-times) %)))
 
 (s/def ::grain
-  (s/keys :req-un [::name ::gravity ::lovibond]
+  (s/keys :req-un [::name ::gravity ::lovibond ::tags ::suggested-max]
           :opt-un [::weight]))
 
 (s/def ::grains
   (s/map-of ingredients/grains-keys ::grain))
 
 (s/def ::hop
-  (s/keys :req-un [::name ::alpha ::beta]
+  (s/keys :req-un [::name ::alpha ::beta ::tags]
           :opt-un [::weight ::time-boiled]))
 
 (s/def ::hops
   (s/map-of ingredients/hops-keys ::hop))
 
 (s/def ::extract
-  (s/keys :req-un [::name ::gravity ::lovibond]
-          :opt-un [::weight]))
+  (s/keys :req-un [::name ::gravity ::lovibond ::suggested-max]
+          :opt-un [::weight ::tags]))
 
 (s/def ::extracts
   (s/map-of ingredients/extracts-keys ::extract))

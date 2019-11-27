@@ -16,9 +16,7 @@
 (rf/reg-event-db
  :update-current-page
  (fn [db [_ page]]
-   (-> db
-     (assoc :current-recipe db/empty-recipe)
-     (assoc :current-page page))))
+   (assoc db :current-page page)))
 
 (rf/reg-event-db
  :no-op

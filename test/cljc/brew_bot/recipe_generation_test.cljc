@@ -1,8 +1,9 @@
 (ns brew-bot.recipe-generation-test
-  (:require [cljs.test :refer-macros [is deftest testing]]
-            [clojure.spec.alpha :as csa]
+  (:require [clojure.spec.alpha :as csa]
             [brew-bot.spec :as s]
-            [brew-bot.recipe-generation.generators :as bb]))
+            [brew-bot.generators :as bb]
+            #? (:clj  [clojure.test :refer [deftest is testing run-tests]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing run-tests]])))
 
 (deftest generate-beer-recipe-test
   (testing "Ensure the application can generate recipes that are sane"

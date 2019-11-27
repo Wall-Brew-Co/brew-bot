@@ -1,4 +1,4 @@
-(defproject brew-bot "1.0.0-beta"
+(defproject brew-bot "1.0.0-gamma"
             :description "A quick, dirty way to get randomized beer recipes"
             :url "https://github.com/nnichols/brew-bot"
             :license {:name "Eclipse Public License"
@@ -6,16 +6,16 @@
             :dependencies [[antizer "0.3.1"]
                            [cider/piggieback "0.4.2"]
                            [clj-commons/secretary "1.2.4"]
-                           [cljsjs/react "16.9.0-0"]
-                           [cljsjs/react-dom "16.9.0-0"]
+                           [cljsjs/react "16.11.0-0"]
+                           [cljsjs/react-dom "16.11.0-0"]
                            [cljx-sampling "0.1.0"]
                            [day8.re-frame/http-fx "0.1.6"]
                            [day8.re-frame/test "0.1.5"]
                            [district0x.re-frame/google-analytics-fx "1.0.0"]
                            [figwheel-sidecar "0.5.19"]
-                           [nnichols "0.1.0"]
+                           [nnichols "0.2.1"]
                            [org.clojure/clojure "1.10.1"]
-                           [org.clojure/clojurescript "1.10.520" :scope "provided"]
+                           [org.clojure/clojurescript "1.10.597" :scope "provided"]
                            [re-frame "0.10.9"]
                            [reagent "0.8.1"]
                            [reagent-utils "0.3.3"]]
@@ -26,13 +26,15 @@
 
             :aliases {"prod-build" ["do" "clean" ["cljsbuild" "once" "prod"]]
                       "dev-build"  ["do" "clean" ["cljsbuild" "once" "dev"] "figwheel"]
-                      "test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"]]}
+                      "test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
 
             :profiles {:dev {:dependencies [[doo "0.1.11"]]
                              :plugins      [[lein-doo "0.1.10"]]}}
 
             :min-lein-version "2.5.3"
             :main ^:skip-aot brew-bot.main
+            :source-paths ["src/clj" "src/cljc"]
+            :test-paths ["test/clj" "test/cljs" "test/cljc"]
             :target-path "target/%s"
             :clean-targets ^{:protect false} ["resources/public/js/compiled" "resources/test" "target"]
 
@@ -55,7 +57,7 @@
                                                                      "flags" ["--no-sandbox" "--disable-dev-shm-usage"]}}}}}
 
             :cljsbuild {:builds [{:id "prod"
-                                  :source-paths ["src/cljs"]
+                                  :source-paths ["src/cljs" "src/cljc"]
                                   :compiler {:main brew-bot.main
                                              :output-to "resources/public/js/compiled/app.js"
                                              :optimizations :advanced
@@ -63,7 +65,7 @@
                                              :parallel-build true}}
 
                                  {:id "dev"
-                                  :source-paths ["src/cljs"]
+                                  :source-paths ["src/cljs" "src/cljc"]
                                   :figwheel {:on-jsload "brew_bot.main/init"}
                                   :compiler {:main "brew-bot.main"
                                              :asset-path "js/compiled/out"
@@ -75,7 +77,7 @@
                                              :pretty-print true}}
 
                                  {:id "test"
-                                  :source-paths ["src/cljs" "test/cljs"]
+                                  :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
                                   :figwheel {:on-jsload "brew_bot.main/init"}
                                   :compiler {:main "brew-bot.runner"
                                              :output-to "resources/test/app.js"

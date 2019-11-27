@@ -19,8 +19,7 @@
    (let [evts (secretary/dispatch! route)
          _ (println (str "naviagted to " route))]
      {:dispatch-n   evts
-      ;:ga/page-view [route] ;; TODO - config in Google Analytics, and this call
-})))
+      :ga/page-view [route]})))
 
 (rf/reg-event-fx
   ;when updating db and navigating from a single event, it is important to use the :navigate event,
@@ -60,7 +59,8 @@
 
 (secretary/defroute "/generators/:generator-type"
                     {:keys [generator-type]}
-                    [[:update-current-page (keyword generator-type)]])
+                    [[:update-current-page :generator]
+                     [:set-generator-type  generator-type]])
 
 (secretary/defroute "/about-me"
                     {:as params}

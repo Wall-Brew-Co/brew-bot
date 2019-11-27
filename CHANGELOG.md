@@ -1,3 +1,9 @@
+## v1.0.0-gamma / 2019 November 27
+
+> Systemic refactors toward common components, .cljc resources, and added config
+> Overhaul of CI/CD auto-runners
+> Add tagging to ingredients for better classification
+
 ## v1.0.0-beta / 2019 November 16
 
 > Add static assets, routing via secretary

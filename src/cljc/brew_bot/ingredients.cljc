@@ -1,377 +1,579 @@
-(ns brew-bot.recipe-generation.ingredients
+(ns brew-bot.ingredients
   "Basic ingredients needed to brew beer")
 
 (def ^:const grains
   {:acid-malt {:name "Acid Malt"
                :gravity 1.027
-               :lovibond 2.1}
+               :lovibond 2.1
+               :tags [:base]
+               :suggested-max 10.0}
    :amber-malt {:name "Amber Malt"
                 :gravity 1.035
-                :lovibond 22.0}
+                :lovibond 22.0
+                :tags [:base]
+                :suggested-max 20.0}
    :aromatic-malt {:name "Aromatic Malt"
                    :gravity 1.036
-                   :lovibond 23}
+                   :lovibond 23
+                   :tags [:base]
+                   :suggested-max 10.0}
    :barley-flaked {:name "Barley, Flaked"
                    :gravity 1.032
-                   :lovibond 1.7}
+                   :lovibond 1.7
+                   :tags [:base]
+                   :suggested-max 20.0}
    :barley-raw {:name "Barley, Raw"
                 :gravity 1.028
-                :lovibond 1.7}
+                :lovibond 1.7
+                :tags [:base]
+                :suggested-max 15.0}
    :barley-torrefied {:name "Barley, Torrefied"
                       :gravity 1.036
-                      :lovibond 1.7}
+                      :lovibond 1.7
+                      :tags [:base]
+                      :suggested-max 40.0}
    :biscuit-malt {:name "Biscuit Malt"
                   :gravity 1.036
-                  :lovibond 25}
+                  :lovibond 25
+                  :tags []
+                  :suggested-max 10.0}
    :black-patent-malt {:name "Black (Patent) Malt"
                        :gravity 1.025
-                       :lovibond 500}
+                       :lovibond 500
+                       :tags []
+                       :suggested-max 10.0}
    :black-barley-stout {:name "Black Barley (Stout)"
                         :gravity 1.025
-                        :lovibond 500}
+                        :lovibond 500
+                        :tags []
+                        :suggested-max 10.0}
    :blackprinz-malt {:name "Blackprinz Malt"
                      :gravity 1.025
-                     :lovibond 500}
+                     :lovibond 500
+                     :tags []
+                     :suggested-max 10.0}
    :brown-malt {:name "Brown Malt"
                 :gravity 1.032
-                :lovibond 65}
+                :lovibond 65
+                :tags [:base]
+                :suggested-max 10.0}
+   :brumalt {:name "Brumalt"
+             :gravity 1.033
+             :lovibond 23.0
+             :tags [:base]
+             :suggested-max 10.0}
    :cara-pils-dextrine {:name "Cara-Pils/Dextrine"
                         :gravity 1.033
-                        :lovibond 1.5}
+                        :lovibond 1.5
+                        :tags []
+                        :suggested-max 20.0}
    :cara-amber {:name "Cara-Amber"
                 :gravity 1.035
-                :lovibond 30}
+                :lovibond 30
+                :tags []
+                :suggested-max 20.0}
    :cara-foam {:name "Cara-Foam"
                :gravity 1.033
-               :lovibond 2}
+               :lovibond 2
+               :tags []
+               :suggested-max 20.0}
    :cara-munich-malt {:name "Cara-Munich Malt"
                       :gravity 1.033
-                      :lovibond 56}
+                      :lovibond 56
+                      :tags []
+                      :suggested-max 10.0}
    :cara-red {:name "Cara-Red"
               :gravity 1.035
-              :lovibond 20}
+              :lovibond 20
+              :tags []
+              :suggested-max 20.0}
    :cara-viennea-malt {:name "Cara-Vienna Malt"
                        :gravity 1.034
-                       :lovibond 22}
+                       :lovibond 22
+                       :tags []
+                       :suggested-max 10.0}
    :caramel-crystal-malt-10l {:name "Caramel/Crystal Malt – 10L"
                               :gravity 1.035
-                              :lovibond 10}
+                              :lovibond 10
+                              :tags []
+                              :suggested-max 20.0}
    :caramel-crystal-malt-20l {:name "Caramel/Crystal Malt – 20L"
                               :gravity 1.035
-                              :lovibond 20}
+                              :lovibond 20
+                              :tags []
+                              :suggested-max 20.0}
    :caramel-crystal-malt-30l {:name "Caramel/Crystal Malt – 30L"
                               :gravity 1.035
-                              :lovibond 30}
+                              :lovibond 30
+                              :tags []
+                              :suggested-max 20.0}
    :caramel-crystal-malt-40l {:name "Caramel/Crystal Malt – 40L"
                               :gravity 1.034
-                              :lovibond 40}
+                              :lovibond 40
+                              :tags []
+                              :suggested-max 20.0}
    :caramel-crystal-malt-60l {:name "Caramel/Crystal Malt – 60L"
                               :gravity 1.034
-                              :lovibond 60}
+                              :lovibond 60
+                              :tags []
+                              :suggested-max 20.0}
    :caramel-crystal-malt-80l {:name "Caramel/Crystal Malt – 80L"
                               :gravity 1.034
-                              :lovibond 60}
+                              :lovibond 60
+                              :tags []
+                              :suggested-max 20.0}
    :caramel-crystal-malt-90l {:name "Caramel/Crystal Malt – 90L"
                               :gravity 1.034
-                              :lovibond 90}
+                              :lovibond 90
+                              :tags []
+                              :suggested-max 20.0}
    :caramel-crystal-malt-120l {:name "Caramel/Crystal Malt - 120L"
                                :gravity 1.033
-                               :lovibond 120}
+                               :lovibond 120
+                               :tags []
+                               :suggested-max 20.0}
    :caramel-crystal-malt-140l {:name "Caramel/Crystal Malt - 140L"
                                :gravity 1.032
-                               :lovibond 140}
+                               :lovibond 140
+                               :tags []
+                               :suggested-max 20.0}
    :caramel-crystal-malt-160l {:name "Caramel/Crystal Malt - 160L"
                                :gravity 1.032
-                               :lovibond 160}
+                               :lovibond 160
+                               :tags []
+                               :suggested-max 20.0}
    :chocolate-malt {:name "Chocolate Malt"
                     :gravity 1.028
-                    :lovibond 350}
+                    :lovibond 350
+                    :tags []
+                    :suggested-max 10.0}
+   :corn-flaked {:name "Corn (Flaked)"
+                 :gravity 1.037
+                 :lovibond 1
+                 :tags [:base]
+                 :suggested-max 40.0}
    :maris-otter-pale-malt {:name "Maris Otter Pale Malt"
                            :gravity 1.030
-                           :lovibond 3}
+                           :lovibond 3
+                           :tags [:base]
+                           :suggested-max 100.0}
    :melanoiden-malt {:name "Melanoiden Malt"
                      :gravity 1.037
-                     :lovibond 25}
+                     :lovibond 25
+                     :tags [:base]
+                     :suggested-max 15.0}
    :mild-malt {:name "Mild Malt"
                :gravity 1.037
-               :lovibond 3}
+               :lovibond 3
+               :tags [:base]
+               :suggested-max 100.0}
    :munich-malt {:name "Munich Malt"
                  :gravity 1.037
-                 :lovibond 6}
+                 :lovibond 6
+                 :tags [:base]
+                 :suggested-max 80.0}
    :munich-malt-10l {:name "Munich Malt – 10L"
                      :gravity 1.035
-                     :lovibond 10}
+                     :lovibond 10
+                     :tags [:base]
+                     :suggested-max 80.0}
    :munich-malt-20l {:name "Munich Malt – 20L"
                      :gravity 1.035
-                     :lovibond 20}
+                     :lovibond 20
+                     :tags [:base]
+                     :suggested-max 80.0}
    :oats-flaked {:name "Oats, Flaked"
                  :gravity 1.037
-                 :lovibond 1}
+                 :lovibond 1
+                 :tags [:base]
+                 :suggested-max 30.0}
    :oats-malted {:name "Oats, Malted"
                  :gravity 1.037
-                 :lovibond 1}
+                 :lovibond 1
+                 :tags [:base]
+                 :suggested-max 10.0}
    :pale-malt-2-row-belgian {:name "Pale Malt (2 Row) Belgian"
                              :gravity 1.037
-                             :lovibond 2}
+                             :lovibond 2
+                             :tags [:base]
+                             :suggested-max 100.0}
    :pale-malt-2-row-uk {:name "Pale Malt (2 Row) UK"
                         :gravity 1.036
-                        :lovibond 2}
+                        :lovibond 2
+                        :tags [:base]
+                        :suggested-max 100.0}
    :pale-malt-2-row-us {:name "Pale Malt (2 Row) US"
                         :gravity 1.036
-                        :lovibond 2}
+                        :lovibond 2
+                        :tags [:base]
+                        :suggested-max 100.0}
    :pale-malt-6-row-us {:name "Pale Malt (6 Row) US"
                         :gravity 1.035
-                        :lovibond 1.8}
+                        :lovibond 1.8
+                        :tags [:base]
+                        :suggested-max 100.0}
    :peat-smoked-malt {:name "Peat Smoked Malt"
                       :gravity 1.034
-                      :lovibond 2.8}
+                      :lovibond 2.8
+                      :tags [:base]
+                      :suggested-max 20.0}
    :pilsner-2-row-belgian {:name "Pilsner (2 Row) Belgian"
                            :gravity 1.036
-                           :lovibond 2}
+                           :lovibond 2
+                           :tags [:base]
+                           :suggested-max 100.0}
    :pilsner-2-row-german {:name "Pilsner (2 Row) German"
                           :gravity 1.037
-                          :lovibond 2}
+                          :lovibond 2
+                          :tags [:base]
+                          :suggested-max 100.0}
    :pilsner-2-row-uk {:name "Pilsner (2 Row) UK"
                       :gravity 1.036
-                      :lovibond 2}
+                      :lovibond 2
+                      :tags [:base]
+                      :suggested-max 100.0}
    :rice-hulls {:name "Rice Hulls"
                 :gravity 1.000
-                :lovibond 2}
+                :lovibond 2
+                :tags []
+                :suggested-max 5.0}
    :rice-flaked {:name "Rice, Flaked"
                  :gravity 1.032
-                 :lovibond 1}
+                 :lovibond 1
+                 :tags [:base]
+                 :suggested-max 25.0}
    :roasted-barley {:name "Roasted Barley"
                     :gravity 1.025
-                    :lovibond 300}
+                    :lovibond 300
+                    :tags []
+                    :suggested-max 10.0}
    :rye-malt {:name "Rye Malt"
               :gravity 1.029
-              :lovibond 3.5}
+              :lovibond 3.5
+              :tags [:base]
+              :suggested-max 15.0}
    :rye-flaked {:name "Rye, Flaked"
                 :gravity 1.036
-                :lovibond 3.5}
+                :lovibond 3.5
+                :tags [:base]
+                :suggested-max 10.0}
    :smoked-malt {:name "Smoked Malt"
                  :gravity 1.037
-                 :lovibond 9}
+                 :lovibond 9
+                 :tags [:base]
+                 :suggested-max 100.0}
    :special-b-malt {:name "Special B Malt"
                     :gravity 1.030
-                    :lovibond 330}
+                    :lovibond 330
+                    :tags [:base]
+                    :suggested-max 10.0}
    :special-roast {:name "Special Roast"
                    :gravity 1.033
-                   :lovibond 375}
+                   :lovibond 375
+                   :tags [:base]
+                   :suggested-max 10.0}
+   :toasted-malt {:name "Toasted Malt"
+                  :gravity 1.033
+                  :lovibond 27
+                  :tags [:base]
+                  :suggested-max 10.0}
    :victory-malt {:name "Victory Malt"
                   :gravity 1.034
-                  :lovibond 25}
+                  :lovibond 25
+                  :tags [:base]
+                  :suggested-max 15.0}
    :vienna-malt {:name "Vienna Malt"
                  :gravity 1.036
-                 :lovibond 3.5}
+                 :lovibond 3.5
+                 :tags [:base]
+                 :suggested-max 90.0}
    :wheat-malt-belgian {:name "Wheat Malt, Belgian"
                         :gravity 1.037
-                        :lovibond 2.3}
+                        :lovibond 2.3
+                        :tags [:base]
+                        :suggested-max 60.0}
    :wheat-malt-dark {:name "Wheat Malt, Dark"
                      :gravity 1.039
-                     :lovibond 3}
+                     :lovibond 3
+                     :tags [:base]
+                     :suggested-max 20.0}
    :wheat-malt-german {:name "Wheat Malt, German"
                        :gravity 1.039
-                       :lovibond 3}
+                       :lovibond 3
+                       :tags [:base]
+                       :suggested-max 60.0}
    :wheat-flaked {:name "Wheat, Flaked"
                   :gravity 1.035
-                  :lovibond 2}
+                  :lovibond 2
+                  :tags [:base]
+                  :suggested-max 40.0}
    :wheat-roasted {:name "Wheat, Roasted"
                    :gravity 1.025
-                   :lovibond 300}
+                   :lovibond 300
+                   :tags [:base]
+                   :suggested-max 10.0}
    :wheat-torrified {:name "Wheat, Torrified"
                      :gravity 1.036
-                     :lovibond 1.7}
+                     :lovibond 1.7
+                     :tags [:base]
+                     :suggested-max 40.0}
    :white-wheat-malt {:name "White Wheat Malt"
                       :gravity 1.040
-                      :lovibond 2.8}})
+                      :lovibond 2.8
+                      :tags [:base]
+                      :suggested-max 60.0}})
 
 (def ^:const hops
   {:ahtanum {:name "Ahtanum"
              :alpha 5.7
-             :beta 5.0}
+             :beta 5.0
+             :tags [:aroma]}
    :amarillo {:name "Amarillo"
               :alpha 11.0
-              :beta 7.0}
+              :beta 7.0
+              :tags [:aroma]}
    :apollo {:name "Apollo"
             :alpha 20.0
-            :beta 8.0}
+            :beta 8.0
+            :tags [:bittering]}
    :bravo {:name "Bravo"
            :alpha 17.5
-           :beta 5.0}
+           :beta 5.0
+           :tags [:bittering]}
    :brewers-gold-us {:name "Brewer's Gold US"
                      :alpha 10.0
-                     :beta 4.5}
+                     :beta 4.5
+                     :tags [:bittering]}
    :cascade {:name "Cascade"
              :alpha 7.0
-             :beta 7.0}
+             :beta 7.0
+             :tags [:aroma]}
    :celeia {:name "Celeia"
             :alpha 5.5
-            :beta 3.5}
+            :beta 3.5
+            :tags [:aroma :bittering]}
    :centennial {:name "Centennial"
                 :alpha 11.5
-                :beta 4.5}
+                :beta 4.5
+                :tags [:aroma]}
    :challenger {:name "Challenger"
                 :alpha 2.1
-                :beta 3.7}
+                :beta 3.7
+                :tags [:aroma]}
    :chelan {:name "Chelan"
             :alpha 14.5
-            :beta 9.8}
+            :beta 9.8
+            :tags [:bittering]}
    :chinook {:name "Chinook"
              :alpha 14.0
-             :beta 4.0}
+             :beta 4.0
+             :tags [:bittering]}
    :citra {:name "Citra"
            :alpha 13.0
-           :beta 4.5}
+           :beta 4.5
+           :tags [:aroma]}
    :cluster {:name "Cluster"
              :alpha 8.5
-             :beta 5.5}
+             :beta 5.5
+             :tags [:bittering]}
    :crystal {:name "Crystal"
              :alpha 5.5
-             :beta 6.5}
+             :beta 6.5
+             :tags [:aroma]}
    :ctz {:name "CTZ"
          :alpha 16.5
-         :beta 5.0}
+         :beta 5.0
+         :tags [:bittering]}
    :delta {:name "Delta"
            :alpha 7.0
-           :beta 7.0}
+           :beta 7.0
+           :tags [:aroma]}
    :el-dorado {:name "El Dorado"
                :alpha 16.0
-               :beta 8.0}
+               :beta 8.0
+               :tags [:aroma :bittering]}
    :fuggle-us {:name "Fuggle US"
                :alpha 5.5
-               :beta 2.0}
+               :beta 2.0
+               :tags [:aroma]}
    :galena {:name "Galena"
             :alpha 13.5
-            :beta 8.7}
+            :beta 8.7
+            :tags [:bittering]}
    :glacier {:name "Glacier"
              :alpha 5.5
-             :beta 8.2}
+             :beta 8.2
+             :tags [:aroma]}
    :golding-us {:name "Golding US"
                 :alpha 6.0
-                :beta 3.0}
+                :beta 3.0
+                :tags [:aroma]}
    :hallertau-us {:name "Hallertau US"
                   :alpha 5.5
-                  :beta 5.5}
+                  :beta 5.5
+                  :tags [:aroma]}
    :horizon {:name "Horizon"
              :alpha 13.0
-             :beta 8.5}
+             :beta 8.5
+             :tags [:aroma :bittering]}
    :liberty {:name "Liberty"
              :alpha 5.0
-             :beta 4.0}
+             :beta 4.0
+             :tags [:aroma]}
    :magnum-us {:name "Magnum US"
                :alpha 14.0
-               :beta 6.0}
+               :beta 6.0
+               :tags [:bittering]}
    :millennium {:name "Milennium"
                 :alpha 16.5
-                :beta 5.3}
+                :beta 5.3
+                :tags [:bittering]}
    :mosaic {:name "Mosaic"
             :alpha 13.5
-            :beta 3.9}
+            :beta 3.9
+            :tags [:aroma]}
    :mt-hood {:name "Mt. Hood"
              :alpha 7.0
-             :beta 8.0}
+             :beta 8.0
+             :tags [:aroma]}
    :newport {:name "Newport"
              :alpha 17.0
-             :beta 9.1}
+             :beta 9.1
+             :tags [:bittering]}
    :northdown {:name "Northdown"
                :alpha 8.5
-               :beta 4.75}
+               :beta 4.75
+               :tags [:aroma :bittering]}
    :northern-brewer {:name "Northern Brewer"
                      :alpha 10.0
-                     :beta 5.0}
+                     :beta 5.0
+                     :tags [:aroma :bittering]}
    :nugget {:name "Nugget"
             :alpha 14.0
-            :beta 5.8}
+            :beta 5.8
+            :tags [:bittering]}
    :palisade {:name "Palisade"
               :alpha 9.5
-              :beta 8.0}
+              :beta 8.0
+              :tags [:aroma]}
    :perle-us {:name "Perle US"
               :alpha 9.5
-              :beta 5.0}
+              :beta 5.0
+              :tags [:aroma :bittering]}
    :saaz-us {:name "Saaz US"
              :alpha 4.5
-             :beta 4.5}
+             :beta 4.5
+             :tags [:aroma]}
    :santium {:name "Santium"
              :alpha 7.0
-             :beta 8.0}
+             :beta 8.0
+             :tags [:aroma]}
    :simcoe {:name "Simcoe"
             :alpha 14.0
-            :beta 5.0}
+            :beta 5.0
+            :tags [:aroma]}
    :spalt {:name "Spalt"
            :alpha 4.1
-           :beta 4.0}
+           :beta 4.0
+           :tags [:aroma]}
    :sterling {:name "Sterling"
               :alpha 5.0
-              :beta 6.0}
+              :beta 6.0
+              :tags [:aroma]}
    :summit {:name "Summit"
             :alpha 18.0
-            :beta 6.0}
+            :beta 6.0
+            :tags [:bittering]}
    :super-galena {:name "Super Galena"
                   :alpha 16.0
-                  :beta 10.0}
+                  :beta 10.0
+                  :tags [:bittering]}
    :tettnang-us {:name "Tettnang US"
                  :alpha 5.0
-                 :beta 4.0}
+                 :beta 4.0
+                 :tags [:aroma]}
    :tillicum {:name "Tillicum"
               :alpha 14.5
-              :beta 10.5}
+              :beta 10.5
+              :tags [:bittering]}
    :ultra {:name "Ultra"
            :alpha 3.5
-           :beta 4.5}
+           :beta 4.5
+           :tags [:aroma]}
    :vanguard {:name "Vanguard"
               :alpha 6.0
-              :beta 7.0}
+              :beta 7.0
+              :tags [:aroma]}
    :warrior {:name "Warrior"
              :alpha 18.0
-             :beta 5.5}
+             :beta 5.5
+             :tags [:bittering]}
    :willamette {:name "Willamette"
                 :alpha 6.0
-                :beta 4.5}})
+                :beta 4.5
+                :tags [:aroma]}})
 
 (def ^:const extracts
   {:amber-dry-extract {:name "Amber Dry Extract"
                        :gravity 1.044
-                       :lovibond 35}
+                       :lovibond 35
+                       :suggested-max 100.0}
    :amber-liquid-extract {:name "Amber Liquid Extract"
                           :gravity 1.036
-                          :lovibond 35}
+                          :lovibond 35
+                          :suggested-max 100.0}
    :belgian-candi-syrup-45l {:name "Belgian Candi Syrup - 45L"
                              :gravity 1.032
-                             :lovibond 45}
+                             :lovibond 45
+                             :suggested-max 20.0}
    :belgian-candi-syrup-90l {:name "Belgian Candi Syrup - 90L"
                              :gravity 1.032
-                             :lovibond 90}
+                             :lovibond 90
+                             :suggested-max 20.0}
    :belgian-candi-syrup-180l {:name "Belgian Candi Syrup - 180L"
                               :gravity 1.032
-                              :lovibond 180}
+                              :lovibond 180
+                              :suggested-max 20.0}
    :dark-dry-extract {:name "Dark Dry Extract"
                       :gravity 1.044
-                      :lovibond 60}
+                      :lovibond 60
+                      :suggested-max 100.0}
    :dark-liquid-extract {:name "Dark Liquid Extract"
                          :gravity 1.036
-                         :lovibond 60}
+                         :lovibond 60
+                         :suggested-max 100.0}
    :extra-light-dry-extract {:name "Extra Light Dry Extract"
                              :gravity 1.044
-                             :lovibond 6}
+                             :lovibond 6
+                             :suggested-max 100.0}
    :light-dry-extract {:name "Light Dry Extract"
                        :gravity 1.044
-                       :lovibond 6}
+                       :lovibond 6
+                       :suggested-max 100.0}
    :pale-liquid-extract {:name "Pale Liquid Extract"
                          :gravity 1.036
-                         :lovibond 3}
-   :rye-liquid-extract {:name "Rye Liquid Extract"
-                        :gravity 1.036
-                        :lovibond 9}
+                         :lovibond 3
+                         :suggested-max 100.0}
    :pilsner-liquid-extract {:name "Pilsner Liquid Extract"
                             :gravity 1.036
-                            :lovibond 3}
+                            :lovibond 3
+                            :suggested-max 100.0}
+   :rice-liquid-extract {:name "Rice Extract Syrup"
+                         :gravity 1.032
+                         :lovibond 8
+                         :suggested-max 15.0}
+   :rye-liquid-extract {:name "Rye Liquid Extract"
+                        :gravity 1.036
+                        :lovibond 9
+                        :suggested-max 100.0}
    :wheat-dry-extract {:name "Wheat Dry Extract"
                        :gravity 1.044
-                       :lovibond 12}
+                       :lovibond 12
+                       :suggested-max 100.0}
    :wheat-liquid-extract {:name "Wheat Liquid Extract"
                           :gravity 1.036
-                          :lovibond 12}})
+                          :lovibond 12
+                          :suggested-max 100.0}})
 
 (def ^:const yeasts
   {:wyeast-labs-german-ale {:name "German Ale"
@@ -805,4 +1007,4 @@
   [0.25 0.5 0.75 1.0])
 
 (def ^:const hop-times
-  [90 60 45 30 15 10 5 1])
+  [120 90 60 45 30 15 10 5 1])
