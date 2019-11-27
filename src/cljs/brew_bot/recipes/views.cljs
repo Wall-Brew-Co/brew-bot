@@ -17,30 +17,30 @@
                      weight-unit  (util/pluralize weight (if (= type :hops) "ounce" "pound"))]]
            ^{:key ingredient} [:li (str display-name ": " weight " " weight-unit)]))])
 
+(defn recipe-projections
+  [recipe]
+  (fn [recipe]
+    [:ul {:style {:max-width "200px"
+                  :border (str "5px solid " (palette/srm-number-to-rgba (:sru-color recipe)))}}
+     [:li (str "OG: "  (pprint/cl-format false  "~,3f" (:gravity recipe)))]
+     [:li (str "ABV: " (pprint/cl-format false  "~,2f" (:abv recipe)) "%")]
+     [:li (str "SRM Color: " (int (:sru-color recipe)))]]))
+
 (defn recipe-display-page
   []
   (fn []
     (let [generated-recipe (rf/subscribe [:generated-recipe])
           generator        (rf/subscribe [:generator-type])
-          grains           (:grains @generated-recipe)
-          extracts         (:extracts @generated-recipe)
-          hops             (:hops @generated-recipe)
-          yeast            (first (vals (:yeasts @generated-recipe)))
-          gravity          (:gravity @generated-recipe)
-          color            (:sru-color @generated-recipe)]
+          yeast            (first (vals (:yeasts @generated-recipe)))]
       [:div {:style {:padding "0px 0px 20px 10px"}}
        [:h2 "Your Recipe"]
        [:p "Projections"]
-       [:ul {:style {:max-width "200px"
-                     :border (str "5px solid " (palette/srm-number-to-rgba color))}}
-        [:li (str "OG: "  (pprint/cl-format false  "~,3f" (:gravity @generated-recipe)))]
-        [:li (str "ABV: " (pprint/cl-format false  "~,2f" (:abv @generated-recipe)) "%")]
-        [:li (str "SRM Color: " (int color))]]
+       [recipe-projections @generated-recipe]
        [:div {:style {:padding-left "5px"}}
-        [ingredient-bill "Grains" :grains grains]
-        (when (seq extracts)
+        [ingredient-bill "Grains" :grains (:grains @generated-recipe)]
+        (when-let [extracts (seq (:extracts @generated-recipe))]
           [ingredient-bill "Extracts" :extracts extracts])
-        [ingredient-bill "Hops" :hops hops]
+        [ingredient-bill "Hops" :hops (:hops @generated-recipe)]
         [:div {:style {:padding-top "10px"}}
          [:h3 "Yeast"]
          [:ul

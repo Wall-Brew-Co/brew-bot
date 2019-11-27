@@ -1,13 +1,7 @@
 (ns brew-bot.text-pages.random-generators
   "Static text about the random recipe generators"
   (:require [brew-bot.visual-identity.colors :as colors]
-            [re-frame.core :as rf]))
-
-(defn linked-item
-  [route route-text]
-   [:b {:style {:color colors/dark-blue :text-decoration "underline" :cursor "pointer"}
-        :title (str "Try out the " route-text " recipe generator!")
-        :on-click #(rf/dispatch [:navigate route])} route-text])
+            [brew-bot.visual-identity.components :as comps]))
 
 (defn random-generators
   []
@@ -21,7 +15,7 @@
    "Generate a random collection of ingredients, and then assign a random amount to each ingredient. "]
 
    [:p
-    "When we look at the " [linked-item "/generators/random" "Purely Random"] " recipe generator, it does exactly that. "
+    "When we look at the " [comps/linked-item "/generators/random" "Purely Random" "Try out the random generator!"] " recipe generator, it does exactly that. "
     "Brew-bot repeatedly looks through its lists of ingredients and selects random ones. "
     "The ones it picks are added to the recipe, and, if it ever picks the same thing twice, it adds the weights together. "
     "That’s it. "
@@ -43,7 +37,7 @@
    [:p
     "If you try it out, you'll probably come to the same conclusion Nick did while developing brew-bot. "
     "Without guidance, there are " [:i "a lot "] "of selections made, because coliisons are very rare. "
-    "This is where the " [linked-item "/generators/limited-random" "Constrained Random"] " mode comes into play. "
+    "This is where the " [comps/linked-item "/generators/limited-random" "Constrained Random" "Try out the contrained random generator!"] " mode comes into play. "
     "We can now set limits on how many types of each ingredient we wish to include. "
     "Once that limit is reached, brew-bot will scale up the selected ingredients to the weight limits provided. "
-    "This provides a solid foundation for the application, and the " [linked-item "/about/weighted" "more advanced recipe generation modes provided."]]])
+    "This provides a solid foundation for the application, and the " [comps/linked-item "/about/weighted" "more advanced recipe generation modes provided." "Learn about my more sophisticated modes"]]])
