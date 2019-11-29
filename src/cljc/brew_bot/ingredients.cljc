@@ -1008,3 +1008,9 @@
 
 (def ^:const hop-times
   [120 90 60 45 30 15 10 5 1])
+
+(def ingredient-list
+  {:grains   grains
+   :extracts extracts
+   :hops     hops
+   :yeasts   yeasts})

@@ -1,11 +1,13 @@
 (ns brew-bot.recipe-generation.views
   (:require [antizer.reagent :as ant]
+            [brew-bot.ingredients :as bbi]
+            [clojure.string :as cs]
             [reagent.core :as r]
             [re-frame.core :as rf]))
 
 (def ^:const decimal-number-opts
   {:default-value 5
-   :step          0.5
+   :step          0.25
    :min           0
    :max           1000000})
 
@@ -28,11 +30,10 @@
 
 (defn ingredient-checkbox-list-item
   [ingredient-type ingredient-key]
-  (let [current-recipe (rf/subscribe [:current-recipe])
-        ingredients    (rf/subscribe [:source-ingredients])]
+  (let [current-recipe (rf/subscribe [:current-recipe])]
     (fn [ingredient-type ingredient-key]
       (let [ingredient-probability (get-in @current-recipe [ingredient-type :probabilities])
-            ingredient-data        (get-in @ingredients [ingredient-type ingredient-key])
+            ingredient-data        (get-in bbi/ingredient-list [ingredient-type ingredient-key])
             ingredient-name        (:name ingredient-data)
             id                     (str ingredient-name "-checkbox")
             alt-text               (reduce-kv (fn [acc k v] (str acc (name k) ": " v "\n")) "" ingredient-data)]
@@ -48,16 +49,15 @@
 
 (defn ingredient-probability-field
   [ingredient-type ingredient-key ingredient-probability]
-  (let [ingredients (rf/subscribe [:source-ingredients])]
-    (fn [ingredient-type ingredient-key ingredient-probability]
-      (let [ingredient-name (get-in @ingredients [ingredient-type ingredient-key :name])
-            update-path [ingredient-type :probabilities ingredient-key]]
-        [:li recipe-generator-li-style
-         [:div {:style {:vertical-align "middle" :flex-basis "20%"}}
-          [:h4 ingredient-name]
-          [ant/input-number (merge integer-number-opts
-                                   {:value ingredient-probability
-                                    :on-change #(rf/dispatch [:update-current-recipe update-path %])})]]]))))
+  (fn [ingredient-type ingredient-key ingredient-probability]
+    (let [ingredient-name (get-in bbi/ingredient-list [ingredient-type ingredient-key :name])
+          update-path [ingredient-type :probabilities ingredient-key]]
+      [:li recipe-generator-li-style
+       [:div {:style {:vertical-align "middle" :flex-basis "20%"}}
+        [:h4 ingredient-name]
+        [ant/input-number (merge integer-number-opts
+                                 {:value ingredient-probability
+                                  :on-change #(rf/dispatch [:update-current-recipe update-path %])})]]])))
 
 (defn numeric-input-column
   ([label event value in-opts]
@@ -98,36 +98,33 @@
          [numeric-input-column "Maximum extract types" #(rf/dispatch [:update-current-recipe [:extracts :count] %]) extracts-count {:mode :integer}]
          [numeric-input-column "Maximum hop types"     #(rf/dispatch [:update-current-recipe [:hops :count] %]) hops-count {:mode :integer}]]))))
 
+(defn ingredient-type-selections
+  [ingredient-type]
+  (let [ingredients (sort (keys (get bbi/ingredient-list ingredient-type)))
+        invisible? (rf/subscribe [:is-ingredient-type-hidden? ingredient-type])]
+    [:div {:style {:padding-top "10px"}}
+     [:div {:style {:display "flex"}}
+      [:h3 (cs/capitalize (str (name ingredient-type) " to include"))]
+      [ant/icon {:type (if @invisible? "right" "down")
+                 :title (str (if @invisible? "Show " "Hide ") (name ingredient-type))
+                 :on-click #(rf/dispatch [:toggle-section-display ingredient-type])
+                 :style {:cursor "pointer"
+                         :padding-left "8px"
+                         :padding-top "6px"}}]]
+     (when-not @invisible?
+       (into [:ul]
+             (for [ingredient ingredients]
+               ^{:key (random-uuid)} [ingredient-checkbox-list-item ingredient-type ingredient])))]))
+
 (defn recipe-generator-selections
   []
-  (let [ingredients (rf/subscribe [:source-ingredients])]
-    (fn []
-      (let [grains   (sort (keys (:grains @ingredients)))
-            extracts (sort (keys (:extracts @ingredients)))
-            hops     (sort (keys (:hops @ingredients)))
-            yeasts   (sort (keys (:yeasts @ingredients)))]
-        [:div {:style {:display "flex"
-                       :flex-direction "column"}}
-         [:div {:style {:padding-top "10px"}}
-          [:h3 "Grains to include"]
-          (into [:ul]
-                (for [grain grains]
-                  ^{:key (random-uuid)} [ingredient-checkbox-list-item :grains grain]))]
-         [:div {:style {:padding-top "10px"}}
-          [:h3 "Extracts to include"]
-          (into [:ul]
-                (for [extract extracts]
-                  ^{:key (random-uuid)} [ingredient-checkbox-list-item :extracts extract]))]
-         [:div {:style {:padding-top "10px"}}
-          [:h3 "Hops to include"]
-          (into [:ul]
-                (for [hop hops]
-                  ^{:key (random-uuid)} [ingredient-checkbox-list-item :hops hop]))]
-         [:div {:style {:padding-top "10px"}}
-          [:h3 "Yeasts to include"]
-          (into [:ul]
-                (for [yeast yeasts]
-                  ^{:key (random-uuid)} [ingredient-checkbox-list-item :yeasts yeast]))]]))))
+  (fn []
+    [:div {:style {:display "flex"
+                   :flex-direction "column"}}
+     [ingredient-type-selections :grains]
+     [ingredient-type-selections :extracts]
+     [ingredient-type-selections :hops]
+     [ingredient-type-selections :yeasts]]))
 
 (defn recipe-generator-weights
   []
@@ -174,14 +171,14 @@
   (fn []
     (let [generator-type (rf/subscribe [:generator-type])
           has-changed?   (rf/subscribe [:has-recipe-changed?])]
-  [:div {:style {:padding-left "10px"}}
-   [:h2 (if @has-changed? "Recipe Generator*" "Recipe Generator")]
-   [:div {:style {:padding "5px"}}
-    (when (#{:random :limited-random :weighted-random :weighted-guided} @generator-type)
-      [recipe-generator-quantities])
-    (when (#{:limited-random :weighted-random :weighted-guided} @generator-type)
-      [recipe-generator-counts])
-    (when (#{:weighted-random :weighted-guided} @generator-type)
-      [recipe-generator-ingredients])
-    [:div {:style {:padding-top "18px"}}
-     [ant/button {:type "primary" :on-click #(rf/dispatch [:generate-recipe @generator-type])} "Generate Recipe"]]]])))
+      [:div {:style {:padding-left "10px"}}
+       [:h2 (if @has-changed? "Recipe Generator*" "Recipe Generator")]
+       [:div {:style {:padding "5px"}}
+        (when (#{:random :limited-random :weighted-random :weighted-guided} @generator-type)
+          [recipe-generator-quantities])
+        (when (#{:limited-random :weighted-random :weighted-guided} @generator-type)
+          [recipe-generator-counts])
+        (when (#{:weighted-random :weighted-guided} @generator-type)
+          [recipe-generator-ingredients])
+        [:div {:style {:padding-top "18px"}}
+         [ant/button {:type "primary" :on-click #(rf/dispatch [:generate-recipe @generator-type])} "Generate Recipe"]]]])))

@@ -20,3 +20,8 @@
  :generator-type
  (fn [db _]
    (get-in db [:current-recipe :generator])))
+
+(rf/reg-sub
+ :is-ingredient-type-hidden?
+ (fn [db [_ ingredient-type]]
+   (get-in db [:recipe-generator ingredient-type :invisible?])))
