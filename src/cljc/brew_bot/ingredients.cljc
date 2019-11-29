@@ -424,7 +424,7 @@
                :alpha 14.0
                :beta 6.0
                :tags [:bittering]}
-   :millennium {:name "Milennium"
+   :millennium {:name "Millennium"
                 :alpha 16.5
                 :beta 5.3
                 :tags [:bittering]}
@@ -735,7 +735,7 @@
    :brewtek-american-microbrewery-ale-2 {:name "American Microbrewery Ale 2"
                                          :product-number "CL-0020"
                                          :manufacturer "Brewtek"}
-   :brewtek-noth-eastern-micro-ale {:name "Noth-Eastern Micro Ale"
+   :brewtek-north-eastern-micro-ale {:name "North-Eastern Micro Ale"
                                     :product-number "CL-0060"
                                     :manufacturer "Brewtek"}
    :brewtek-british-microbrewery-ale {:name "British Microbrewery Ale"
