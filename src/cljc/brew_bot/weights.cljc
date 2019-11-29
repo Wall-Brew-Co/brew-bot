@@ -158,5 +158,5 @@
             :dcl-yeast-safbrew-specialty-ale	8
             :white-labs-edinburgh-ale	7
             :white-labs-burton-ale	7
-            :brewtek-noth-eastern-micro-ale	6
+            :brewtek-north-eastern-micro-ale	6
             :wyeast-labs-british-ale-ii	2}})
