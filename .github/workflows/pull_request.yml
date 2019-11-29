@@ -24,3 +24,5 @@ jobs:
           locale: "US"
       - name: Closes issues related to a merged pull request.
         uses: ldez/gha-mjolnir@v1.0.0
+        with:
+          github_token: ${{ secrets.github_token }}
