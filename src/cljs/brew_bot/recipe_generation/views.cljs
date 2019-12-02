@@ -2,6 +2,7 @@
   (:require [antizer.reagent :as ant]
             [brew-bot.ingredients :as bbi]
             [clojure.string :as cs]
+            [nnichols.util :as nu]
             [reagent.core :as r]
             [re-frame.core :as rf]))
 
@@ -73,7 +74,7 @@
 
 (defn ingredient-type-selections
   [ingredient-type]
-  (let [ingredients (sort (keys (get bbi/ingredient-list ingredient-type)))
+  (let [ingredients (nu/sort-keys (get bbi/ingredient-list ingredient-type))
         invisible? (rf/subscribe [:is-ingredient-type-hidden? ingredient-type])]
     [:div {:style {:padding-top "10px"}}
      [:div {:style {:display "flex"}}
@@ -123,25 +124,25 @@
            [:div {:style {:padding-top "10px"}}
             [ingredient-weight-selection-header :grains]
             (into [:ul]
-                  (for [grain (sort (keys grains))]
+                  (for [grain (nu/sort-keys grains)]
                     ^{:key (random-uuid)} [ingredient-probability-field :grains grain (get grains grain)]))])
          (when (seq extracts)
            [:div {:style {:padding-top "10px"}}
             [ingredient-weight-selection-header :extracts]
             (into [:ul]
-                  (for [extract (sort (keys extracts))]
+                  (for [extract (nu/sort-keys extracts)]
                     ^{:key (random-uuid)} [ingredient-probability-field :extracts extract (get extracts extract)]))])
          (when (seq hops)
            [:div {:style {:padding-top "10px"}}
             [ingredient-weight-selection-header :hops]
             (into [:ul]
-                  (for [hop (sort (keys hops))]
+                  (for [hop (nu/sort-keys hops)]
                     ^{:key (random-uuid)} [ingredient-probability-field :hops hop (get hops hop)]))])
          (when (seq yeasts)
            [:div {:style {:padding-top "10px"}}
             [ingredient-weight-selection-header :yeasts]
             (into [:ul]
-                  (for [yeast (sort (keys yeasts))]
+                  (for [yeast (nu/sort-keys yeasts)]
                     ^{:key (random-uuid)} [ingredient-probability-field :yeasts yeast (get yeasts yeast)]))])]))))
 
 (defn recipe-generator-quantities

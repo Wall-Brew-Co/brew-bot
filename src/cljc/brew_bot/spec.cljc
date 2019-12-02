@@ -15,8 +15,7 @@
   (s/and number?
          #(>= % 0.5)))
 
-(s/def ::tags
-  (s/coll-of keyword?))
+(s/def ::tags map?)
 
 (s/def ::suggested-max
   (s/and number?
