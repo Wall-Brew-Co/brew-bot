@@ -8,12 +8,13 @@
 
 # brew-bot
 
-Bot that spits out brew recipes for n-gallon batches.
+A library that spits out brew recipes for n-gallon beer batches.
 Originally made for [wallbrew.com](https://wallbrew.com/)
 
-The alpha release is now [available!](https://nnichols.github.io/brew-bot/)
+The beta release of our SPA is now [available!](https://nnichols.github.io/brew-bot/)
+If you're interested in contributing to the site, let us know.
 
-brew-bot is a re-frame SPA used to generate random beer recipes based on various weighting schemes:
+## Recipe Generators
 
 * **Purely Random** - brew-bot will randomly select ingredients and quantities up to the set weight limit.
 * **Constrained Random** - brew-bot will randomly select ingredients and quantities up to the set weight limit, selecting no more ingredients than the set limit.
@@ -21,21 +22,15 @@ brew-bot is a re-frame SPA used to generate random beer recipes based on various
 * **Weighted Guided** - brew-bot will allow the user to select ingredients to adjust their relative selection probabilities, and randomly pick ingredients from the that list respecting the user-selected weights.
 * **COMING SOON: Weighted Observed** - brew-bot will utilize weights learned from scraping real world beer recipes by style.
 
-
 ## Installation
 
-Production build:
-```
-lein prod-build
-```
+A deployed copy of the most recent version of [brew-bot can be found on clojars.](https://clojars.org/brew-bot)
+To use it, add the following as a dependency in your project.clj file:
 
-Dev/Figwheel build:
-```
-lein dev-build
-lein figwheel
-```
+[![Clojars Project](http://clojars.org/brew-bot/latest-version.svg)](http://clojars.org/brew-bot)
 
-Then, open `resources/public/index.html` in the browser of your choice.
+The next time you build your application, [Leiningen](https://leiningen.org/) should pull it automatically.
+Alternatively, you may clone or fork the repository to work with it directly.
 
 ## Testing
 
@@ -51,6 +46,8 @@ Then build the application and run the tests:
 ```
 lein test-build
 ```
+
+The tests will also execute on the JVM, to ensure the library is compatible for apps thick and thin.
 
 ## License
 

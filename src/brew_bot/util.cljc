@@ -24,10 +24,3 @@
         (recur (update i-map mod-ingredient + addition)
                (+ weight addition)))
       i-map)))
-
-(defn pluralize
-  "Naively pluralize `string` based on `amount`"
-  [amount string]
-  (if (< 1 amount)
-    (str string "s")
-    string))
