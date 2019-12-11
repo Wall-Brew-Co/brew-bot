@@ -15,8 +15,7 @@
   (s/and number?
          #(>= % 0.5)))
 
-(s/def ::tags
-  (s/coll-of keyword?))
+(s/def ::tags map?)
 
 (s/def ::suggested-max
   (s/and number?
@@ -60,7 +59,8 @@
   (s/map-of ingredients/extracts-keys ::extract))
 
 (s/def ::yeast
-  (s/keys :req-un [::name ::product-number ::manufacturer]))
+  (s/keys :req-un [::name ::product-number ::manufacturer]
+          :opt-un [::tags]))
 
 (s/def ::yeasts
   (s/map-of ingredients/yeasts-keys ::yeast))
