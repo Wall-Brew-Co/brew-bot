@@ -52,7 +52,7 @@ The tests will also execute on the JVM, to ensure the library is compatible for 
 
 ## License
 
-Copyright © 2019 Nick Nichols
+Copyright © 2019-2020 Nick Nichols
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
 
