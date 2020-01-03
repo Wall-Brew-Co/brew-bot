@@ -2,6 +2,7 @@
 
 > ***BREAKING CHANGE*** - the UI and the library code are now separate
 > Going forward, this repo will solely be used for the library code
+> The website's code is now located at: https://github.com/nnichols/brew-bot-ui
 
 ## v1.0.0-gamma / 2019 November 27
 
