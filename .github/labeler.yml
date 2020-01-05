@@ -1,14 +1,11 @@
 dotfiles:
   - .github/**/*
 
-assets:
-  - resources/**/*
-
 recipes:
-  - src/cljc/brew_bot/calculators.cljc
-  - src/cljc/brew_bot/generators.cljc
-  - src/cljc/brew_bot/ingredients.cljc
-  - src/cljc/brew_bot/weights.cljc
+  - src/brew_bot/calculators.cljc
+  - src/brew_bot/generators.cljc
+  - src/brew_bot/ingredients.cljc
+  - src/brew_bot/weights.cljc
 
 restricted:
   - CODE_OF_CONDUCT.md

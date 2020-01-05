@@ -18,7 +18,7 @@
      :hops      hops
      :yeasts    yeast
      :gravity   gravity
-     :sru-color (calc/calculate-standard-reference-method-color-units gallons grains extracts)
+     :sru-color (calc/calculate-standard-reference-method-color-units gallons grains extracts) ;; TODO - Normalize this
   ;   TODO - Add when hop timings are introduced
   ;   :ibu       (calc/calculate-recipe-bittering-units gallons gravity hops)
      :abv       (calc/calculate-estimated-abv gravity)}))
@@ -44,6 +44,7 @@
        (if (or (= ingredient-limit :unlimited)
                (< ingredient-count ingredient-limit))
          (if (< weight weight-cutoff)
+           ;; TODO - Make the selection/addition a separate function
            (let [selected-ingredient (util/rand-key ingredient-set)
                  ingredient-addition (rand-nth ingredients/ingredient-amounts)
                  updated-map (nu/update-or-assoc ingredient-map selected-ingredient ingredient-addition #(+ ingredient-addition %))]
@@ -51,6 +52,7 @@
                     (+ weight ingredient-addition)
                     (count (keys updated-map))))
            ingredient-map)
+         ;; TODO - Allow this fn to respect suggested maximums
          (util/scale-ingredients ingredient-map weight-cutoff))))))
 
 (defn generate-random-recipe
