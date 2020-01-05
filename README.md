@@ -1,7 +1,10 @@
 # brew-bot - The algorithmic beer recipe generator
-<a href="https://icons8.com/icon/66359/wooden-beer-keg"><img src="resources/public/icons8-wooden-beer-keg.png"></a>
+<a href="https://icons8.com/icon/66359/wooden-beer-keg"><img src="resources/icons8-wooden-beer-keg.png"></a>
 
 ![Github Runner](https://github.com/nnichols/brew-bot/workflows/Clojurescript%20CI/badge.svg)
+[![Clojars Project](https://img.shields.io/clojars/v/brew-bot.svg)](https://clojars.org/brew-bot)
+[![Dependencies Status](https://versions.deps.co/nnichols/brew-bot/status.svg)](https://versions.deps.co/nnichols/brew-bot)
+[![cljdoc badge](https://cljdoc.org/badge/brew-bot/brew-bot)](https://cljdoc.org/d/brew-bot/brew-bot/CURRENT)
 
 > We’re making beer. I’m the brewery!
 > - Bender Bending Rodriguez from [*Futurama*](https://www.imdb.com/title/tt0149460/)
