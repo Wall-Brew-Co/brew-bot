@@ -32,15 +32,15 @@
         scale (- global-high global-low)]
     (cond
 
-    ;; Detect points that are effectively out of bounds
+      ;; Detect points that are effectively out of bounds
       (>= data-point global-high) 0
       (<= data-point global-low)  0
 
-    ;; Detect when we're within the local range
+      ;; Detect when we're within the local range
       (and (<= data-point local-high)
            (>= data-point local-low)) 1
 
-    ;; Detect when we're between the global and local low values
+      ;; Detect when we're between the global and local low values
       (< data-point local-low) (score-range-delta scale local-low data-point)
 
       (> data-point local-high) (score-range-delta scale local-high data-point)
@@ -62,3 +62,14 @@
 
 (def score-abv-adherence
   (partial score-adherence-to-range global-abv-range))
+
+(defn score-style-adherence
+  "Given a recipe and a codified beer style,
+   return a normalized score on how well the recipe adheres to BJCP guideleines for that style"
+  ;; TODO - Normalize attribute names between styles and recipes
+  [recipe style]
+  (let [og-adherence  (score-original-gravity-adherence (:original-gravity-range style) (:gravity recipe))
+        ibu-adherence (score-ibu-adherence (:ibu-range style) (:ibu recipe))
+        srm-adherence (score-srm-adherence (:srm-range style) (:sru-color recipe))
+        abv-adherence (score-abv-adherence (:abv-range style) (:abv recipe))]
+    (/ (+ og-adherence ibu-adherence srm-adherence abv-adherence) 4)))
