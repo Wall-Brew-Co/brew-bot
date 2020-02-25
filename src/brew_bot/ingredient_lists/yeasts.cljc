@@ -427,3 +427,17 @@
 
 (def ^:const yeasts
   (merge wyeast-yeasts brewtek-yeasts lallemand-lalvin-yeasts dcl-yeasts white-labs-yeasts))
+
+(def ^:const yeast-manufacturers
+  #{:wyeast :brewtek :lallemand-lalvin :dcl :white-labs})
+
+(defn get-available-yeasts
+  "Given a sequence of available yeast manufacturers, return the yeasts from those manufacturers"
+  [available-manufacturers]
+  (let [manufacturers (set available-manufacturers)]
+    (cond-> {}
+      (contains? manufacturers :wyeast) (merge wyeast-yeasts)
+      (contains? manufacturers :brewtek) (merge brewtek-yeasts)
+      (contains? manufacturers :lallemand-lalvin) (merge lallemand-lalvin-yeasts)
+      (contains? manufacturers :dcl) (merge dcl-yeasts)
+      (contains? manufacturers :white-labs) (merge white-labs-yeasts))))
