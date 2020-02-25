@@ -4,10 +4,10 @@
             [brew-bot.ingredient-test]
             [brew-bot.ingredient-lists.yeasts-test]
             [brew-bot.style-lists.weight-test]
-            [brew-bot.style-lists.light-lager-test]))
+            [brew-bot.style-lists.pilsner-test]))
 
 (doo-tests 'brew-bot.recipe-generation-test
            'brew-bot.ingredient-test
            'brew-bot.ingredient-lists.yeasts-test
            'brew-bot.style-lists.weight-test
-           'brew-bot.style-lists.light-lager-test)
+           'brew-bot.style-lists.pilsner-test)

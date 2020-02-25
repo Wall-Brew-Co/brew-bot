@@ -1,6 +1,6 @@
 (ns brew-bot.styles
   "Convenience functions and refs to access recipe style data"
-  (:require [brew-bot.style-lists.light-lager :as bbll]))
+  (:require [brew-bot.style-lists.pilsner :as bbp]))
 
 (def ^:const global-original-gravity-range
   [1.000 2.000])
