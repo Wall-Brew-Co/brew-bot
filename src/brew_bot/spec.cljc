@@ -68,3 +68,30 @@
 (s/def ::recipe
   (s/keys :req-un [::grains ::hops ::yeasts ::gravity]
           :opt-un [::extracts]))
+
+(s/def ::original-gravity-range 
+  (s/and vector?
+         #(= 2 (count %))
+         #(every? number? %)
+         #(< (first %) (second %))))
+
+(s/def ::ibu-range
+  (s/and vector?
+         #(= 2 (count %))
+         #(every? number? %)
+         #(< (first %) (second %))))
+
+(s/def ::srm-range
+  (s/and vector?
+         #(= 2 (count %))
+         #(every? number? %)
+         #(< (first %) (second %))))
+
+(s/def ::abv-range
+  (s/and vector?
+         #(= 2 (count %))
+         #(every? number? %)
+         #(< (first %) (second %))))
+         
+(s/def ::bjcp-style
+  (s/keys :req-un [::original-gravity-range ::ibu-range ::srm-range ::abv-range]))

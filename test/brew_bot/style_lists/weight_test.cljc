@@ -1,6 +1,6 @@
-(ns brew-bot.weight-test
+(ns brew-bot.style-lists.weight-test
   (:require [brew-bot.ingredients :as bb]
-            [brew-bot.weights :as weights]
+            [brew-bot.style-lists.weights :as weights]
             #? (:clj  [clojure.test :refer [deftest is testing run-tests]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing run-tests]])))
 
