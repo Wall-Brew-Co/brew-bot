@@ -1,0 +1,84 @@
+#!/bin/bash
+
+#
+# Update the version in the project.clj, add a new entry in CHANGELOG.md,
+# and update Terraform Deployment image tag/version.
+# Script arguments:
+# $1 = mode (major, minor, bugfix)
+#
+
+#
+# Takes a version number, and the mode to bump it, and increments/resets
+# the proper components so that the result is placed in the variable
+# `new_version`.
+#
+# $1 = mode (major, minor, bugfix, push)
+# $2 = version (x.y.z)
+#
+function bump {
+  local mode="$1"
+  local old="$2"
+  # find out the three components of the current version...
+  local parts=( ${old//./ } )
+  # now bump it up based on the mode...
+  case "$1" in
+    major|maj)
+      local bv=$((parts[0] + 1))
+      new_version="${bv}.0.0"
+      ;;
+    minor|min)
+      local bv=$((parts[1] + 1))
+      new_version="${parts[0]}.${bv}.0"
+      ;;
+    bugfix|patch|fix|bug)
+      local bv=$((parts[2] + 1))
+      new_version="${parts[0]}.${parts[1]}.${bv}"
+      ;;
+    push|nothing)
+      new_version=${old}
+      ;;
+  esac
+}
+
+#
+# Read the existing project name and version number from the project.clj file
+# and populate the following variables:
+#
+# $version = "1.54.3"
+# $project = "brew-bot-ui"
+# $today = "2019 Dec 12"
+#
+function pull_values {
+  local fline=`head -1 ${proj}`
+  project=`echo ${fline} | awk '{print $2}'`
+  version=`echo ${fline} | awk '{print $3}' | tr -d '"'`
+  today=$(date +"%Y %b %d")
+}
+
+#
+# Update the project.clj file with the new version by a simple exchange.
+#
+function update_code {
+  sed -e "1s/${version}/${new_version}/" ${proj} > p.tmp && mv p.tmp ${proj}
+}
+
+#
+# Update the CHANGELOG.md file to add in the new template for the release notes.
+#
+function update_docs {
+  sed -e "s/\${NAME}/$project/g" \
+	  -e "s/\${VER}/$new_version/g" \
+	  -e "s/\${DATE}/$today/g" ${style} | cat - ${log} > cl.tmp && mv cl.tmp ${log}
+}
+
+# Set up the defaults for the script
+proj="project.clj"
+log="CHANGELOG.md"
+style="doc/templates/changelog_entry.txt"
+
+pull_values
+bump $1 ${version}
+update_code
+update_docs
+# TODO: Inc deployment # in terraform scripts
+echo "Project is now at $new_version"
