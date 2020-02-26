@@ -21,7 +21,7 @@
    (calculate-gravity gallons grains extracts 0.7)) ;; We assume a mashing efficiency of 70% on average https://beerandbrewing.com/ask-the-experts-mash-efficiency/
 
   ([gallons grains extracts efficiency]
-   (let [reducing-fn      (fn [acc k v] (+ acc (potential-gravity-to-gravity-points (:gravity v) (:weight v))))
+   (let [reducing-fn      (fn [acc _ v] (+ acc (potential-gravity-to-gravity-points (:gravity v) (:weight v))))
          grains-gravity   (* efficiency (reduce-kv reducing-fn 0.0 grains))
          extracts-gravity (reduce-kv reducing-fn 0.0 extracts)]
      (gravity-points-to-potential-gravity (+ grains-gravity extracts-gravity) gallons))))
@@ -46,13 +46,13 @@
 
 (defn calculate-recipe-bittering-units
   [gallons gravity hops]
-  (let [reducing-fn (fn [acc k v] (+ acc (calculate-hop-bittering-units gallons gravity v)))]
+  (let [reducing-fn (fn [acc _ v] (+ acc (calculate-hop-bittering-units gallons gravity v)))]
     (reduce-kv reducing-fn 0 hops)))
 
 (defn calculate-malt-color-units
   "Calculate the MCU color units of all fermentables: https://www.homebrewing.org/SRM-Beer-Color-Scale_ep_81-1.html"
   [gallons grains extracts]
-  (let [reducing-fn (fn [acc k v] (+ acc (* (:weight v) (:lovibond v))))
+  (let [reducing-fn (fn [acc _ v] (+ acc (* (:weight v) (:lovibond v))))
         grain-mcu   (reduce-kv reducing-fn 0 grains)
         extract-mcu (reduce-kv reducing-fn 0 extracts)]
     (/ (+ grain-mcu extract-mcu) gallons)))

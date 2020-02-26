@@ -1,3 +1,7 @@
+## v2.1.0 / 2020 February 25
+
+> Refactor ingredients namespaces
+
 ## v2.0.0 / 2019 December 5
 
 > ***BREAKING CHANGE*** - the UI and the library code are now separate

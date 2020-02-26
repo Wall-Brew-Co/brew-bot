@@ -1,10 +1,10 @@
-(defproject brew-bot "2.0.0"
+(defproject brew-bot "2.1.0"
             :description "A quick, dirty way to get randomized beer recipes"
             :url "https://github.com/nnichols/brew-bot"
             :license {:name "Eclipse Public License"
                       :url "http://www.eclipse.org/legal/epl-v10.html"}
             :dependencies [[cljx-sampling "0.1.0"]
-                           [nnichols "0.6.0"]
+                           [nnichols "0.7.0"]
                            [org.clojure/clojure "1.10.1"]
                            [org.clojure/clojurescript "1.10.597" :scope "provided"]]
 
@@ -14,7 +14,7 @@
 
             :profiles {:uberjar {:aot :all}
                        :dev {:dependencies [[doo "0.1.11"]]
-                             :plugins      [[lein-doo "0.1.10"]]}}
+                             :plugins      [[lein-doo "0.1.11"]]}}
 
             :min-lein-version "2.5.3"
 

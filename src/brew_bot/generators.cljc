@@ -57,7 +57,7 @@
 
 (defn generate-random-recipe
   "Generate a purely random beer recipe with grains, extracts, and hops close to their respective limits"
-  [gallons grain-limits extract-limits hop-limits yeast-limits]
+  [gallons grain-limits extract-limits hop-limits _yeast-limits]
   (let [grain-bill   (generate-ingredients-and-quantities ingredients/grains   (:weight grain-limits))
         extract-bill (generate-ingredients-and-quantities ingredients/extracts (:weight extract-limits))
         hop-bill     (generate-ingredients-and-quantities ingredients/hops     (:weight hop-limits))
@@ -67,7 +67,7 @@
 (defn generate-limited-random-recipe
   "Generate a purely random beer recipe with grains, extracts,
    and hops close to their respective weight limits, with a constricted number of ingredients"
-  [gallons grain-limits extract-limits hop-limits yeast-limits]
+  [gallons grain-limits extract-limits hop-limits _yeast-limits]
   (let [grain-bill   (generate-ingredients-and-quantities ingredients/grains   (:weight grain-limits)   (:count grain-limits))
         extract-bill (generate-ingredients-and-quantities ingredients/extracts (:weight extract-limits) (:count extract-limits))
         hop-bill     (generate-ingredients-and-quantities ingredients/hops     (:weight hop-limits)     (:count hop-limits))
