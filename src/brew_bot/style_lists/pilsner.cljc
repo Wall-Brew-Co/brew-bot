@@ -3,6 +3,7 @@
 
 (def ^:const czech-premium-pale-lager
   {:bjcp-category          :czech-lager
+   :name                   "Czech Premium Pale Lager"
    :original-gravity-range [1.044 1.060]
    :ibu-range              [30 45]
    :srm-range              [3.5 6]
@@ -10,6 +11,7 @@
 
 (def ^:const german-pils
   {:bjcp-category          :pale-bitter-european-beer
+   :name                   "Pale Bitter European Beer"
    :original-gravity-range [1.044 1.050]
    :ibu-range              [22 40]
    :srm-range              [2 5]
@@ -17,6 +19,7 @@
 
 (def ^:const pre-prohibition-lager
   {:bjcp-category          :historical-beer
+   :name                   "Pre-Prohibition Lager"
    :original-gravity-range [1.044 1.060]
    :ibu-range              [25 40]
    :srm-range              [3 6]

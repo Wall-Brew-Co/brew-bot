@@ -1,6 +1,19 @@
 (ns brew-bot.styles
   "Convenience functions and refs to access recipe style data"
-  (:require [brew-bot.style-lists.pilsner :as bbp]))
+  (:require [brew-bot.style-lists.amber-ale :as amber-ale]
+            [brew-bot.style-lists.amber-lager :as amber-lager]
+            [brew-bot.style-lists.bock :as bock]
+            [brew-bot.style-lists.brown-ale :as brown-ale]
+            [brew-bot.style-lists.dark-lager :as dark-lager]
+            [brew-bot.style-lists.ipa :as ipa]
+            [brew-bot.style-lists.pale-ale :as pale-ale]
+            [brew-bot.style-lists.pale-lager :as pale-lager]
+            [brew-bot.style-lists.pilsner :as pilsner]
+            [brew-bot.style-lists.porter :as porter]
+            [brew-bot.style-lists.sour-ale :as sour-ale]
+            [brew-bot.style-lists.stout :as stout]
+            [brew-bot.style-lists.strong-ale :as strong-ale]
+            [brew-bot.style-lists.wheat-beer :as wheat-beer]))
 
 (def ^:const global-original-gravity-range
   [1.000 2.000])
@@ -13,6 +26,22 @@
 
 (def ^:const global-abv-range
   [0.0 100.0])
+
+(def beer-styles
+  (merge amber-ale/amber-ale
+         amber-lager/amber-lager
+         bock/bock
+         brown-ale/brown-ale
+         dark-lager/dark-lager
+         ipa/ipa
+         pale-ale/pale-ale
+         pale-lager/pale-lager
+         pilsner/pilsner
+         porter/porter
+         sour-ale/sour-ale
+         stout/stout
+         strong-ale/strong-ale
+         wheat-beer/wheat-beer))
 
 (defn score-range-delta
   "Determine on a normalized scale how close `data-point` was to `conforming-point` given the `scale`
@@ -28,7 +57,7 @@
    Assumes global-range and local-range to be order tuples"
   [global-range local-range data-point]
   (let [[global-low global-high] global-range
-        [local-low  local-high]   local-range
+        [local-low local-high] local-range
         scale (- global-high global-low)]
     (cond
 

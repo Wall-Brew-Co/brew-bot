@@ -6,6 +6,7 @@
 (s/def ::name string?)
 (s/def ::product-number string?)
 (s/def ::manufacturer string?)
+(s/def ::bjcp-category keyword?)
 
 (s/def ::gravity
   (s/and number?
@@ -94,4 +95,4 @@
          #(< (first %) (second %))))
          
 (s/def ::bjcp-style
-  (s/keys :req-un [::original-gravity-range ::ibu-range ::srm-range ::abv-range]))
+  (s/keys :req-un [::original-gravity-range ::ibu-range ::srm-range ::abv-range ::name ::bjcp-category]))
