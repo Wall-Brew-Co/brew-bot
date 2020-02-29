@@ -1,3 +1,7 @@
+## v2.2.0 / 2020 February 29
+
+> Add BJCP style definitions and function to match recipes to styles
+
 ## v2.1.0 / 2020 February 25
 
 > Refactor ingredients namespaces
