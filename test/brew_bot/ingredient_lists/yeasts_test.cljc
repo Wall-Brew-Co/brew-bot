@@ -1,7 +1,7 @@
 (ns brew-bot.ingredient-lists.yeasts-test
   (:require [brew-bot.ingredient-lists.yeasts :as bby]
-            #? (:clj  [clojure.test :refer [deftest is testing run-tests]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing run-tests]])))
+            #? (:clj  [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
 (deftest get-available-yeasts-tests
   (testing "Ensure only applicable yeasts are returned"

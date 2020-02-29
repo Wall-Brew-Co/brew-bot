@@ -2,8 +2,8 @@
   (:require [clojure.spec.alpha :as csa]
             [brew-bot.spec :as s]
             [brew-bot.generators :as bb]
-            #? (:clj  [clojure.test :refer [deftest is testing run-tests]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing run-tests]])))
+            #? (:clj  [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
 (deftest generate-beer-recipe-test
   (testing "Ensure the application can generate recipes that are sane"
