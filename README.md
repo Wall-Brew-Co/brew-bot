@@ -30,7 +30,7 @@ That project can be found [here.](https://github.com/nnichols/brew-bot-ui)
 
 brew-bot also maintains the data included in the [**Beer Judge Certification Program** (BJCP)](https://www.bjcp.org/) to determine recipe styles and characteristics.
 This data can be utilized to determine what characteristics the generated recipes may have, and which traditional styles they may represent.
-The 2015 stlye guidelines are currently the only represented of the program's judging history.
+The 2015 style guidelines are currently the only represented of the program's judging history.
 
 ## Installation
 
