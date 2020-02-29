@@ -45,11 +45,11 @@
 
 (defn score-range-delta
   "Determine on a normalized scale how close `data-point` was to `conforming-point` given the `scale`
-   Shorter distances are scored higher, and currently this is determined linearly"
+   Shorter distances are scored higher, and currently this is determined quadratically"
   [scale conforming-point data-point]
   (let [distance (Math/abs (- data-point conforming-point))
         fraction-of-scale (/ distance scale)]
-    (- 1 fraction-of-scale)))
+    (Math/pow (- 1 fraction-of-scale) 2.0)))
 
 (defn score-adherence-to-range
   "Determine on a  normalized scale how well `data-point` fits in `local-range` w.r.t a `global-range`.
@@ -101,4 +101,12 @@
         ibu-adherence (score-ibu-adherence (:ibu-range style) (:ibu recipe))
         srm-adherence (score-srm-adherence (:srm-range style) (:sru-color recipe))
         abv-adherence (score-abv-adherence (:abv-range style) (:abv recipe))]
-    (/ (+ og-adherence ibu-adherence srm-adherence abv-adherence) 4)))
+    (* og-adherence ibu-adherence srm-adherence abv-adherence)))
+
+(defn score-against-styles
+  "Given a recipe, create a map from BJCP styles to the normalized value of the recipe's conformance to that style"
+  [recipe]
+  (let [reducing-fn (fn [m k v]
+                      (let [score (score-style-adherence recipe v)]
+                        (assoc m k score)))]
+    (reduce-kv reducing-fn {} beer-styles)))

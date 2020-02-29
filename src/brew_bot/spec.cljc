@@ -3,6 +3,7 @@
   (:require [brew-bot.ingredients :as ingredients]
             [clojure.spec.alpha :as s]))
 
+(s/def ::tags map?)
 (s/def ::name string?)
 (s/def ::product-number string?)
 (s/def ::manufacturer string?)
@@ -15,8 +16,6 @@
 (s/def ::lovibond
   (s/and number?
          #(>= % 0.5)))
-
-(s/def ::tags map?)
 
 (s/def ::suggested-max
   (s/and number?

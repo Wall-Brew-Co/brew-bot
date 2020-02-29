@@ -24,3 +24,17 @@
         (recur (update i-map mod-ingredient + addition)
                (+ weight addition)))
       i-map)))
+
+(defn max-n-kv
+  "Given `m` with k-v pairs for which all values are numbers, return the `n` k-v pairs with the highest values"
+  [m n]
+  (let [ordered-tuples (take n (sort-by (comp - last) m))
+        list-of-maps (map #(hash-map (first %) (second %)) ordered-tuples)]
+    (apply merge list-of-maps)))
+
+(defn min-n-kv
+  "Given `m` with k-v pairs for which all values are numbers, return the `n` k-v pairs with the lowest values"
+  [m n]
+  (let [ordered-tuples (take n (sort-by last m))
+        list-of-maps   (map #(hash-map (first %) (second %)) ordered-tuples)]
+    (apply merge list-of-maps)))
