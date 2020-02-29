@@ -26,6 +26,12 @@ That project can be found [here.](https://github.com/nnichols/brew-bot-ui)
 * **Weighted Guided** - brew-bot will allow the user to select ingredients to adjust their relative selection probabilities, and randomly pick ingredients from the that list respecting the user-selected weights.
 * **COMING SOON: Weighted Observed** - brew-bot will utilize weights learned from scraping real world beer recipes by style.
 
+## BJCP Conformance
+
+brew-bot also maintains the data included in the [**Beer Judge Certification Program** (BJCP)](https://www.bjcp.org/) to determine recipe styles and characteristics.
+This data can be utilized to determine what characteristics the generated recipes may have, and which traditional styles they may represent.
+The 2015 style guidelines are currently the only represented of the program's judging history.
+
 ## Installation
 
 A deployed copy of the most recent version of [brew-bot can be found on clojars.](https://clojars.org/brew-bot)

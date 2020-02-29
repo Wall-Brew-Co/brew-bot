@@ -2,8 +2,8 @@
   (:require [clojure.spec.alpha :as csa]
             [brew-bot.ingredients :as bb]
             [brew-bot.spec :as s]
-            #? (:clj  [clojure.test :refer [deftest is testing run-tests]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing run-tests]])))
+            #? (:clj  [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
 (deftest grain-validity-test
   (testing "Ensure all grain definitions are well-formatted"
