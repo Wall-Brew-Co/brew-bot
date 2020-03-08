@@ -16,7 +16,7 @@ Originally made for [wallbrew.com](https://wallbrew.com/)
 
 The beta release of our SPA is now [available!](https://nnichols.github.io/brew-bot/)
 If you're interested in contributing to the site, let us know.
-That project can be found [here.](https://github.com/nnichols/brew-bot-ui)
+That project can be found [here.](https://github.com/Wall-Brew-Co/brew-bot-ui)
 
 ## Recipe Generators
 
