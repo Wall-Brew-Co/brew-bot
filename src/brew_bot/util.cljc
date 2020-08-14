@@ -1,35 +1,11 @@
 (ns brew-bot.util
-  "Common fns required across brew-bot"
-  (:require [cljx-sampling.core :as rnd]
-            [brew-bot.ingredients :as ingredients]))
-
-(defn rand-key
-  "Pick a random key from a map, weighted by the :probability key of the value"
-  [m]
-  (first (rnd/sample (keys m) :replace true :weigh #(or (:probability (get m %)) 1))))
-
-(defn join-ingredient-maps
-  "Given an ingredient map, lookup the source ingredient and combine it with the added-key"
-  [ingredient-bill ingredient-source added-key]
-  (reduce-kv (fn [m k v] (assoc m k (assoc (get ingredient-source k) added-key v))) {} ingredient-bill))
-
-(defn scale-ingredients
-  "Update `ingredient-map` so the combined :weights are randomly scaled up to `weight-limit`"
-  [ingredient-map weight-limit]
-  (loop [i-map ingredient-map
-         weight (reduce + 0 (vals ingredient-map))]
-    (if (< weight weight-limit)
-      (let [addition (rand-nth ingredients/ingredient-amounts)
-            mod-ingredient (rand-nth (keys i-map))]
-        (recur (update i-map mod-ingredient + addition)
-               (+ weight addition)))
-      i-map)))
+  "Common fns required across brew-bot")
 
 (defn max-n-kv
   "Given `m` with k-v pairs for which all values are numbers, return the `n` k-v pairs with the highest values"
   [m n]
   (let [ordered-tuples (take n (sort-by (comp - last) m))
-        list-of-maps (map #(hash-map (first %) (second %)) ordered-tuples)]
+        list-of-maps   (map #(hash-map (first %) (second %)) ordered-tuples)]
     (apply merge list-of-maps)))
 
 (defn min-n-kv
@@ -38,3 +14,18 @@
   (let [ordered-tuples (take n (sort-by last m))
         list-of-maps   (map #(hash-map (first %) (second %)) ordered-tuples)]
     (apply merge list-of-maps)))
+
+(defn fermentables->cbf-fermentables
+  "Given a vector of common-beer-format conforming ::fermentable maps, convert them to a ::fermentables record"
+  [fermentables]
+  (map #(hash-map :fermentable %) fermentables))
+
+(defn hops->cbf-hops
+  "Given a vector of common-beer-format conforming ::hop maps, convert them to a ::hops record"
+  [hops]
+  (map #(hash-map :hop %) hops))
+
+(defn yeast->cbf-yeasts
+  "Given a vector of common-beer-format conforming ::yeast maps, convert them to a ::yeasts record"
+  [yeasts]
+  (map #(hash-map :yeast %) yeasts))

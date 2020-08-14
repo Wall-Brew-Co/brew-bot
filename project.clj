@@ -4,9 +4,11 @@
             :license {:name "Eclipse Public License"
                       :url "http://www.eclipse.org/legal/epl-v10.html"}
             :dependencies [[cljx-sampling "0.1.0"]
-                           [nnichols "0.7.0"]
+                           [com.wallbrew/common-beer-format "1.3.0"]
+                           [metosin/spec-tools "0.10.2"]
+                           [nnichols "0.10.0"]
                            [org.clojure/clojure "1.10.1"]
-                           [org.clojure/clojurescript "1.10.597" :scope "provided"]]
+                           [org.clojure/clojurescript "1.10.758" :scope "provided"]]
 
             :plugins [[lein-cljsbuild "1.1.7"]]
 
