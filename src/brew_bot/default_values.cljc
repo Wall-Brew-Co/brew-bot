@@ -67,3 +67,24 @@
    "mash"        10.0
    "first wort"  10.0
    "aroma"       10.0})
+
+(def ^:const common-beer-format-default-mash
+  {:name "Single Step Infusion"
+   :version common-beer-format-version
+   :grain-temp 22.0
+   :mash-steps [{:mash-step {:name "Sugar Conversion Step"
+                             :version common-beer-format-version
+                             :type "Infusion"
+                             :step-temp 68.0
+                             :step-time 60.0
+                             :infuse-amount 10.0}}]})
+
+(def ^:const common-beer-format-recipe-defaults
+  {:name         "My Recipe"
+   :version      common-beer-format-version
+   :brewer       "brew-bot"
+   :batch-size   19 ;; Roughly 5 gallons, common homebrew size
+   :boil-size    19 ;; Roughly 5 gallons, common homebrew size
+   :miscs        []
+   :waters       []
+   :mash         common-beer-format-default-mash})

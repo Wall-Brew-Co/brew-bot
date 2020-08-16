@@ -1,5 +1,7 @@
 (ns brew-bot.styles
-  "Convenience functions and refs to access recipe style data")
+  "Convenience functions and refs to access recipe style data"
+  (:require [brew-bot.util :as util]
+            [common-beer-format.data.data :as styles]))
 
 (def ^:const global-original-gravity-range
   [1.000 2.000])
@@ -11,9 +13,7 @@
   [0 40])
 
 (def ^:const global-abv-range
-  [0.0 100.0])
-
-(comment
+  [0.0 1.0])
 
 (defn score-range-delta
   "Determine on a normalized scale how close `data-point` was to `conforming-point` given the `scale`
@@ -68,17 +68,27 @@
   "Given a recipe and a codified beer style,
    return a normalized score on how well the recipe adheres to BJCP guideleines for that style"
   ;; TODO - Normalize attribute names between styles and recipes
-  [recipe style]
-  (let [og-adherence  (score-original-gravity-adherence (:original-gravity-range style) (:gravity recipe))
-        ibu-adherence (score-ibu-adherence (:ibu-range style) (:ibu recipe))
-        srm-adherence (score-srm-adherence (:srm-range style) (:sru-color recipe))
-        abv-adherence (score-abv-adherence (:abv-range style) (:abv recipe))]
+  [gravity ibu srm abv style]
+  (let [og-range      [(:og-min style) (:og-max style)]
+        ibu-range     [(:ibu-min style) (:ibu-max style)]
+        srm-range     [(:color-min style) (:color-max style)]
+        abv-range     [(:abv-min style) (:abv-max style)]
+        og-adherence  (score-original-gravity-adherence og-range gravity)
+        ibu-adherence (score-ibu-adherence ibu-range ibu)
+        srm-adherence (score-srm-adherence srm-range srm)
+        abv-adherence (score-abv-adherence abv-range abv)]
     (* og-adherence ibu-adherence srm-adherence abv-adherence)))
 
 (defn score-against-styles
   "Given a recipe, create a map from BJCP styles to the normalized value of the recipe's conformance to that style"
-  [recipe]
+  [gravity ibu srm abv]
   (let [reducing-fn (fn [m k v]
-                      (let [score (score-style-adherence recipe v)]
+                      (let [score (score-style-adherence gravity ibu srm abv v)]
                         (assoc m k score)))]
-    (reduce-kv reducing-fn {} [])))) ;beer-styles))))
+    (reduce-kv reducing-fn {} styles/all-style-guides)))
+
+(defn best-match
+  [gravity ibu srm abv]
+  (let [style-scores (score-against-styles gravity ibu srm abv)
+        closest-key  (ffirst (util/max-n-kv style-scores 1))]
+    (get styles/all-style-guides closest-key)))

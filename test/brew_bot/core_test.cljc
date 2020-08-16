@@ -4,6 +4,7 @@
             [common-beer-format.data.data :as data]
             [common-beer-format.specs.fermentables :as fermentables]
             [common-beer-format.specs.hops :as hops]
+            [common-beer-format.specs.recipes :as recipes]
             [common-beer-format.specs.yeasts :as yeasts]
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
@@ -22,3 +23,11 @@
       (is (every? #(csa/valid? ::hops/hop %) random-hops-2))
       (is (every? #(csa/valid? ::yeasts/yeast %) random-yeasts))
       (is (every? #(csa/valid? ::yeasts/yeast %) random-yeasts-2)))))
+
+(deftest integration-test
+  (testing "Ensure ingredients can be selected and conformed to a common-beer-format recipe. Essentially testing the core functionality of the app"
+    (let [fermentables (sut/select-fermentables)
+          hops         (sut/select-hops :random {:timing-strategy :inferred})
+          yeast        (sut/select-yeasts :weighted {:count-cutoff 1 :amount-cutoff 1 :default-weight 1})
+          recipe       (sut/ingredients->cbf-recipe-template fermentables hops yeast)]
+      (is (csa/valid? ::recipes/recipe recipe)))))

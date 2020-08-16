@@ -1,5 +1,6 @@
 (ns brew-bot.util
-  "Common fns required across brew-bot")
+  "Common fns required across brew-bot"
+  (:require [nnichols.string :as nstr]))
 
 (defn max-n-kv
   "Given `m` with k-v pairs for which all values are numbers, return the `n` k-v pairs with the highest values"
@@ -29,3 +30,23 @@
   "Given a vector of common-beer-format conforming ::yeast maps, convert them to a ::yeasts record"
   [yeasts]
   (map #(hash-map :yeast %) yeasts))
+
+(defn determine-recipe-type
+  "Given a vector of common-beer-format conforming ::fermentable maps, determine if the recipe is 'Extract', 'Partial Mash', or 'All Grain'"
+  [fermentables]
+  (let [all-grain? (and (seq fermentables)
+                        (every? #(nstr/string-compare "all grain" (:type %)) fermentables))
+        all-extract? (and (seq fermentables)
+                          (every? #(contains? #{"sugar" "extract" "dry extract"} (nstr/prepare-for-compare (:type %))) fermentables))]
+    (cond
+      all-grain?            "All Grain"
+      all-extract?          "Extract"
+      (empty? fermentables) (throw (ex-info "Cannot determine recipe type with an empty collection of fermentables" {}))
+      :else                 "Partial Mash")))
+
+(defn determine-boil-time
+  "Given a vector of common-beer-format conforming ::hop maps, determine the longest necessary boil time for alpha acid extraction.
+   In the case of an abnormally short boil, default to 60 minutes."
+  [hops]
+  (let [hop-times (conj (map :time hops) 60)]
+    (apply max hop-times)))
