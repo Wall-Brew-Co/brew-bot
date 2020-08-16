@@ -27,7 +27,7 @@
 (deftest integration-test
   (testing "Ensure ingredients can be selected and conformed to a common-beer-format recipe. Essentially testing the core functionality of the app"
     (let [fermentables (sut/select-fermentables)
-          hops         (sut/select-hops :random {:timing-strategy :inferred})
+          hops         (sut/select-hops :random {:timing-strategy :inferred :amount-cutoff 0.08})
           yeast        (sut/select-yeasts :weighted {:count-cutoff 1 :amount-cutoff 1 :default-weight 1})
           recipe       (sut/ingredients->cbf-recipe-template fermentables hops yeast)]
       (is (csa/valid? ::recipes/recipe recipe)))))

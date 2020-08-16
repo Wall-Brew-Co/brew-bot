@@ -43,7 +43,7 @@
   [selected-fermentables selected-hops selected-yeasts]
   (let [cbf-fermentables           (util/fermentables->cbf-fermentables selected-fermentables)
         cbf-hops                   (util/hops->cbf-hops selected-hops)
-        cbf-yeasts                 (util/yeast->cbf-yeasts selected-yeasts)
+        cbf-yeasts                 (util/yeasts->cbf-yeasts selected-yeasts)
         recipe-template            (merge {:fermentables cbf-fermentables
                                            :hops         cbf-hops
                                            :yeasts       cbf-yeasts}

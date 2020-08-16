@@ -26,7 +26,7 @@
   [hops]
   (map #(hash-map :hop %) hops))
 
-(defn yeast->cbf-yeasts
+(defn yeasts->cbf-yeasts
   "Given a vector of common-beer-format conforming ::yeast maps, convert them to a ::yeasts record"
   [yeasts]
   (map #(hash-map :yeast %) yeasts))
@@ -35,7 +35,7 @@
   "Given a vector of common-beer-format conforming ::fermentable maps, determine if the recipe is 'Extract', 'Partial Mash', or 'All Grain'"
   [fermentables]
   (let [all-grain? (and (seq fermentables)
-                        (every? #(nstr/string-compare "all grain" (:type %)) fermentables))
+                        (every? #(nstr/string-compare "grain" (:type %)) fermentables))
         all-extract? (and (seq fermentables)
                           (every? #(contains? #{"sugar" "extract" "dry extract"} (nstr/prepare-for-compare (:type %))) fermentables))]
     (cond

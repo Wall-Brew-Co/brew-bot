@@ -6,7 +6,7 @@
 (def ^:const amount-cutoff 5)
 
 (def ^:const ingredient-amounts
-  [0.25 0.5 0.75 1.0])
+  [0.01 0.025 0.05 0.075 0.1])
 
 (def ^:const minimum-ingredient-amount
   (apply min ingredient-amounts))
