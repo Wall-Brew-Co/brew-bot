@@ -7,6 +7,7 @@
             [nnichols.util :as nu]))
 
 (defn selected-amount
+  "Given a list of ingredients, return the total amount of ingredients"
   [selections]
   (let [amounts (map :amount selections)]
     (if (seq amounts)
@@ -14,6 +15,8 @@
       0)))
 
 (defn make-random-selection
+  "Make a random selection from `ingredients`.
+   If the number of `selections` is already at the `count-cutoff`, and a `count-cutoff` has been selected, don't pick new ingredients."
   [ingredients selections count-cutoff]
   (let [selected-ingredient (if (and (number? count-cutoff)
                                      (>= (count selections) count-cutoff))
@@ -34,15 +37,20 @@
           (recur (conj selections selection)))))))
 
 (defn update-selection-probability
+  "Add the relevant :probability of `ingredient`'s selection.
+   If no match is found in `weights` fall-back to `default-weight`"
   [ingredient-key ingredient weights default-weight]
   (let [weight (get weights ingredient-key default-weight)]
     (assoc ingredient :probability weight)))
 
 (defn update-selection-probabilities
   [ingredients weights default-weight]
-  (let [reducing-fn (fn [m k v] (assoc m k (update-selection-probability k v weights default-weight)))
-        weighted-ingredients (reduce-kv reducing-fn {} ingredients)]
-    (nu/filter-by-values :probability weighted-ingredients)))
+  (let [reducing-fn          (fn [m k v] (assoc m k (update-selection-probability k v weights default-weight)))
+        weighted-ingredients (reduce-kv reducing-fn {} ingredients)
+        probabilities        (nu/filter-by-values :probability weighted-ingredients)]
+    (if (empty? probabilities)
+      (throw (ex-info "No matching :selection-weights were provided and no :default-weight was declared" {:weights weights}))
+      probabilities)))
 
 (defn make-weighted-selection
   [ingredients selections count-cutoff]
@@ -68,16 +76,20 @@
           (recur (conj selections selection)))))))
 
 (defn random-hop-timing
+  "Select a random hop use and timing"
   [hop]
   (assoc hop :use  (rand-nth (into [] hops/hop-uses))
              :time (rand-nth defaults/hop-times)))
 
 (defn weighted-hop-timing
+  "Select hop timings and uses with the provided weights"
   [hop {:keys [use-weights time-weights]}]
   (assoc hop :use  (first (rnd/sample hops/hop-uses :weigh use-weights :replace true))
              :time (first (rnd/sample defaults/hop-times :weigh time-weights :replace true))))
 
 (defn inferred-hop-timing
+  "Select hop timings and uses based on the hop's type.
+   Bittering hops will often be boiled for longer, and aroma hops are biased towards short boils and secondary additions."
   [hop]
   (let [hop-type                   (cs/lower-case (str (:type hop)))
         [use-weights time-weights] (case hop-type
@@ -87,6 +99,9 @@
     (weighted-hop-timing hop {:use-weights use-weights :time-weights time-weights})))
 
 (defn select-hop-timings
+  "Given a common-beer-format hop and option map, update hop timings and uses.
+   TODO : Allow this function to split single hop selections across multiple addition times.
+   TODO : Allow use-weights and time-weights to differ by hop"
   [hops {:keys [timing-strategy] :as opts}]
   (let [strategy (or timing-strategy :random)
         selection-fn (case strategy

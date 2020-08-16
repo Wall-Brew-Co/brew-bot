@@ -65,9 +65,8 @@
   (partial score-adherence-to-range global-abv-range))
 
 (defn score-style-adherence
-  "Given a recipe and a codified beer style,
+  "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,
    return a normalized score on how well the recipe adheres to BJCP guideleines for that style"
-  ;; TODO - Normalize attribute names between styles and recipes
   [gravity ibu srm abv style]
   (let [og-range      [(:og-min style) (:og-max style)]
         ibu-range     [(:ibu-min style) (:ibu-max style)]
@@ -80,7 +79,8 @@
     (* og-adherence ibu-adherence srm-adherence abv-adherence)))
 
 (defn score-against-styles
-  "Given a recipe, create a map from BJCP styles to the normalized value of the recipe's conformance to that style"
+  "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,
+   return a map from BJCP styles to the normalized value of the recipe's conformance to that style"
   [gravity ibu srm abv]
   (let [reducing-fn (fn [m k v]
                       (let [score (score-style-adherence gravity ibu srm abv v)]
@@ -88,6 +88,8 @@
     (reduce-kv reducing-fn {} styles/all-style-guides)))
 
 (defn best-match
+  "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,
+   return the closest BJCP style that matches those data points."
   [gravity ibu srm abv]
   (let [style-scores (score-against-styles gravity ibu srm abv)
         closest-key  (ffirst (util/max-n-kv style-scores 1))]

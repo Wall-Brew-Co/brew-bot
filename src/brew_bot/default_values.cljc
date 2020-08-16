@@ -3,7 +3,7 @@
 
 (def ^:const common-beer-format-version 1)
 
-(def ^:const amount-cutoff 5)
+(def ^:const amount-cutoff 2.26796) ;; 5 pounds in kilograms
 
 (def ^:const ingredient-amounts
   [0.01 0.025 0.05 0.075 0.1])
@@ -69,14 +69,14 @@
    "aroma"       10.0})
 
 (def ^:const common-beer-format-default-mash
-  {:name "Single Step Infusion"
-   :version common-beer-format-version
+  {:name       "Single Step Infusion"
+   :version    common-beer-format-version
    :grain-temp 22.0
-   :mash-steps [{:mash-step {:name "Sugar Conversion Step"
-                             :version common-beer-format-version
-                             :type "Infusion"
-                             :step-temp 68.0
-                             :step-time 60.0
+   :mash-steps [{:mash-step {:name          "Sugar Conversion Step"
+                             :version       common-beer-format-version
+                             :type          "Infusion"
+                             :step-temp     68.0
+                             :step-time     60.0
                              :infuse-amount 10.0}}]})
 
 (def ^:const common-beer-format-recipe-defaults
