@@ -22,7 +22,7 @@
                         :weighted selectors/select-ingredients-weighted)]
      (selection-fn ingredients options))))
 
-(def select-fermentables
+(defn select-fermentables
   "Select common-beer-format fermentables.
    This function may optionally be called with a strategy and an options map as such:
    `(select-fermentables)`
@@ -34,13 +34,31 @@
    - :weighted : Each ingredient selection is made with a weighted probability passed to the function
 
    The following options are supported:
-   - amount-cutoff     : The maximum weight, in kilograms, of fermentable ingredients to select. Defaults to 2.26796 kilograms (5 pounds)
-   - count-cutoff      : The maximum number of unique ingredients to allow.
-   - selection-weights : A map from ingredient names to probablity weights. e.g. {:amber-liquid-extract 5.0 :biscuit-malt 15.0 ...}. Only applicable for the :weighted strategy
-   - default-weight    : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy"
-  (partial select-ingredients ingredients/all-fermentables))
+   - amount-cutoff         : The maximum weight, in kilograms, of fermentable ingredients to select. Defaults to 2.26796 kilograms (5 pounds)
+   - count-cutoff          : The maximum number of unique ingredients to allow.
+   - selection-weights     : A map from ingredient names to probablity weights. e.g. {:amber-liquid-extract 5.0 :biscuit-malt 15.0 ...}. Only applicable for the :weighted strategy
+   - default-weight        : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy
+   - include-adjuncts?     : A boolean switch to include adjuncts in the list of selectable ingredients. Defaults to true
+   - include-dry-extracts? : A boolean switch to include dry extracts in the list of selectable ingredients. Defaults to true
+   - include-extracts?     : A boolean switch to include extracts in the list of selectable ingredients. Defaults to true
+   - include-grains?       : A boolean switch to include grains in the list of selectable ingredients. Defaults to true
+   - include-sugars?       : A boolean switch to include sugars in the list of selectable ingredients. Defaults to true"
+  ([]
+   (select-fermentables :random))
 
-(def select-yeasts
+  ([strategy]
+   (select-fermentables strategy {}))
+
+  ([strategy opts]
+   (let [ingredient-options (merge {:include-adjuncts?     true
+                                    :include-dry-extracts? true
+                                    :include-extracts?     true
+                                    :include-grains?       true
+                                    :include-sugars?       true} opts)
+         fermentables (ingredients/select-fermentables ingredient-options)]
+     (select-ingredients fermentables strategy opts))))
+
+(defn select-yeasts
   "Select common-beer-format yeasts.
    This function may optionally be called with a strategy and an options map as such:
    `(select-yeasts)`
@@ -52,11 +70,29 @@
    - :weighted : Each ingredient selection is made with a weighted probability passed to the function
 
    The following options are supported:
-   - amount-cutoff     : The maximum weight, in kilograms, of the yeast to select. Defaults to 2.26796 kilograms (5 pounds)
-   - count-cutoff      : The maximum number of unique ingredients to allow.
-   - selection-weights : A map from ingredient names to probablity weights. e.g. {:s-04-safale-english-ale 20.0 ...}. Only applicable for the :weighted strategy
-   - default-weight    : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy"
-  (partial select-ingredients ingredients/all-yeasts))
+   - amount-cutoff          : The maximum weight, in kilograms, of the yeast to select. Defaults to 2.26796 kilograms (5 pounds)
+   - count-cutoff           : The maximum number of unique ingredients to allow.
+   - selection-weights      : A map from ingredient names to probablity weights. e.g. {:s-04-safale-english-ale 20.0 ...}. Only applicable for the :weighted strategy
+   - default-weight         : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy
+   - include-brewtek?       : A boolean switch to include yeasts from Brewtek. Defaults to true
+   - include-dcl-fermentis? : A boolean switch to include yeasts from DCL Fermentis. Defaults to true
+   - include-lallemand?     : A boolean switch to include yeasts from Lallemand. Defaults to true
+   - include-white-labs?    : A boolean switch to include yeasts from White Labs. Defaults to true
+   - include-wyeast?        : A boolean switch to include yeasts from Wyeast. Defaults to true"
+  ([]
+   (select-yeasts :random))
+
+  ([strategy]
+   (select-yeasts strategy {}))
+
+  ([strategy opts]
+   (let [ingredient-options (merge {:include-brewtek?       true
+                                    :include-dcl-fermentis? true
+                                    :include-lallemand?     true
+                                    :include-white-labs?    true
+                                    :include-wyeast?        true} opts)
+         yeasts (ingredients/select-yeasts ingredient-options)]
+     (select-ingredients yeasts strategy opts))))
 
 (defn select-hops
   "Select common-beer-format hops.
@@ -70,13 +106,16 @@
    - :weighted : Each ingredient selection is made with a weighted probability passed to the function
 
    The following options are supported:
-   - amount-cutoff     : The maximum weight, in kilograms, of the hops to select. Defaults to 2.26796 kilograms (5 pounds)
-   - count-cutoff      : The maximum number of unique ingredients to allow.
-   - selection-weights : A map from ingredient names to probablity weights. e.g. {:galaxy 20.0 ...}. Only applicable for the :weighted strategy
-   - default-weight    : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy
-   - timing-strategy   : A keyword from the set #{:random :weighted :inferred} to determine how hop timings and uses should be selected. Defaults to :random
-   - use-weights       : A map from hop use names to weights. e.g. {\"boil\" 60 ...}
-   - time-weights      : A map from hop addition times to weights. e.g. {120 60.0 45 15.0 ...}"
+   - amount-cutoff      : The maximum weight, in kilograms, of the hops to select. Defaults to 2.26796 kilograms (5 pounds)
+   - count-cutoff       : The maximum number of unique ingredients to allow.
+   - selection-weights  : A map from ingredient names to probablity weights. e.g. {:galaxy 20.0 ...}. Only applicable for the :weighted strategy
+   - default-weight     : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy
+   - timing-strategy    : A keyword from the set #{:random :weighted :inferred} to determine how hop timings and uses should be selected. Defaults to :random
+   - use-weights        : A map from hop use names to weights. e.g. {\"boil\" 60 ...}
+   - time-weights       : A map from hop addition times to weights. e.g. {120 60.0 45 15.0 ...}
+   - include-aroma?     : A boolean switch to include aroma hops. Defaults to true
+   - include-bittering? : A boolean switch to include bittering hops. Defaults to true
+   - include-both?      : A boolean switch to include dual-purpose hops. Defaults to true"
   ([]
    (select-hops :random))
 
@@ -84,7 +123,11 @@
    (select-hops strategy {}))
 
   ([strategy opts]
-   (let [selected-hops (select-ingredients ingredients/all-hops strategy opts)]
+   (let [ingredient-options (merge {:include-aroma?     true
+                                    :include-bittering? true
+                                    :include-both?      true} opts)
+         hops (ingredients/select-hops ingredient-options)
+         selected-hops (select-ingredients hops strategy opts)]
      (selectors/select-hop-timings selected-hops opts))))
 
 (defn ingredients->cbf-recipe-template
