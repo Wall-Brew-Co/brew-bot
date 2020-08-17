@@ -19,9 +19,26 @@
 
 (deftest transformer-tests
   (testing "Ensure all common-beer-format transformers create valid wrappers"
-    (is (csa/valid? ::fermentables/fermentables (sut/fermentables->cbf-fermentables (take 10 (repeatedly #(nu/rand-val data/all-fermentables))))))
-    (is (csa/valid? ::hops/hops (sut/hops->cbf-hops (take 10 (repeatedly #(nu/rand-val data/all-hops))))))
-    (is (csa/valid? ::yeasts/yeasts (sut/yeasts->cbf-yeasts (take 10 (repeatedly #(nu/rand-val data/all-yeasts))))))))
+    (let [random-fermentables (sut/fermentables->cbf-fermentables (take 100 (repeatedly #(nu/rand-val data/all-fermentables))))
+          sample-fermentable  (nu/rand-val data/all-fermentables)
+          random-hops         (sut/hops->cbf-hops (take 100 (repeatedly #(nu/rand-val data/all-hops))))
+          sample-hop          (nu/rand-val data/all-hops)
+          random-yeasts       (sut/yeasts->cbf-yeasts (take 100 (repeatedly #(nu/rand-val data/all-yeasts))))
+          sample-yeast        (nu/rand-val data/all-yeasts)]
+      (is (csa/valid? ::fermentables/fermentables random-fermentables))
+      (is (false? (empty? random-fermentables)))
+      (is (distinct? (map #(get-in % [:fermentable :name]) random-fermentables)))
+      (is (= 3 (:amount (:fermentable (nu/only (sut/fermentables->cbf-fermentables [(assoc sample-fermentable :amount 1) (assoc sample-fermentable :amount 2)]))))))
+      (is (csa/valid? ::hops/hops random-hops))
+      (is (false? (empty? random-hops)))
+      (is (distinct? (map #(get-in % [:fermentable :name]) random-hops)))
+      (is (= 1 (count (sut/hops->cbf-hops [(assoc sample-hop :time 15) (assoc sample-hop :time 15)]))))
+      (is (= 2 (count (sut/hops->cbf-hops [(assoc sample-hop :time 15) (assoc sample-hop :time 45)]))))
+      (is (= 2 (count (sut/hops->cbf-hops [(assoc sample-hop :time 15 :use "aroma") (assoc sample-hop :time 15 :use "mash")]))))
+      (is (csa/valid? ::yeasts/yeasts random-yeasts))
+      (is (false? (empty? random-yeasts)))
+      (is (distinct? (map #(get-in % [:fermentable :name]) random-yeasts)))
+      (is (= 3 (:amount (:yeast (nu/only (sut/yeasts->cbf-yeasts [(assoc sample-yeast :amount 1) (assoc sample-yeast :amount 2)])))))))))
 
 (deftest determine-recipe-type-test
   (testing "Ensure the correct recipe type is selected based on the ingredients"
