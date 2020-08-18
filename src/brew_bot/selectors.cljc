@@ -100,7 +100,6 @@
 
 (defn select-hop-timings
   "Given a common-beer-format hop and option map, update hop timings and uses.
-   TODO : Allow this function to split single hop selections across multiple addition times.
    TODO : Allow use-weights and time-weights to differ by hop"
   [hops {:keys [timing-strategy] :as opts}]
   (let [strategy (or timing-strategy :random)

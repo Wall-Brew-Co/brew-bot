@@ -6,7 +6,7 @@
 [![cljdoc badge](https://cljdoc.org/badge/brew-bot/brew-bot)](https://cljdoc.org/d/brew-bot/brew-bot/CURRENT)
 
 > We’re making beer. I’m the brewery!
-> - Bender Bending Rodriguez from [*Futurama*](https://www.imdb.com/title/tt0149460/)
+> Bender Bending Rodriguez from [*Futurama*](https://www.imdb.com/title/tt0149460/)
 
 A Clojure(Script) library to create randomized beer recipes!
 
