@@ -1,9 +1,8 @@
 # brew-bot - The algorithmic beer recipe generator
 
-![Github Runner](https://github.com/nnichols/brew-bot/workflows/Clojurescript%20CI/badge.svg)
-[![Clojars Project](https://img.shields.io/clojars/v/brew-bot.svg)](https://clojars.org/brew-bot)
-[![Dependencies Status](https://versions.deps.co/nnichols/brew-bot/status.svg)](https://versions.deps.co/nnichols/brew-bot)
-[![cljdoc badge](https://cljdoc.org/badge/brew-bot/brew-bot)](https://cljdoc.org/d/brew-bot/brew-bot/CURRENT)
+[![Github Runner](https://github.com/wall-brew-co/brew-bot/workflows/Clojurescript%20CI/badge.svg)](https://github.com/Wall-Brew-Co/brew-bot/actions?query=workflow%3A%22Clojurescript+CI%22)
+[![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/brew-bot.svg)](https://clojars.org/com.wallbrew/brew-bot)
+[![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/brew-bot)](https://cljdoc.org/d/com.wallbrew/brew-bot/CURRENT)
 
 > We’re making beer. I’m the brewery!
 > Bender Bending Rodriguez from [*Futurama*](https://www.imdb.com/title/tt0149460/)
@@ -16,10 +15,10 @@ That project can be found [here.](https://github.com/Wall-Brew-Co/brew-bot-ui)
 
 ## Installation
 
-A deployed copy of the most recent version of [brew-bot can be found on clojars.](https://clojars.org/brew-bot)
+A deployed copy of the most recent version of [brew-bot can be found on clojars.](https://clojars.org/com.wallbrew/brew-bot)
 To use it, add the following as a dependency in your project.clj file:
 
-[![Clojars Project](http://clojars.org/brew-bot/latest-version.svg)](http://clojars.org/brew-bot)
+[![Clojars Project](http://clojars.org/com.wallbrew/brew-bot/latest-version.svg)](http://clojars.org/com.wallbrew/brew-bot)
 
 The next time you build your application, [Leiningen](https://leiningen.org/) or [deps.edn](https://clojure.org/guides/deps_and_cli) should pull it automatically.
 Alternatively, you may clone or fork the repository to work with it directly.
