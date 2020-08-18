@@ -1,5 +1,7 @@
 dotfiles:
   - .github/**/*
+  - .gitignore
+  - .editorconfig
 
 recipes:
   - src/brew_bot/calculators.cljc
@@ -11,3 +13,7 @@ restricted:
   - CODE_OF_CONDUCT.md
   - CONTRIBUTING.md
   - LICENSE
+
+test-dependencies:
+  - package.json
+  - package-lock.json
