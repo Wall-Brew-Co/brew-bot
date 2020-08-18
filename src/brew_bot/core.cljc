@@ -36,7 +36,7 @@
    The following options are supported:
    - amount-cutoff         : The maximum weight, in kilograms, of fermentable ingredients to select. Defaults to 2.26796 kilograms (5 pounds)
    - count-cutoff          : The maximum number of unique ingredients to allow.
-   - selection-weights     : A map from ingredient names to probablity weights. e.g. {:amber-liquid-extract 5.0 :biscuit-malt 15.0 ...}. Only applicable for the :weighted strategy
+   - selection-weights     : A map from ingredient names to probability weights. e.g. {:amber-liquid-extract 5.0 :biscuit-malt 15.0 ...}. Only applicable for the :weighted strategy
    - default-weight        : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy
    - include-adjuncts?     : A boolean switch to include adjuncts in the list of selectable ingredients. Defaults to true
    - include-dry-extracts? : A boolean switch to include dry extracts in the list of selectable ingredients. Defaults to true
@@ -72,7 +72,7 @@
    The following options are supported:
    - amount-cutoff          : The maximum weight, in kilograms, of the yeast to select. Defaults to 2.26796 kilograms (5 pounds)
    - count-cutoff           : The maximum number of unique ingredients to allow.
-   - selection-weights      : A map from ingredient names to probablity weights. e.g. {:s-04-safale-english-ale 20.0 ...}. Only applicable for the :weighted strategy
+   - selection-weights      : A map from ingredient names to probability weights. e.g. {:s-04-safale-english-ale 20.0 ...}. Only applicable for the :weighted strategy
    - default-weight         : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy
    - include-brewtek?       : A boolean switch to include yeasts from Brewtek. Defaults to true
    - include-dcl-fermentis? : A boolean switch to include yeasts from DCL Fermentis. Defaults to true
@@ -108,12 +108,12 @@
    The following options are supported:
    - amount-cutoff      : The maximum weight, in kilograms, of the hops to select. Defaults to 2.26796 kilograms (5 pounds)
    - count-cutoff       : The maximum number of unique ingredients to allow.
-   - selection-weights  : A map from ingredient names to probablity weights. e.g. {:galaxy 20.0 ...}. Only applicable for the :weighted strategy
+   - selection-weights  : A map from ingredient names to probability weights. e.g. {:galaxy 20.0 ...}. Only applicable for the :weighted strategy
    - default-weight     : A probability weight to fall back to for ingredients not specified in selection-weights. Only applicable for the :weighted strategy
    - timing-strategy    : A keyword from the set #{:random :weighted :inferred} to determine how hop timings and uses should be selected. Defaults to :random
    - use-weights        : A map from hop use names to weights. e.g. {\"boil\" 60 ...}
    - time-weights       : A map from hop addition times to weights. e.g. {120 60.0 45 15.0 ...}
-   - include-aroma?     : A boolean switch to include aroma hops. Defaults to true
+   - include-aroma?     : A boolean switch to include aromatic hops. Defaults to true
    - include-bittering? : A boolean switch to include bittering hops. Defaults to true
    - include-both?      : A boolean switch to include dual-purpose hops. Defaults to true"
   ([]
