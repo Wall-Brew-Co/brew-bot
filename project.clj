@@ -1,12 +1,14 @@
-(defproject brew-bot "2.2.0"
+(defproject com.wallbrew/brew-bot "3.0.0"
             :description "A quick, dirty way to get randomized beer recipes"
-            :url "https://github.com/nnichols/brew-bot"
-            :license {:name "Eclipse Public License"
-                      :url "http://www.eclipse.org/legal/epl-v10.html"}
+            :url "https://github.com/Wall-Brew-Co/brew-bot"
+            :license {:name "MIT"
+                      :url  "https://opensource.org/licenses/MIT"}
             :dependencies [[cljx-sampling "0.1.0"]
-                           [nnichols "0.9.0"]
+                           [com.wallbrew/brewtility "1.1.0"]
+                           [com.wallbrew/common-beer-format "1.3.0"]
+                           [nnichols "1.0.0"]
                            [org.clojure/clojure "1.10.1"]
-                           [org.clojure/clojurescript "1.10.597" :scope "provided"]]
+                           [org.clojure/clojurescript "1.10.758" :scope "provided"]]
 
             :plugins [[lein-cljsbuild "1.1.8"]]
 

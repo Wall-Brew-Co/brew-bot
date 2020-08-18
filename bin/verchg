@@ -66,8 +66,7 @@ function update_code {
 # Update the CHANGELOG.md file to add in the new template for the release notes.
 #
 function update_docs {
-  sed -e "s/\${NAME}/$project/g" \
-	  -e "s/\${VER}/$new_version/g" \
+  sed -e "s/\${VER}/$new_version/g" \
 	  -e "s/\${DATE}/$today/g" ${style} | cat - ${log} > cl.tmp && mv cl.tmp ${log}
 }
 

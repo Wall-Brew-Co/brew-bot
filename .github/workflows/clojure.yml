@@ -15,6 +15,3 @@ jobs:
       run: npm install
     - name: Run tests
       run: lein test-build
-#    - name: Secret Scan
-#      uses: max/secret-scan@1.0.0
-

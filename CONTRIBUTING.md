@@ -12,6 +12,7 @@ Please note we have a code of conduct, please follow it in all your interactions
    The versioning scheme we use is [SemVer](http://semver.org/).
 
 ### Read the Documentation
+
 Familiarize yourself with the documentation before you submit a Pull Request.
 If you have questions which aren't in the documentation, open a ticket or submit a Pull Request to update the documentation.
 

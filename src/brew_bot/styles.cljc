@@ -1,19 +1,7 @@
 (ns brew-bot.styles
   "Convenience functions and refs to access recipe style data"
-  (:require [brew-bot.style-lists.amber-ale :as amber-ale]
-            [brew-bot.style-lists.amber-lager :as amber-lager]
-            [brew-bot.style-lists.bock :as bock]
-            [brew-bot.style-lists.brown-ale :as brown-ale]
-            [brew-bot.style-lists.dark-lager :as dark-lager]
-            [brew-bot.style-lists.ipa :as ipa]
-            [brew-bot.style-lists.pale-ale :as pale-ale]
-            [brew-bot.style-lists.pale-lager :as pale-lager]
-            [brew-bot.style-lists.pilsner :as pilsner]
-            [brew-bot.style-lists.porter :as porter]
-            [brew-bot.style-lists.sour-ale :as sour-ale]
-            [brew-bot.style-lists.stout :as stout]
-            [brew-bot.style-lists.strong-ale :as strong-ale]
-            [brew-bot.style-lists.wheat-beer :as wheat-beer]))
+  (:require [brew-bot.util :as util]
+            [common-beer-format.data.data :as styles]))
 
 (def ^:const global-original-gravity-range
   [1.000 2.000])
@@ -25,23 +13,7 @@
   [0 40])
 
 (def ^:const global-abv-range
-  [0.0 100.0])
-
-(def beer-styles
-  (merge amber-ale/amber-ale
-         amber-lager/amber-lager
-         bock/bock
-         brown-ale/brown-ale
-         dark-lager/dark-lager
-         ipa/ipa
-         pale-ale/pale-ale
-         pale-lager/pale-lager
-         pilsner/pilsner
-         porter/porter
-         sour-ale/sour-ale
-         stout/stout
-         strong-ale/strong-ale
-         wheat-beer/wheat-beer))
+  [0.0 1.0])
 
 (defn score-range-delta
   "Determine on a normalized scale how close `data-point` was to `conforming-point` given the `scale`
@@ -93,20 +65,32 @@
   (partial score-adherence-to-range global-abv-range))
 
 (defn score-style-adherence
-  "Given a recipe and a codified beer style,
+  "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,
    return a normalized score on how well the recipe adheres to BJCP guideleines for that style"
-  ;; TODO - Normalize attribute names between styles and recipes
-  [recipe style]
-  (let [og-adherence  (score-original-gravity-adherence (:original-gravity-range style) (:gravity recipe))
-        ibu-adherence (score-ibu-adherence (:ibu-range style) (:ibu recipe))
-        srm-adherence (score-srm-adherence (:srm-range style) (:sru-color recipe))
-        abv-adherence (score-abv-adherence (:abv-range style) (:abv recipe))]
+  [gravity ibu srm abv style]
+  (let [og-range      [(:og-min style) (:og-max style)]
+        ibu-range     [(:ibu-min style) (:ibu-max style)]
+        srm-range     [(:color-min style) (:color-max style)]
+        abv-range     [(:abv-min style) (:abv-max style)]
+        og-adherence  (score-original-gravity-adherence og-range gravity)
+        ibu-adherence (score-ibu-adherence ibu-range ibu)
+        srm-adherence (score-srm-adherence srm-range srm)
+        abv-adherence (score-abv-adherence abv-range abv)]
     (* og-adherence ibu-adherence srm-adherence abv-adherence)))
 
 (defn score-against-styles
-  "Given a recipe, create a map from BJCP styles to the normalized value of the recipe's conformance to that style"
-  [recipe]
+  "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,
+   return a map from BJCP styles to the normalized value of the recipe's conformance to that style"
+  [gravity ibu srm abv]
   (let [reducing-fn (fn [m k v]
-                      (let [score (score-style-adherence recipe v)]
+                      (let [score (score-style-adherence gravity ibu srm abv v)]
                         (assoc m k score)))]
-    (reduce-kv reducing-fn {} beer-styles)))
+    (reduce-kv reducing-fn {} styles/all-style-guides)))
+
+(defn best-match
+  "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,
+   return the closest BJCP style that matches those data points."
+  [gravity ibu srm abv]
+  (let [style-scores (score-against-styles gravity ibu srm abv)
+        closest-key  (ffirst (util/max-n-kv style-scores 1))]
+    (get styles/all-style-guides closest-key)))

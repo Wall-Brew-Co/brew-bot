@@ -1,35 +1,12 @@
 (ns brew-bot.util
   "Common fns required across brew-bot"
-  (:require [cljx-sampling.core :as rnd]
-            [brew-bot.ingredients :as ingredients]))
-
-(defn rand-key
-  "Pick a random key from a map, weighted by the :probability key of the value"
-  [m]
-  (first (rnd/sample (keys m) :replace true :weigh #(or (:probability (get m %)) 1))))
-
-(defn join-ingredient-maps
-  "Given an ingredient map, lookup the source ingredient and combine it with the added-key"
-  [ingredient-bill ingredient-source added-key]
-  (reduce-kv (fn [m k v] (assoc m k (assoc (get ingredient-source k) added-key v))) {} ingredient-bill))
-
-(defn scale-ingredients
-  "Update `ingredient-map` so the combined :weights are randomly scaled up to `weight-limit`"
-  [ingredient-map weight-limit]
-  (loop [i-map ingredient-map
-         weight (reduce + 0 (vals ingredient-map))]
-    (if (< weight weight-limit)
-      (let [addition (rand-nth ingredients/ingredient-amounts)
-            mod-ingredient (rand-nth (keys i-map))]
-        (recur (update i-map mod-ingredient + addition)
-               (+ weight addition)))
-      i-map)))
+  (:require [nnichols.string :as nstr]))
 
 (defn max-n-kv
   "Given `m` with k-v pairs for which all values are numbers, return the `n` k-v pairs with the highest values"
   [m n]
   (let [ordered-tuples (take n (sort-by (comp - last) m))
-        list-of-maps (map #(hash-map (first %) (second %)) ordered-tuples)]
+        list-of-maps   (map #(hash-map (first %) (second %)) ordered-tuples)]
     (apply merge list-of-maps)))
 
 (defn min-n-kv
@@ -38,3 +15,48 @@
   (let [ordered-tuples (take n (sort-by last m))
         list-of-maps   (map #(hash-map (first %) (second %)) ordered-tuples)]
     (apply merge list-of-maps)))
+
+(defn fermentables->cbf-fermentables
+  "Given a vector of common-beer-format conforming ::fermentable maps, convert them to a ::fermentables record"
+  [fermentables]
+  (let [grouped-fermentables (vals (group-by :name fermentables))
+        collapsing-fn        (fn [ferm] (assoc (first ferm) :amount (apply + (map :amount ferm))))
+        fermentables         (map collapsing-fn grouped-fermentables)]
+    (map #(hash-map :fermentable %) fermentables)))
+
+(defn hops->cbf-hops
+  "Given a vector of common-beer-format conforming ::hop maps, convert them to a ::hops record"
+  [hops]
+  (let [grouping-fn   (fn [hop] [(:name hop) (:time hop) (:use hop)])
+        grouped-hops  (vals (group-by grouping-fn hops))
+        collapsing-fn (fn [hop] (assoc (first hop) :amount (apply + (map :amount hop))))
+        hops          (map collapsing-fn grouped-hops)]
+    (map #(hash-map :hop %) hops)))
+
+(defn yeasts->cbf-yeasts
+  "Given a vector of common-beer-format conforming ::yeast maps, convert them to a ::yeasts record"
+  [yeasts]
+  (let [grouped-yeasts (vals (group-by :name yeasts))
+        collapsing-fn  (fn [yeast] (assoc (first yeast) :amount (apply + (map :amount yeast))))
+        yeasts         (map collapsing-fn grouped-yeasts)]
+    (map #(hash-map :yeast %) yeasts)))
+
+(defn determine-recipe-type
+  "Given a vector of common-beer-format conforming ::fermentable maps, determine if the recipe is 'Extract', 'Partial Mash', or 'All Grain'"
+  [fermentables]
+  (let [all-grain? (and (seq fermentables)
+                        (every? #(nstr/string-compare "grain" (:type %)) fermentables))
+        all-extract? (and (seq fermentables)
+                          (every? #(contains? #{"sugar" "extract" "dry extract"} (nstr/prepare-for-compare (:type %))) fermentables))]
+    (cond
+      all-grain?            "All Grain"
+      all-extract?          "Extract"
+      (empty? fermentables) (throw (ex-info "Cannot determine recipe type with an empty collection of fermentables" {}))
+      :else                 "Partial Mash")))
+
+(defn determine-boil-time
+  "Given a vector of common-beer-format conforming ::hop maps, determine the longest necessary boil time for alpha acid extraction.
+   In the case of an abnormally short boil, default to 60 minutes."
+  [hops]
+  (let [hop-times (conj (map :time hops) 60)]
+    (apply max hop-times)))
