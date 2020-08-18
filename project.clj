@@ -10,7 +10,7 @@
                            [org.clojure/clojure "1.10.1"]
                            [org.clojure/clojurescript "1.10.758" :scope "provided"]]
 
-            :plugins [[lein-cljsbuild "1.1.7"]]
+            :plugins [[lein-cljsbuild "1.1.8"]]
 
             :aliases {"test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
 
