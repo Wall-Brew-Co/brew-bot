@@ -1,5 +1,8 @@
 # Contributor Covenant Code of Conduct
 
+Neither our brewing nor our technology would be possible without the years of experience shared with us.
+In that spirit, Wall Brew is committed to fostering an environment of open collaboration and does not tolerate discrimination of any form.
+
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
@@ -20,7 +23,7 @@ Examples of unacceptable behavior by participants include:
 * Trolling, insulting/derogatory comments, and personal or political attacks
 * Public or private harassment
 * Publishing others' private information, such as a physical or electronic address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a professional setting
+* Other conduct which could reasonably be considered inappropriate in any setting
 
 ## Our Responsibilities
 
@@ -36,17 +39,15 @@ Representation of a project may be further defined and clarified by project main
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at nichols1991@gmail.com.
+Any and all instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at contact@wallbrew.com.
 All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.
 The project team is obligated to maintain confidentiality with regard to the reporter of an incident.
 Further details of specific enforcement policies may be posted separately.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+Project maintainers who do not follow or enforce the Code of Conduct in good faith will face temporary or permanent repercussions as determined by other members of the project's leadership.
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+This Code of Conduct is adapted from the [Contributor Covenant, version 1.4](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
 
-[homepage]: https://www.contributor-covenant.org
-
-For answers to common questions about this code of conduct, see https://www.contributor-covenant.org/faq
+They supply answers to most [frequently asked questions.](https://www.contributor-covenant.org/faq)
