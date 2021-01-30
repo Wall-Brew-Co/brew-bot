@@ -5,7 +5,7 @@
                       :url  "https://opensource.org/licenses/MIT"}
             :dependencies [[cljx-sampling "0.1.0"]
                            [com.wallbrew/brewtility "1.1.0"]
-                           [com.wallbrew/common-beer-format "1.3.0"]
+                           [com.wallbrew/common-beer-format "1.3.1"]
                            [nnichols "1.0.0"]
                            [org.clojure/clojure "1.10.1"]
                            [org.clojure/clojurescript "1.10.758" :scope "provided"]]
