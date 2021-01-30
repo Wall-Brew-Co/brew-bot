@@ -1,0 +1,21 @@
+name: Clojure Dependency Update
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Latest Commit
+      uses: actions/checkout@v1
+
+    - name: Check deps
+      uses: nnichols/leiningen-dependency-update-action@aeb35e3488b647728d0c295e62c0d4ad11c22b62
+      with:
+        github-token: ${{ secrets.github_token }}
+        git-email: nichols1991@gmail.com
+        git-username: nnichols
+        skips: "pom"
+        batch: "true"
