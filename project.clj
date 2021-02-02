@@ -7,7 +7,7 @@
                            [com.wallbrew/brewtility "1.1.0"]
                            [com.wallbrew/common-beer-format "1.3.1"]
                            [nnichols "1.0.0"]
-                           [org.clojure/clojure "1.10.1"]
+                           [org.clojure/clojure "1.10.2"]
                            [org.clojure/clojurescript "1.10.773" :scope "provided"]]
 
             :plugins [[lein-cljsbuild "1.1.8"]]
