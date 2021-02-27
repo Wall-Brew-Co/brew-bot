@@ -20,4 +20,3 @@ jobs:
         git-email: nichols1991@gmail.com
         git-username: nnichols
         skips: "pom"
-        batch: "true"
