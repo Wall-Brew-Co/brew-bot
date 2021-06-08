@@ -13,6 +13,7 @@ restricted:
   - CODE_OF_CONDUCT.md
   - CONTRIBUTING.md
   - LICENSE
+  - .github/**/*
 
 test-dependencies:
   - package.json
