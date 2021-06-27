@@ -9,6 +9,7 @@
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
+
 (deftest select-ingredients-test
   (testing "Ensure all randomly fetched ingredients are legal common-beer-format ingredients"
     (let [random-fermentables   (sut/select-ingredients data/all-fermentables)
@@ -23,6 +24,7 @@
       (is (every? #(csa/valid? ::hops/hop %) random-hops-2))
       (is (every? #(csa/valid? ::yeasts/yeast %) random-yeasts))
       (is (every? #(csa/valid? ::yeasts/yeast %) random-yeasts-2)))))
+
 
 (deftest integration-test
   (testing "Ensure ingredients can be selected and conformed to a common-beer-format recipe. Essentially testing the core functionality of the app"

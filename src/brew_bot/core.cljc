@@ -9,6 +9,7 @@
             [common-beer-format.data.data :as ingredients]
             [common-beer-format.specs.recipes :as cbf-recipe]))
 
+
 (defn select-ingredients
   ([ingredients]
    (select-ingredients ingredients :random))
@@ -21,6 +22,7 @@
                         :random   selectors/select-ingredients-random
                         :weighted selectors/select-ingredients-weighted)]
      (selection-fn ingredients options))))
+
 
 (defn select-fermentables
   "Select common-beer-format fermentables.
@@ -58,6 +60,7 @@
          fermentables (ingredients/select-fermentables ingredient-options)]
      (select-ingredients fermentables strategy opts))))
 
+
 (defn select-yeasts
   "Select common-beer-format yeasts.
    This function may optionally be called with a strategy and an options map as such:
@@ -94,6 +97,7 @@
          yeasts (ingredients/select-yeasts ingredient-options)]
      (select-ingredients yeasts strategy opts))))
 
+
 (defn select-hops
   "Select common-beer-format hops.
    This function may optionally be called with a strategy and an options map as such:
@@ -129,6 +133,7 @@
          hops (ingredients/select-hops ingredient-options)
          selected-hops (select-ingredients hops strategy opts)]
      (selectors/select-hop-timings selected-hops opts))))
+
 
 (defn ingredients->cbf-recipe-template
   "Given a common-beer-format normalized collection of `selected-fermentables`, `selected-hops`, and `selected-yeasts`,
