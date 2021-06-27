@@ -1,0 +1,2 @@
+{:files {:extensions #{"clj" "cljs" "cljc" "cljx" "edn"}}
+ :rules {:namespaces {:enabled? false}}}

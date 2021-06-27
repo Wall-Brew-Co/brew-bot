@@ -16,6 +16,13 @@ Please note we have a code of conduct, please follow it in all your interactions
 Familiarize yourself with the documentation before you submit a Pull Request.
 If you have questions which aren't in the documentation, open a ticket or submit a Pull Request to update the documentation.
 
+### Restricted Files
+
+This repository automatically labels Pull Requests targeting a few select files as `restricted`.
+These files are generally related to Wall Brew development policies and standards.
+Changes to these files should be rare, and will generally only come from members of the Wall-Brew-Co organization.
+In most cases, Pull Requests targeting these files will be marked as requiring additional changes to revert the state of those files or denied.
+
 ### Want to contribute but don't know where to start?
 
 If you're looking for ways to contribute, try adding/fixing tests.
