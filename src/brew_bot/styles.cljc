@@ -3,17 +3,22 @@
   (:require [brew-bot.util :as util]
             [common-beer-format.data.data :as styles]))
 
+
 (def ^:const global-original-gravity-range
   [1.000 2.000])
+
 
 (def ^:const global-ibu-range
   [0 150])
 
+
 (def ^:const global-srm-range
   [0 40])
 
+
 (def ^:const global-abv-range
   [0.0 1.0])
+
 
 (defn score-range-delta
   "Determine on a normalized scale how close `data-point` was to `conforming-point` given the `scale`
@@ -22,6 +27,7 @@
   (let [distance (Math/abs (- data-point conforming-point))
         fraction-of-scale (/ distance scale)]
     (Math/pow (- 1 fraction-of-scale) 2.0)))
+
 
 (defn score-adherence-to-range
   "Determine on a  normalized scale how well `data-point` fits in `local-range` w.r.t a `global-range`.
@@ -52,17 +58,22 @@
                                                                          :local-high  local-high
                                                                          :data-point  data-point})))))
 
+
 (def score-original-gravity-adherence
   (partial score-adherence-to-range global-original-gravity-range))
+
 
 (def score-ibu-adherence
   (partial score-adherence-to-range global-ibu-range))
 
+
 (def score-srm-adherence
   (partial score-adherence-to-range global-srm-range))
 
+
 (def score-abv-adherence
   (partial score-adherence-to-range global-abv-range))
+
 
 (defn score-style-adherence
   "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,
@@ -78,6 +89,7 @@
         abv-adherence (score-abv-adherence abv-range abv)]
     (* og-adherence ibu-adherence srm-adherence abv-adherence)))
 
+
 (defn score-against-styles
   "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,
    return a map from BJCP styles to the normalized value of the recipe's conformance to that style"
@@ -86,6 +98,7 @@
                       (let [score (score-style-adherence gravity ibu srm abv v)]
                         (assoc m k score)))]
     (reduce-kv reducing-fn {} styles/all-style-guides)))
+
 
 (defn best-match
   "Given a common-beer-format recipe's `gravity`, `ibu`, `srm`, and `abv`,

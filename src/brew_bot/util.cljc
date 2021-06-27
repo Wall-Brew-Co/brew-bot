@@ -2,12 +2,14 @@
   "Common fns required across brew-bot"
   (:require [nnichols.string :as nstr]))
 
+
 (defn max-n-kv
   "Given `m` with k-v pairs for which all values are numbers, return the `n` k-v pairs with the highest values"
   [m n]
   (let [ordered-tuples (take n (sort-by (comp - last) m))
         list-of-maps   (map #(hash-map (first %) (second %)) ordered-tuples)]
     (apply merge list-of-maps)))
+
 
 (defn min-n-kv
   "Given `m` with k-v pairs for which all values are numbers, return the `n` k-v pairs with the lowest values"
@@ -16,6 +18,7 @@
         list-of-maps   (map #(hash-map (first %) (second %)) ordered-tuples)]
     (apply merge list-of-maps)))
 
+
 (defn fermentables->cbf-fermentables
   "Given a vector of common-beer-format conforming ::fermentable maps, convert them to a ::fermentables record"
   [fermentables]
@@ -23,6 +26,7 @@
         collapsing-fn        (fn [ferm] (assoc (first ferm) :amount (apply + (map :amount ferm))))
         fermentables         (map collapsing-fn grouped-fermentables)]
     (map #(hash-map :fermentable %) fermentables)))
+
 
 (defn hops->cbf-hops
   "Given a vector of common-beer-format conforming ::hop maps, convert them to a ::hops record"
@@ -33,6 +37,7 @@
         hops          (map collapsing-fn grouped-hops)]
     (map #(hash-map :hop %) hops)))
 
+
 (defn yeasts->cbf-yeasts
   "Given a vector of common-beer-format conforming ::yeast maps, convert them to a ::yeasts record"
   [yeasts]
@@ -40,6 +45,7 @@
         collapsing-fn  (fn [yeast] (assoc (first yeast) :amount (apply + (map :amount yeast))))
         yeasts         (map collapsing-fn grouped-yeasts)]
     (map #(hash-map :yeast %) yeasts)))
+
 
 (defn determine-recipe-type
   "Given a vector of common-beer-format conforming ::fermentable maps, determine if the recipe is 'Extract', 'Partial Mash', or 'All Grain'"
@@ -53,6 +59,7 @@
       all-extract?          "Extract"
       (empty? fermentables) (throw (ex-info "Cannot determine recipe type with an empty collection of fermentables" {}))
       :else                 "Partial Mash")))
+
 
 (defn determine-boil-time
   "Given a vector of common-beer-format conforming ::hop maps, determine the longest necessary boil time for alpha acid extraction.

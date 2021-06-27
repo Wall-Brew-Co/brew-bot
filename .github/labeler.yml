@@ -10,10 +10,13 @@ recipes:
   - src/brew_bot/weights.cljc
 
 restricted:
-  - CODE_OF_CONDUCT.md
-  - CONTRIBUTING.md
   - LICENSE
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - CODEOWNERS
   - .github/**/*
+  - .cljstyle
+  - SECURITY.md
 
 test-dependencies:
   - package.json

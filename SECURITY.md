@@ -1,0 +1,17 @@
+# Security Policy
+
+## Supported Versions
+
+Wall Brew is committed to creating safe and stable software.
+End users should always be able to upgrade to the latest version of a Wall Brew library, as those are the actively supported versions.
+
+Should a non-organizational major version change be required, Wall Brew will apply security patches to the heads of each major release.
+
+## Reporting a Vulnerability
+
+Vulnerabilities should be securely communicated directly to project developers.
+Please do not communicate vulnerabilities via insecure methods, such as GitHub issues.
+If you find a vulnerability, please contact us in one of the following ways:
+
+1. Directly message the author on Slack, Discord, Twitter, etc notifying them you have found a vulnerability. They will coordinate directly with you to receive details and schedule a fix.
+2. Securely email support [ at ] wallbrew dot com. You will receive a direct response to coordinate directly with you

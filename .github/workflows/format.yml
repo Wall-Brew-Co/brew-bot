@@ -1,0 +1,29 @@
+name: Formatter
+
+on:
+  pull_request: {}
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.WALL_BREW_BOT_PAT }}
+
+      - name: Install cljstyle
+        uses: just-sultanov/setup-cljstyle@v1
+        with:
+          version: '0.14.0'
+
+      - name: Format Clojure code
+        run: |
+          cljstyle fix --report --report-timing $(find . -regextype posix-extended -regex '.*\.clj[csx]?$')
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: |
+            [Format] Auto-formatting
