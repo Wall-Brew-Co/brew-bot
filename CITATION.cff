@@ -1,0 +1,21 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: brew-bot
+message: Please cite this software using this metadata.
+type: software
+authors:
+  - given-names: Nick
+    family-names: Nichols
+    email: nichols1991@gmail.com
+    orcid: 'https://orcid.org/0000-0002-8267-3211'
+identifiers:
+  - type: url
+    value: >-
+      https://github.com/Wall-Brew-Co/brew-bot/releases/tag/v3.0.0
+    description: brew-bot v3.0.0 Release
+repository-code: 'https://github.com/Wall-Brew-Co/brew-bot'
+repository-artifact: 'https://clojars.org/com.wallbrew/brew-bot'
+abstract: 'A quick, dirty way to get randomized beer recipes'
+license: MIT
