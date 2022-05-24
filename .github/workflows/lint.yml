@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3.0.2
         with:
           ref: ${{ github.head_ref }}
 
@@ -24,16 +24,13 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3.0.2
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Install clj-kondo
-        uses: DeLaGuardo/setup-clj-kondo@master
-        with:
-          version: '2021.06.01'
-
       - name: Lint Clojure
-        run: |
-          clj-kondo --config ./dev/lint/clj-kondo.edn --lint \
-            $(find . -type f -regex ".*\.clj[csx]?$")
+        uses: nnichols/clojure-lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          filter_mode: file
