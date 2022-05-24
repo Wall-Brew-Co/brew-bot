@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.0.2
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.WALL_BREW_BOT_PAT }}
@@ -21,9 +21,11 @@ jobs:
 
       - name: Format Clojure code
         run: |
-          cljstyle fix --report --report-timing $(find . -regextype posix-extended -regex '.*\.clj[csx]?$')
+          cljstyle fix --report --report-timing --verbose
+          git status
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
           commit_message: |
             [Format] Auto-formatting
