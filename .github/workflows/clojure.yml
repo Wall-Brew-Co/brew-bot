@@ -1,4 +1,4 @@
-name: Clojurescript CI
+name: Clojure Tests
 
 on: ["push", "workflow_dispatch"]
 
@@ -17,9 +17,9 @@ jobs:
           cache-name: cache-maven
       with:
           path: ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/project.clj') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/project.clj') }}
+            ${{ runner.os }}-${{ env.cache-name }}-clj-${{ hashFiles('**/project.clj') }}
 
     - name: Cache npm dependencies
       uses: actions/cache@v2
