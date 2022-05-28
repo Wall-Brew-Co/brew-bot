@@ -16,7 +16,7 @@ jobs:
     - name: Check deps
       uses: nnichols/leiningen-dependency-update-action@v1
       with:
-        github-token: ${{ secrets.github_token }}
-        git-email: nichols1991@gmail.com
-        git-username: nnichols
+        github-token: ${{ secrets.WALL_BREW_BOT_PAT }}
+        git-email: the.wall.brew@gmail.com
+        git-username: WallBrewBot
         skips: "pom"
