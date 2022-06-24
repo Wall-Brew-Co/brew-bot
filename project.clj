@@ -8,7 +8,7 @@
                  [com.wallbrew/common-beer-format "1.3.1"]
                  [nnichols "1.0.0"]
                  [org.clojure/clojure "1.11.1"]
-                 [org.clojure/clojurescript "1.11.57" :scope "provided"]]
+                 [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
   :plugins [[lein-cljsbuild "1.1.8"]]
 
