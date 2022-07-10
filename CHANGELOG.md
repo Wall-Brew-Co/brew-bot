@@ -1,3 +1,9 @@
+## v3.1.0 / 2022 Jul 10
+
+> This release migrates brew-bot to use common-beer-format types
+
+* **Update** - Leverage `common-beer-format` v2.0.0, `common-beer-data` v1.0.0, and `brewtility` v1.2.0
+
 ## v3.0.0 / 2020 Aug 18
 
 > This release introduces several breaking changes needed for long-term support.

@@ -3,7 +3,7 @@
   (:require [brew-bot.default-values :as defaults]
             [cljx-sampling.core :as rnd]
             [clojure.string :as cs]
-            [common-beer-format.specs.hops :as hops]
+            [common-beer-format.hops :as hops]
             [nnichols.util :as nu]))
 
 
