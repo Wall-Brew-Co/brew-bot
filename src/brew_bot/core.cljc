@@ -6,8 +6,8 @@
             [brew-bot.util :as util]
             [brewtility.calculations :as calc]
             [common-beer-format.core :as cbf]
-            [common-beer-format.data.data :as ingredients]
-            [common-beer-format.specs.recipes :as cbf-recipe]))
+            [common-beer-data.core :as ingredients]
+            [common-beer-format.recipes :as cbf-recipe]))
 
 
 (defn select-ingredients

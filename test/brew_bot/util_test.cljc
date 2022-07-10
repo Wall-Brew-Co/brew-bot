@@ -1,10 +1,10 @@
 (ns brew-bot.util-test
   (:require [brew-bot.util :as sut]
             [clojure.spec.alpha :as csa]
-            [common-beer-format.data.data :as data]
-            [common-beer-format.specs.fermentables :as fermentables]
-            [common-beer-format.specs.hops :as hops]
-            [common-beer-format.specs.yeasts :as yeasts]
+            [common-beer-data.core :as data]
+            [common-beer-format.fermentables :as fermentables]
+            [common-beer-format.hops :as hops]
+            [common-beer-format.yeasts :as yeasts]
             [nnichols.util :as nu]
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))

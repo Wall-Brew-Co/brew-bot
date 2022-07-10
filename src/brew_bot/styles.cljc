@@ -1,7 +1,7 @@
 (ns brew-bot.styles
   "Convenience functions and refs to access recipe style data"
   (:require [brew-bot.util :as util]
-            [common-beer-format.data.data :as styles]))
+            [common-beer-data.core :as styles]))
 
 
 (def ^:const global-original-gravity-range
