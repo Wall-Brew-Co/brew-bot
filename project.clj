@@ -4,7 +4,7 @@
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
   :dependencies [[cljx-sampling "0.1.0"]
-                 [com.wallbrew/brewtility "1.1.0"]
+                 [com.wallbrew/brewtility "1.2.0"]
                  [com.wallbrew/common-beer-data "1.0.0"]
                  [com.wallbrew/common-beer-format "2.0.0"]
                  [nnichols "1.0.0"]
