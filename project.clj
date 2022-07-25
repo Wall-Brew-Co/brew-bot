@@ -7,7 +7,7 @@
                  [com.wallbrew/brewtility "1.2.0"]
                  [com.wallbrew/common-beer-data "1.1.0"]
                  [com.wallbrew/common-beer-format "2.0.0"]
-                 [nnichols "1.0.0"]
+                 [nnichols "1.1.0"]
                  [org.clojure/clojure "1.11.1"]
                  [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
