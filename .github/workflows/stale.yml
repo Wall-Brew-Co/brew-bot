@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/stale@v3.0.19
+    - uses: actions/stale@v5.1.1
       with:
         repo-token: ${{ secrets.WALL_BREW_BOT_PAT }}
         days-before-issue-stale: 30
