@@ -1,3 +1,7 @@
 {:output  {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"}
- :linters {:unresolved-symbol {:exclude [(clojure.test/is [match?])]}
-           :refer-all {:exclude #{clojure.test}}}}
+ :linters {:unresolved-symbol            {:exclude [(clojure.test/is [match?])]}
+           :missing-docstring            {:level :warning}
+           :unsorted-required-namespaces {:level :warning}
+           :shadowed-var                 {:level :warning}
+           :single-key-in                {:level :warning}
+           :refer-all                    {:exclude #{clojure.test cljs.test}}}}

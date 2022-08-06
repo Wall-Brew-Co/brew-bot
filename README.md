@@ -13,6 +13,8 @@ The beta release of our SPA is now [available!](https://brewbot.wallbrew.com/)
 If you're interested in contributing to the site, let us know.
 That project can be found [here.](https://github.com/Wall-Brew-Co/brew-bot-ui)
 
+This repository follows the guidelines and standards of the [Wall Brew Open Source Policy.](https://github.com/Wall-Brew-Co/open-source "Our open source guidelines")
+
 ## Installation
 
 A deployed copy of the most recent version of [brew-bot can be found on clojars.](https://clojars.org/com.wallbrew/brew-bot)
