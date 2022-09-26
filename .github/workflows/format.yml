@@ -25,7 +25,7 @@ jobs:
           git status
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4.14.1
+        uses: stefanzweifel/git-auto-commit-action@v4.15.0
         with:
           commit_message: |
             [Format] Auto-formatting
