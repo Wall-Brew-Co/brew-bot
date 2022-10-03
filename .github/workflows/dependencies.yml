@@ -20,4 +20,4 @@ jobs:
         github-token: ${{ secrets.WALL_BREW_BOT_PAT }}
         git-email: the.wall.brew@gmail.com
         git-username: WallBrewBot
-        skips: "pom"
+        skips: "pom github-action"
