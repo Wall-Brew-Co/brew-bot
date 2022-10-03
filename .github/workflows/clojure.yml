@@ -1,6 +1,6 @@
 name: Clojure Tests
 
-on: ["push", "workflow_dispatch", "pull_request"]
+on: ["push", "workflow_dispatch"]
 
 jobs:
   test:
@@ -17,25 +17,12 @@ jobs:
           cache-name: cache-maven
       with:
           path: ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-clj-${{ hashFiles('**/project.clj') }}
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-clj-${{ hashFiles('**/project.clj') }}
+            ${{ runner.os }}-clj
 
-    - name: Cache npm dependencies
-      uses: actions/cache@v3
-      env:
-          cache-name: cache-npm
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
-    - name: Install Clojure/ClojureScript dependencies
+    - name: Install Clojure dependencies
       run: lein deps
 
-    - name: Install node.js dependencies
-      run: npm install
-
-    - name: Run tests
-      run: lein test-build
+    - name: Run all tests
+      run: lein test

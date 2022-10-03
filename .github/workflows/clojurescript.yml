@@ -1,0 +1,44 @@
+name: Clojurescript Tests
+
+on: ["push", "workflow_dispatch"]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3.0.2
+
+    - name: Cache maven dependencies
+      uses: actions/cache@v3
+      env:
+          cache-name: cache-maven
+      with:
+          path: ~/.m2
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
+          restore-keys: |
+            ${{ runner.os }}-clj
+
+    - name: Cache npm dependencies
+      uses: actions/cache@v3
+      env:
+          cache-name: cache-npm
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node
+
+    - name: Install Clojure/ClojureScript dependencies
+      run: lein deps
+
+    - name: Install node.js dependencies
+      run: npm install
+
+    - name: Build Clojurescript
+      run: lein cljsbuild once test
+
+    - name: Run all tests
+      run: lein doo once

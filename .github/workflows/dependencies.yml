@@ -14,10 +14,20 @@ jobs:
     - name: Checkout Latest Commit
       uses: actions/checkout@v3.0.2
 
+    - name: Cache maven dependencies
+      uses: actions/cache@v3
+      env:
+          cache-name: cache-maven
+      with:
+          path: ~/.m2
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
+          restore-keys: |
+            ${{ runner.os }}-clj
+
     - name: Check deps
       uses: nnichols/clojure-dependency-update-action@v4
       with:
         github-token: ${{ secrets.WALL_BREW_BOT_PAT }}
         git-email: the.wall.brew@gmail.com
         git-username: WallBrewBot
-        skips: "pom"
+        skips: "pom github-action"
