@@ -10,4 +10,4 @@ jobs:
       - name: Package the library as a jar
         run: lein jar
       - name: cljdoc Check
-        uses: cljdoc/cljdoc-check-action@v1
+        uses: cljdoc/cljdoc-check-action@v0.0.3
