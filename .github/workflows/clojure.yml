@@ -17,11 +17,11 @@ jobs:
           cache-name: cache-maven
       with:
           path: ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-clj-${{ hashFiles('**/project.clj') }}
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-clj
+            ${{ runner.os }}-clj
 
-    - name: Install Clojure/ClojureScript dependencies
+    - name: Install Clojure dependencies
       run: lein deps
 
     - name: Run all tests
