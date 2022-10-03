@@ -3,6 +3,8 @@
 [![Github Runner](https://github.com/wall-brew-co/brew-bot/workflows/Clojurescript%20CI/badge.svg)](https://github.com/Wall-Brew-Co/brew-bot/actions?query=workflow%3A%22Clojurescript+CI%22)
 [![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/brew-bot.svg)](https://clojars.org/com.wallbrew/brew-bot)
 [![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/brew-bot)](https://cljdoc.org/d/com.wallbrew/brew-bot/CURRENT)
+[![GitHub](https://img.shields.io/github/license/Wall-Brew-Co/brew-bot)](https://github.com/Wall-Brew-Co/brew-bot-ui/blob/master/LICENSE)
+[![Twitter Follow](https://img.shields.io/twitter/follow/WallBrew?style=social)](https://twitter.com/WallBrew)
 
 > We’re making beer. I’m the brewery!
 > Bender Bending Rodriguez from [*Futurama*](https://www.imdb.com/title/tt0149460/)
@@ -10,8 +12,6 @@
 A Clojure(Script) library to create randomized beer recipes!
 
 The beta release of our SPA is now [available!](https://brewbot.wallbrew.com/)
-If you're interested in contributing to the site, let us know.
-That project can be found [here.](https://github.com/Wall-Brew-Co/brew-bot-ui)
 
 This repository follows the guidelines and standards of the [Wall Brew Open Source Policy.](https://github.com/Wall-Brew-Co/open-source "Our open source guidelines")
 
@@ -116,6 +116,10 @@ lein test-build
 ```
 
 The tests will also execute on the JVM, to ensure the library is compatible for both runtime environments.
+
+## Contributors
+
+<a href="https://github.com/Wall-Brew-Co/brew-bot/graphs/contributors"><img src="https://raw.githubusercontent.com/Wall-Brew-Co/brew-bot/master/CONTRIBUTORS.svg" alt="The GitHub profile pictures of all current contributors. Clicking this image will lead you to the GitHub contribution graph." /></a>
 
 ## License
 
