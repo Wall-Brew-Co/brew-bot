@@ -1,0 +1,13 @@
+name: Check cljdoc compatibility
+
+on: [pull_request]
+
+jobs:
+  check-cljdoc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - name: Package the library as a jar
+        run: lein jar
+      - name: cljdoc Check
+        uses: cljdoc/cljdoc-check-action@v1
