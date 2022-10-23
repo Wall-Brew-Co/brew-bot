@@ -1,0 +1,14 @@
+{:version      {:major 3
+                :minor 0
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Dependency on [common-beer-format](https://github.com/Wall-Brew-Co/common-beer-format) for BeerXML specifications"]
+                :changed    ["Output recipe formats now adhere to BeerXML/common-beer-format specifications"]
+                :removed    ["**Breaking** - Long-term support fixes required breaking out multiple domain libraries from `brew-bot`"
+                             "**Breaking** - Migrated recipe specifications to common-beer-format"
+                             "**Breaking** - Migrated recipe calculations to [brewtility](https://github.com/Wall-Brew-Co/brewtility)"]
+                :fixed      ["Extended IBU calculation to use more robust formula"
+                             "Yeast attenuation calculation now uses a more correct formula for homebrewing cases"
+                             "SRM color calculations tuned to prevent overly-aggressive rounding"
+                             "Randomized weighting of ingredients consistently adds even amounts, to prevent unfair distributions"]}
+ :timestamp    "2020-08-18T01:01:01.926762200Z"}

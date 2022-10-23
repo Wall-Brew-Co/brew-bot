@@ -1,8 +1,10 @@
-(defproject com.wallbrew/brew-bot "3.1.0"
+(defproject com.wallbrew/brew-bot "3.2.0"
   :description "A quick, dirty way to get randomized beer recipes"
   :url "https://github.com/Wall-Brew-Co/brew-bot"
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
+  :scm {:name "git"
+        :url  "https://github.com/Wall-Brew-Co/brew-bot"}
   :dependencies [[cljx-sampling "0.1.0"]
                  [com.wallbrew/brewtility "1.2.0"]
                  [com.wallbrew/common-beer-data "1.1.0"]
@@ -11,7 +13,8 @@
                  [org.clojure/clojure "1.11.1"]
                  [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
-  :plugins [[lein-cljsbuild "1.1.8"]]
+  :plugins [[lein-cljsbuild "1.1.8"]
+            [com.wallbrew/lein-sealog "1.0.1"]]
 
   :aliases {"test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
 

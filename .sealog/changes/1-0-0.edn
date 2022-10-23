@@ -1,0 +1,7 @@
+{:version      {:major 1
+                :minor 0
+                :patch 0}
+ :version-type :semver3
+ :changes      {:changed    ["Change CLI application to a re-frame/ClojureScript SPA"
+                             "Released as a github.io page under `nnichols` userspace"]}
+ :timestamp    "2019-10-12T01:01:01.757929900Z"}

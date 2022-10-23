@@ -1,0 +1,7 @@
+{:version      {:major 0
+                :minor 0
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Randomized beer recipe generation."
+                             "Simplified beer ingredient collection"]}
+ :timestamp    "2019-07-13T01:01:01.757929900Z"}
