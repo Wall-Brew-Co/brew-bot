@@ -1,0 +1,6 @@
+{:version      {:major 2
+                :minor 1
+                :patch 0}
+ :version-type :semver3
+ :changes      {:changed    ["Updated ingredient specification to follow [BeerXML](http://www.beerxml.com/beerxml.htm) standards"]}
+ :timestamp    "2020-02-25T01:01:01.461578Z"}

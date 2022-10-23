@@ -1,0 +1,14 @@
+{:version      {:major 3
+                :minor 1
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    ["Updated dependencies to latest Wall Brew stack versions"
+                             "`common-beer-format` upgraded to v2.0.0"
+                             "`common-beer-data` upgraded to v1.0.0"
+                             "`brewtility` upgraded to v1.2.0"]
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2022-07-10T01:01:01.679697900Z"}

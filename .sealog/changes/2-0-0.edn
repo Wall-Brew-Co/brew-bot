@@ -1,0 +1,9 @@
+{:version      {:major 2
+                :minor 0
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Additional utilities to serve as a clojure library for use in the SPA, and other projects"]
+                :changed    ["Updated deployments to use Wall Brew Heroku cluster"
+                             "**Breaking** - Migrated library ownership from `nnichols` to `wall-brew`"]
+                :removed    ["**Breaking** - Migrated CLJS site to `brew-bot-ui` under the Wall Brew Github organization."]}
+ :timestamp    "2019-10523T01:01:01.959138200Z"}

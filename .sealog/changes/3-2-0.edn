@@ -1,0 +1,7 @@
+{:version      {:major 3
+                :minor 2
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added ["Changelog management via [Sealog](https://github.com/Wall-Brew-Co/lein-sealog)"]
+                :fixed ["Include SCM information in `project.clj`"]}
+ :timestamp    "2022-10-23T16:59:48.950017400Z"}

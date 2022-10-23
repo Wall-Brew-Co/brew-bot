@@ -1,0 +1,8 @@
+{:version      {:major 2
+                :minor 2
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Specifications for [BJCP](https://www.bjcp.org/) recipe categories"
+                             "Data-driven definition of BJCP recipe categories"
+                             "First-pass a matching algorithm for recipes to BJCP recipe categories"]}
+ :timestamp    "2020-02-29T01:01:01.437473700Z"}

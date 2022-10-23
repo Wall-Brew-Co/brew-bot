@@ -1,26 +1,36 @@
 
 MAKE = make
-LEIN = lein
 
 # These are the locations of the directories we'll use
 TARGET_DIR = target
-VERCHG = bin/verchg
-VER = `sed -n -e "s/^.*defproject .* \"\(.*\)\"/\1/p" project.clj;`
+
 #
 # These are the main targets that we'll be making
 #
 version/major:
 	$(info Updating major version and adding CHANGELOG entry...)
-	@ $(VERCHG) 'major'
+	@ lein vcs assert-committed
+	@ lein change version leiningen.release/bump-version major
+	@ lein change version leiningen.release/bump-version release
+	@ lein sealog bump major
+	@ lein pom
 
 version/minor:
 	$(info Updating minor version and adding CHANGELOG entry...)
-	@ $(VERCHG) 'minor'
+	@ lein vcs assert-committed
+	@ lein change version leiningen.release/bump-version minor
+	@ lein change version leiningen.release/bump-version release
+	@ lein sealog bump minor
+	@ lein pom
 
-version/bugfix:
-	$(info Updating bugfix version and adding CHANGELOG entry...)
-	@ $(VERCHG) 'bugfix'
+version/patch:
+	$(info Updating patch version and adding CHANGELOG entry...)
+	@ lein vcs assert-committed
+	@ lein change version leiningen.release/bump-version patch
+	@ lein change version leiningen.release/bump-version release
+	@ lein sealog bump patch
+	@ lein pom
 
-version:
-	$(info Adding CHANGELOG entry for existing version...)
-	@ $(VERCHG) 'push'
+changelog/render:
+	$(info Rendering CHANGELOG...)
+	@ lein sealog render

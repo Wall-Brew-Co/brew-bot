@@ -1,55 +1,86 @@
-## v3.1.0 / 2022 Jul 10
+# Changelog
 
-> This release migrates brew-bot to use common-beer-format types
+All notable changes to this project will be documented in this file.
 
-* **Update** - Leverage `common-beer-format` v2.0.0, `common-beer-data` v1.0.0, and `brewtility` v1.2.0
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## v3.0.0 / 2020 Aug 18
+## Table of Contents
 
-> This release introduces several breaking changes needed for long-term support.
+* [3.2.0 - 2022-10-23](#320---2022-10-23)
+* [3.1.0 - 2022-07-10](#310---2022-07-10)
+* [3.0.0 - 2020-08-18](#300---2020-08-18)
+* [2.2.0 - 2020-02-29](#220---2020-02-29)
+* [2.1.0 - 2020-02-25](#210---2020-02-25)
+* [2.0.0 - 2019-10523](#200---2019-10523)
+* [1.0.0 - 2019-10-12](#100---2019-10-12)
+* [0.0.0 - 2019-07-13](#000---2019-07-13)
 
-* **Add** - Approximately a 20% increase in the number of ingredients supported via common-beer-format.
-* **Fix** - Weighted selections now always add the same `:amount` to ensure weights are evenly distributed, rather than subject to addition amounts.
-* **Fix** - Hop timings/use cases are now added to the IBU calculation, making it more accurate
-* **Fix** - Yeast attenuation is now derived from manufacturer data, giving more accurate estimates for final gravity and ABV
-* **Fix** - Color determinations now account for dilution more accurately
-* **Update** - All recipe formats now conform to the common-beer-format
-* **Update** - brew-bot is now distributed as part of the `com.wallbrew` group on clojars/maven
-* **Remove** - All internal data for fermentables, hops, yeasts, styles. These have been permanently migrated to [common-beer-format](https://github.com/Wall-Brew-Co/common-beer-format)
-* **Remove** - All internal calculations for abv, ibu, color. These have been permanently migrated to [brewtility](https://github.com/Wall-Brew-Co/brewtility)
+## 3.2.0 - 2022-10-23
 
-## v2.2.0 / 2020 February 29
+* Added
+  * Changelog management via [Sealog](https://github.com/Wall-Brew-Co/lein-sealog)
+* Fixed
+  * Include SCM information in `project.clj`
 
-> Add BJCP style definitions and function to match recipes to styles
+## 3.1.0 - 2022-07-10
 
-## v2.1.0 / 2020 February 25
+* Changed
+  * Updated dependencies to latest Wall Brew stack versions
+  * `common-beer-format` upgraded to v2.0.0
+  * `common-beer-data` upgraded to v1.0.0
+  * `brewtility` upgraded to v1.2.0
 
-> Refactor ingredients namespaces
+## 3.0.0 - 2020-08-18
 
-## v2.0.0 / 2019 December 5
+* Added
+  * Dependency on [common-beer-format](https://github.com/Wall-Brew-Co/common-beer-format) for BeerXML specifications
+* Changed
+  * Output recipe formats now adhere to BeerXML/common-beer-format specifications
+* Removed
+  * **Breaking** - Long-term support fixes required breaking out multiple domain libraries from `brew-bot`
+  * **Breaking** - Migrated recipe specifications to common-beer-format
+  * **Breaking** - Migrated recipe claculations to [brewtility](https://github.com/Wall-Brew-Co/brewtility)
+* Fixed
+  * Extended IBU calculation to use more robust formula
+  * Yeast attenuation calculation now uses a more correct formula for homebrewing cases
+  * SRM color calculations tuned to prevent overly-aggressive rounding
+  * Randomized weighting of ingredients consistently adds even amounts, to prevent unfair distributions
 
-> ***BREAKING CHANGE*** - the UI and the library code are now separate
-> Going forward, this repo will solely be used for the library code
-> The website's code is now located at: https://github.com/nnichols/brew-bot-ui
+## 2.2.0 - 2020-02-29
 
-## v1.0.0-gamma / 2019 November 27
+* Added
+  * Specifications for [BJCP](https://www.bjcp.org/) recipe categories
+  * Data-driven definition of BJCP recipe categories
+  * First-pass a matching algorithm for recipes to BJCP recipe categories
 
-> Systemic refactors toward common components, .cljc resources, and added config
-> Overhaul of CI/CD auto-runners
-> Add tagging to ingredients for better classification
+## 2.1.0 - 2020-02-25
 
-## v1.0.0-beta / 2019 November 16
+* Changed
+  * Updated ingredient specification to follow [BeerXML](http://www.beerxml.com/beerxml.htm) standards
 
-> Add static assets, routing via secretary
+## 2.0.0 - 2019-10523
 
-## v1.0.0-alpha2 / 2019 Oct 02
+* Added
+  * Additional utilities to serve as a clojure library for use in the SPA, and other projects
+* Changed
+  * Updated deployments to use Wall Brew Heroku cluster
+  * **Breaking** - Migrated library ownership from `nnichols` to `wall-brew`
+* Removed
+  * **Breaking** - Migrated CLJS site to `brew-bot-ui` under the Wall Brew Github organization.
 
-> Update mobile rendering
+## 1.0.0 - 2019-10-12
 
-## v1.0.0-alpha1 / 2019 Oct 02
+* Changed
+  * Change CLI application to a re-frame/ClojureScript SPA
+  * Released as a github.io page under `nnichols` userspace
 
-> Alpha launch to be hosted at nnichols.github.io
+## 0.0.0 - 2019-07-13
 
-## v0.0.0 / 2019 July 13
+* Added
+  * Randomized beer recipe generation.
+  * Simplified beer ingredient collection
 
-> This release builds out all initial functionality
+## Source
+
+This change log was generated by [sealog.](https://github.com/Wall-Brew-Co/sealog)
+Please do not edit it directly. Instead, edit the source data files and regenerate this file.
