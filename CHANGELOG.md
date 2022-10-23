@@ -39,7 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * Removed
   * **Breaking** - Long-term support fixes required breaking out multiple domain libraries from `brew-bot`
   * **Breaking** - Migrated recipe specifications to common-beer-format
-  * **Breaking** - Migrated recipe claculations to [brewtility](https://github.com/Wall-Brew-Co/brewtility)
+  * **Breaking** - Migrated recipe calculations to [brewtility](https://github.com/Wall-Brew-Co/brewtility)
 * Fixed
   * Extended IBU calculation to use more robust formula
   * Yeast attenuation calculation now uses a more correct formula for homebrewing cases
