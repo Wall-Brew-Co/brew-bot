@@ -1,0 +1,50 @@
+name: Deploy to Clojars
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3.0.2
+
+    - name: Cache maven dependencies
+      uses: actions/cache@v3
+      env:
+          cache-name: cache-maven
+      with:
+          path: ~/.m2
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
+          restore-keys: |
+            ${{ runner.os }}-clj
+
+    - name: Install Clojure dependencies
+      run: |
+        lein deps && lein project-version
+
+    - name: Run sanity tests
+      run: lein test
+
+    - name: Run build test
+      run: lein jar
+
+    - name: Publish to Clojars
+      env:
+        CLOJARS_USER: ${{ secrets.CLOJARS_USER }}
+        CLOJARS_PASS: ${{ secrets.CLOJARS_PASS }}
+      run: lein deploy clojars
+
+    - name: Resolve version
+      id: versionchk
+      run: echo "::set-output name=VERSION::$(lein project-version)"
+
+    - name: Push Tag
+      uses: hole19/git-tag-action@v1.0
+      env:
+        TAG: v${{ steps.versionchk.outputs.VERSION }}
+        GITHUB_TOKEN: ${{ secrets.WALL_BREW_BOT_PAT }}

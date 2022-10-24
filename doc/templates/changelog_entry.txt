@@ -1,8 +1,0 @@
-## v${VER} / ${DATE}
-
-> This release ...
-
-* **Add** -
-* **Fix** -
-* **Update** -
-

@@ -1,8 +1,10 @@
 (defproject com.wallbrew/brew-bot "3.2.0"
-  :description "A quick, dirty way to get randomized beer recipes"
+  :description "A Library to generate randomized beer recipes"
   :url "https://github.com/Wall-Brew-Co/brew-bot"
-  :license {:name "MIT"
-            :url  "https://opensource.org/licenses/MIT"}
+  :license {:name         "MIT"
+            :url          "https://opensource.org/licenses/MIT"
+            :distribution :repo
+            :comments     "Same-as all Wall-Brew projects"}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/brew-bot"}
   :dependencies [[cljx-sampling "0.1.0"]
@@ -16,22 +18,27 @@
   :plugins [[lein-cljsbuild "1.1.8"]
             [com.wallbrew/lein-sealog "1.0.1"]]
 
+  :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
+                                    :username      :env/clojars_user
+                                    :password      :env/clojars_pass
+                                    :sign-releases false}]]
+  :deploy-branches ["master"]
+
   :aliases {"test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
 
   :profiles {:uberjar {:aot :all}
-             :dev {:dependencies [[doo "0.1.11"]]
-                   :plugins      [[lein-doo "0.1.11"]]}}
+             :dev     {:dependencies [[doo "0.1.11"]]
+                       :plugins      [[lein-doo "0.1.11"]]}}
 
   :min-lein-version "2.5.3"
 
-  :cljsbuild {:builds
-              [{:id "test"
-                :source-paths ["src" "test"]
-                :compiler {:main "brew-bot.runner"
-                           :output-to "target/test/app.js"
-                           :output-dir "target/test/js/compiled/out"
-                           :optimizations :none
-                           :parallel-build true}}]}
+  :cljsbuild {:builds [{:id           "test"
+                        :source-paths ["src" "test"]
+                        :compiler     {:main           "brew-bot.runner"
+                                       :output-to      "target/test/app.js"
+                                       :output-dir     "target/test/js/compiled/out"
+                                       :optimizations  :none
+                                       :parallel-build true}}]}
 
   :doo {:build "test"
         :alias {:default [:chrome-headless-no-sandbox]}
@@ -42,6 +49,5 @@
                             "browserDisconnectTolerance" 3
                             "browserDisconnectTimeout"   210000
                             "browserNoActivityTimeout"   210000
-                            "customLaunchers"            {"ChromeHeadlessNoSandbox"
-                                                          {"base"  "ChromeHeadless"
-                                                           "flags" ["--no-sandbox" "--disable-dev-shm-usage"]}}}}})
+                            "customLaunchers"            {"ChromeHeadlessNoSandbox" {"base"  "ChromeHeadless"
+                                                                                     "flags" ["--no-sandbox" "--disable-dev-shm-usage"]}}}}})
