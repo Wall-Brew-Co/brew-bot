@@ -1,7 +1,35 @@
 {:output  {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"}
- :linters {:unresolved-symbol            {:exclude [(clojure.test/is [match?])]}
-           :missing-docstring            {:level :warning}
-           :unsorted-required-namespaces {:level :warning}
-           :shadowed-var                 {:level :warning}
-           :single-key-in                {:level :warning}
-           :refer-all                    {:exclude #{clojure.test cljs.test}}}}
+ :lint-as {com.wallbrew.spoon.core/when-let+ clojure.core/let}
+ :linters {:unresolved-symbol                     {:exclude [(clojure.test/is [match?])
+                                                             clojure.test.check.clojure-test/defspec]}
+           :refer-all                             {:exclude #{clojure.test}}
+           :consistent-alias                      {:aliases {clojure.edn           edn
+                                                             clojure.java.io       io
+                                                             clojure.math          math
+                                                             clojure.set           set
+                                                             clojure.walk          walk
+                                                             clojure.zip           zip
+                                                             clojure.core.async    async
+                                                             clojure.data.csv      csv
+                                                             clojure.data.xml      xml
+                                                             clojure.tools.cli     cli
+                                                             clojure.java.shell    sh
+                                                             clojure.pprint        pp
+                                                             clojure.spec.alpha    spec
+                                                             clojure.string        str
+                                                             clojure.core.matrix   mat
+                                                             clojure.tools.logging log
+                                                             clojure.core.reducers r}}
+           :aliased-namespace-symbol              {:level :warning}
+           :reduce-without-init                   {:level :warning}
+           :keyword-binding                       {:level :warning}
+           :main-without-gen-class                {:level :warning}
+           :namespace-name-mismatch               {:level :warning}
+           :redundant-fn-wrapper                  {:level :warning}
+           :refer                                 {:level :warning}
+           :missing-docstring                     {:level :warning}
+           :unsorted-required-namespaces          {:level :warning}
+           :shadowed-var                          {:level :warning}
+           :single-key-in                         {:level :warning}
+           :docstring-leading-trailing-whitespace {:level :warning}
+           :used-underscored-binding              {:level :warning}}}
