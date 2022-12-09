@@ -1,6 +1,6 @@
 name: Check cljdoc compatibility
 
-on: [pull_request]
+on: ["pull_request", "workflow_dispatch"]
 
 jobs:
   check-cljdoc:
@@ -17,6 +17,7 @@ jobs:
           key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
             ${{ runner.os }}-clj
+
       - name: Package the library as a jar
         run: lein jar
 
