@@ -3,33 +3,59 @@
 Neither our brewing nor our technology would be possible without the years of experience shared with us.
 In that spirit, Wall Brew is committed to fostering an environment of open collaboration and does not tolerate discrimination of any form.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Our Pledge](#our-pledge)
+- [Our Standards](#our-standards)
+- [Our Responsibilities](#our-responsibilities)
+- [Scope](#scope)
+- [Enforcement](#enforcement)
+- [Attribution](#attribution)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
 ## Our Standards
 
-Examples of behavior that contributes to creating a positive environment include:
+All community members should have a clear and shared understanding of what is considered acceptable and unacceptable behavior.
+To prevent ad-hoc or just-in-time rule setting, we have explicitly outlined our expectations and rules in text.
+Our Code of Conduct strives to meet three goals:
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+- Welcome contributors and participants
+- Define basic standards and rules for community participation
+- Outline procedures for handling abuse and violation of said rules and standards
 
-Examples of unacceptable behavior by participants include:
+At a minimum, we expect all contributors and maintainers:
 
-* The use of sexualized language or imagery and unwelcome sexual attention or advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in any setting
+- Use welcoming and inclusive language that respects the names, pseudonyms, and pronouns individuals select for themselves
+- Respect differing viewpoints and experiences
+- Accept constructive criticism and suggestions gracefully
+- Focus on what is best for the community
+- Show empathy towards other community members
+- Act in a professional manner
+
+Additionally, we explicitly prohibit:
+
+- The use of sexualized language, sexualized imagery, and any sexual attention or advances
+- Trolling, insulting/derogatory comments, and personal attacks of any variety
+- Discrimination of any kind
+- Threats in any form against an individual's mental, emotional, or physical safety
+- Public or private harassment
+- Publishing others' private information, such as a physical or electronic address, without explicit permission
+- Other conduct which could reasonably be considered inappropriate in any setting
 
 ## Our Responsibilities
 
 Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+Maintainers are expected to remove, edit, or reject any contribution that does not meet these standards.
+Further, any maintainer or contributor found grossly in violation, intentionally in violation, or repeatedly in violation of these guidelines may be banned temporarily or permanently at the sole discretion of Wall Brew.
+
+Violations of these guidelines may be reported publicly by tagging any Wall Brew Maintainer or in private by emailing contact [at] wallbrew [dot] com.
 
 ## Scope
 
