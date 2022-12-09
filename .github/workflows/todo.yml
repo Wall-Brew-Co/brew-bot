@@ -1,7 +1,6 @@
 name: Generate TODO Tickets
 
 on:
-  # only for the master branch
   push:
     branches:
     - master
