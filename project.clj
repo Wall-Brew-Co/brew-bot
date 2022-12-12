@@ -16,7 +16,7 @@
                  [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
   :plugins [[lein-cljsbuild "1.1.8"]
-            [com.wallbrew/lein-sealog "1.0.1"]]
+            [com.wallbrew/lein-sealog "1.0.2"]]
 
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user
