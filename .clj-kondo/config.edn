@@ -26,7 +26,8 @@
            :main-without-gen-class                {:level :warning}
            :namespace-name-mismatch               {:level :warning}
            :redundant-fn-wrapper                  {:level :warning}
-           :refer                                 {:level :warning}
+           :refer                                 {:level   :warning
+                                                   :exclude #{clojure.test}}
            :missing-docstring                     {:level :warning}
            :unsorted-required-namespaces          {:level :warning}
            :shadowed-var                          {:level :warning}
