@@ -10,7 +10,7 @@ Should a non-organizational major version change be required, Wall Brew will app
 ## Reporting a Vulnerability
 
 Vulnerabilities should be securely communicated directly to project developers.
-Please do not communicate vulnerabilities via insecure methods, such as GitHub issues.
+Please do not communicate vulnerabilities via insecure methods, such as GitHub issues or in public conversation threads.
 If you find a vulnerability, please contact us in one of the following ways:
 
 1. Directly message the author on Slack, Discord, Twitter, etc notifying them you have found a vulnerability. They will coordinate directly with you to receive details and schedule a fix.
