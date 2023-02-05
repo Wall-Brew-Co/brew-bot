@@ -27,7 +27,7 @@
            :namespace-name-mismatch               {:level :warning}
            :redundant-fn-wrapper                  {:level :warning}
            :refer                                 {:level   :warning
-                                                   :exclude #{clojure.test}}
+                                                   :exclude #{clojure.test cljs.test doo.runner}}
            :missing-docstring                     {:level :warning}
            :unsorted-required-namespaces          {:level :warning}
            :shadowed-var                          {:level :warning}
