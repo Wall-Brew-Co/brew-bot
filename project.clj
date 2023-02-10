@@ -9,7 +9,7 @@
         :url  "https://github.com/Wall-Brew-Co/brew-bot"}
   :dependencies [[cljx-sampling "0.1.0"]
                  [com.wallbrew/brewtility "1.2.0"]
-                 [com.wallbrew/common-beer-data "1.1.0"]
+                 [com.wallbrew/common-beer-data "1.2.0"]
                  [com.wallbrew/common-beer-format "2.1.0"]
                  [nnichols "1.1.0"]
                  [org.clojure/clojure "1.11.1"]
