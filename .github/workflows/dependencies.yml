@@ -25,7 +25,7 @@ jobs:
             ${{ runner.os }}-clj
 
     - name: Check Dependencies
-      uses: nnichols/clojure-dependency-update-action@v4
+      uses: nnichols/clojure-dependency-update-action@v5
       with:
         github-token: ${{ secrets.WALL_BREW_BOT_PAT }}
         git-email: the.wall.brew@gmail.com
