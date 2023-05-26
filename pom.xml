@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/brew-bot</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/brew-bot.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/brew-bot.git</developerConnection>
-    <tag>3cd2a58097e690c6041c34c7eedd3c355bebfab7</tag>
+    <tag>dc8db53bd66829dbf388e314e4218f0473ccb4c1</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
