@@ -21,6 +21,7 @@ jobs:
       - name: Format Clojure code
         run: |
           cljstyle fix --report --report-timing --verbose
+          lein pom
           git status
 
       - name: Commit changes
