@@ -1,8 +1,5 @@
 {:output  {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"}
- :lint-as {com.wallbrew.spoon.core/when-let+ clojure.core/let}
- :linters {:unresolved-symbol                     {:exclude [(clojure.test/is [match?])
-                                                             clojure.test.check.clojure-test/defspec]}
-           :refer-all                             {:exclude #{clojure.test}}
+ :linters {:aliased-namespace-symbol              {:level :warning}
            :consistent-alias                      {:aliases {clojure.edn           edn
                                                              clojure.java.io       io
                                                              clojure.math          math
@@ -20,17 +17,20 @@
                                                              clojure.core.matrix   mat
                                                              clojure.tools.logging log
                                                              clojure.core.reducers r}}
-           :aliased-namespace-symbol              {:level :warning}
-           :reduce-without-init                   {:level :warning}
+           :docstring-leading-trailing-whitespace {:level :warning}
            :keyword-binding                       {:level :warning}
            :main-without-gen-class                {:level :warning}
+           :missing-docstring                     {:level :warning}
            :namespace-name-mismatch               {:level :warning}
+           :reduce-without-init                   {:level :warning}
            :redundant-fn-wrapper                  {:level :warning}
            :refer                                 {:level   :warning
                                                    :exclude #{clojure.test cljs.test doo.runner}}
-           :missing-docstring                     {:level :warning}
-           :unsorted-required-namespaces          {:level :warning}
+           :refer-all                             {:exclude #{clojure.test}}
            :shadowed-var                          {:level :warning}
            :single-key-in                         {:level :warning}
-           :docstring-leading-trailing-whitespace {:level :warning}
-           :used-underscored-binding              {:level :warning}}}
+           :unresolved-symbol                     {:exclude [(clojure.test/is [match?])
+                                                             clojure.test.check.clojure-test/defspec]}
+           :unsorted-required-namespaces          {:level :warning}
+           :used-underscored-binding              {:level :warning}
+           :unused-value                          {:level :warning}}}
