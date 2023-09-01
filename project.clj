@@ -13,7 +13,7 @@
                  [com.wallbrew/common-beer-format "2.1.0"]
                  [nnichols "1.1.0"]
                  [org.clojure/clojure "1.11.1"]
-                 [org.clojure/clojurescript "1.11.60" :scope "provided"]]
+                 [org.clojure/clojurescript "1.11.121" :scope "provided"]]
 
   :plugins [[lein-cljsbuild "1.1.8"]
             [com.wallbrew/lein-sealog "1.0.2"]]
