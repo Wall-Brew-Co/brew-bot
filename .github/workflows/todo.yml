@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3.5.3
+      uses: actions/checkout@v4.0.0
 
     - name: Generate TODO Tickets
       uses: ribtoks/tdg-github-action@master
