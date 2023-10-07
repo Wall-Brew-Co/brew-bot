@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: git checkout
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4.1.0
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.WALL_BREW_BOT_PAT }}
@@ -23,7 +23,7 @@ jobs:
           cljstyle fix --report --report-timing --verbose
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        uses: stefanzweifel/git-auto-commit-action@v5.0.0
         with:
           commit_message: |
             [Format] Auto-formatting

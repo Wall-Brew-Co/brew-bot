@@ -21,7 +21,7 @@ jobs:
       security-events: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4.1.0
 
       - name: Scan code
         uses: clj-holmes/clj-holmes-action@53daa4da4ff495cccf791e4ba4222a8317ddae9e
