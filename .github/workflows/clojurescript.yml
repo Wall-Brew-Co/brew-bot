@@ -9,24 +9,26 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4.1.0
+      uses: actions/checkout@v4.1.1
 
     - name: Cache maven dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       env:
           cache-name: cache-maven
       with:
           path: ~/.m2
+          save-always: true
           key: ${{ runner.os }}-${{ env.cache-name }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-clj
 
     - name: Cache npm dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       env:
           cache-name: cache-npm
       with:
         path: ~/.npm
+        save-always: true
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node
