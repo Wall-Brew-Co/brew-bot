@@ -1,0 +1,3 @@
+{:changelog-filename        "CHANGELOG.md"
+ :changelog-entry-directory ".sealog/changes/"
+ :version-scheme            :semver3}

@@ -4,11 +4,19 @@
         "config:base"
     ],
     "labels": [
-        "dependencies"
+        "dependencies",
+        "automated"
     ],
+    "lockFileMaintenance": {
+        "enabled": true,
+        "schedule": [
+            "after 11am and before 8pm on monday"
+        ]
+    },
     "assigneesFromCodeOwners": true,
     "branchPrefix": "dependencies/",
     "commitBodyTable": true,
+    "rebaseWhen": "behind-base-branch",
     "reviewersFromCodeOwners": true,
     "schedule": [
         "after 11am and before 8pm every weekday"
