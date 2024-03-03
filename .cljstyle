@@ -1,2 +1,3 @@
-{:files {:extensions #{"clj" "cljs" "cljc" "cljx" "edn"}}
+{:files {:extensions #{"clj" "cljs" "cljc" "cljx" "edn"}
+         :ignore     #{"target" ".git" ".idea" ".vscode" "node_modules"}}
  :rules {:namespaces {:enabled? false}}}
