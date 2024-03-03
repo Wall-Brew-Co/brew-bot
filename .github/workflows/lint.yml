@@ -19,6 +19,8 @@ jobs:
           reporter: github-pr-review
           level: error
           filter_mode: file
+          ignore: "litre,millilitre,litres,millilitres"
+          # Brewing applications support both US and non-US English
 
   clj-kondo:
     runs-on: ubuntu-latest
