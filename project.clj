@@ -1,4 +1,4 @@
-(defproject com.wallbrew/brew-bot "3.2.0"
+(defproject com.wallbrew/brew-bot "3.2.1"
   :description "A Library to generate randomized beer recipes"
   :url "https://github.com/Wall-Brew-Co/brew-bot"
   :license {:name         "MIT"
@@ -15,8 +15,12 @@
                  [org.clojure/clojure "1.11.2"]
                  [org.clojure/clojurescript "1.11.132" :scope "provided"]]
 
-  :plugins [[lein-cljsbuild "1.1.8"]
-            [com.wallbrew/lein-sealog "1.2.0"]]
+  :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.03.05"]
+            [com.wallbrew/lein-sealog "1.2.0"]
+            [lein-cljsbuild "1.1.8"]
+            [lein-project-version "0.1.0"]
+            [mvxcvi/cljstyle "0.16.630"]
+            [ns-sort "1.0.3"]]
 
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user
