@@ -5,8 +5,8 @@
             [brew-bot.styles :as styles]
             [brew-bot.util :as util]
             [brewtility.calculations :as calc]
-            [common-beer-format.core :as cbf]
             [common-beer-data.core :as ingredients]
+            [common-beer-format.core :as cbf]
             [common-beer-format.recipes :as cbf-recipe]))
 
 
@@ -146,7 +146,7 @@
                                            :hops         cbf-hops
                                            :yeasts       cbf-yeasts}
                                           defaults/common-beer-format-recipe-defaults)
-        type                       (util/determine-recipe-type selected-fermentables)
+        recipe-type                (util/determine-recipe-type selected-fermentables)
         boil-time                  (util/determine-boil-time selected-hops)
         estimated-original-gravity (calc/calculate-potential-gravity selected-fermentables (:batch-size recipe-template))
         estimated-final-gravity    (calc/calculate-potential-final-gravity selected-fermentables (:batch-size recipe-template) (:attenuation (first selected-yeasts)))
@@ -155,7 +155,7 @@
         estimated-abv              (calc/calculate-potential-abv selected-fermentables (:batch-size recipe-template) (:attenuation (first selected-yeasts)))
         style                      (styles/best-match estimated-original-gravity ibu estimated-color estimated-abv)
         cbf-recipe                 (assoc recipe-template
-                                          :type      type
+                                          :type      recipe-type
                                           :style     style
                                           :boil-time boil-time
                                           :est-og    (str estimated-original-gravity)

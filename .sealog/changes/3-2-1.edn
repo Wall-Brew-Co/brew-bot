@@ -1,0 +1,11 @@
+{:version      {:major 3
+                :minor 2
+                :patch 1}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    ["Bumped `org.clojure/clojure` to `1.11.2`. Note: Addressing `CVE-2024-22871` / `GHSA-vr64-r9qj-h27f` requires consumers to upgrade to this version."]
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2024-03-10T23:12:32.740799300Z"}

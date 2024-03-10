@@ -4,7 +4,7 @@
 
 (def ^:const common-beer-format-version 1)
 
-(def ^:const amount-cutoff 2.26796) ;; 5 pounds in kilograms
+(def ^:const amount-cutoff 2.26796) ; 5 pounds in kilograms
 
 (def ^:const ingredient-amounts
   [0.01 0.025 0.05 0.075 0.1])
@@ -94,8 +94,8 @@
   {:name         "My Recipe"
    :version      common-beer-format-version
    :brewer       "brew-bot"
-   :batch-size   19 ;; Roughly 5 gallons, common homebrew size
-   :boil-size    19 ;; Roughly 5 gallons, common homebrew size
+   :batch-size   19 ; Roughly 5 gallons, common homebrew size
+   :boil-size    19 ; Roughly 5 gallons, common homebrew size
    :miscs        []
    :waters       []
    :mash         common-beer-format-default-mash})

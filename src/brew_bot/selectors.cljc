@@ -2,7 +2,7 @@
   "Beer recipe generators"
   (:require [brew-bot.default-values :as defaults]
             [cljx-sampling.core :as rnd]
-            [clojure.string :as cs]
+            [clojure.string :as str]
             [common-beer-format.hops :as hops]
             [nnichols.util :as nu]))
 
@@ -78,7 +78,7 @@
         weighted-ingredients (update-selection-probabilities ingredients selection-weights default-weight)]
     (loop [selections []]
       (if (>= (selected-amount selections) amount-cutoff)
-        (map #(dissoc % :probability) selections) ;; This key isn't part of the common-beer-format spec, so remove it
+        (map #(dissoc % :probability) selections) ; This key isn't part of the common-beer-format spec, so remove it
         (let [selection (make-weighted-selection weighted-ingredients selections count-cutoff)]
           (recur (conj selections selection)))))))
 
@@ -101,7 +101,7 @@
   "Select hop timings and uses based on the hop's type.
    Bittering hops will often be boiled for longer, and aroma hops are biased towards short boils and secondary additions."
   [hop]
-  (let [hop-type                   (cs/lower-case (str (:type hop)))
+  (let [hop-type                   (str/lower-case (str (:type hop)))
         [use-weights time-weights] (case hop-type
                                      "bittering" [defaults/bittering-hop-use-weights defaults/bittering-hop-time-weights]
                                      "aroma"     [defaults/aroma-hop-use-weights defaults/aroma-hop-time-weights]

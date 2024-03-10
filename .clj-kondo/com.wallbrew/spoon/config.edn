@@ -1,0 +1,1 @@
+{:lint-as {com.wallbrew.spoon.core/when-let+ clojure.core/let}}
