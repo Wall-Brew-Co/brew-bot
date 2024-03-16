@@ -122,6 +122,6 @@ The tests will also execute on the JVM, to ensure the library is compatible for 
 
 ## License
 
-Copyright © 2019-2022 - [Wall Brew Co](https://wallbrew.com/)
+Copyright © [Wall Brew Co](https://wallbrew.com/)
 
 This software is provided for free, public use as outlined in the [MIT License](https://github.com/Wall-Brew-Co/brew-bot/blob/master/LICENSE)
