@@ -1,6 +1,5 @@
 # brew-bot - The algorithmic beer recipe generator
 
-[![Github Runner](https://github.com/wall-brew-co/brew-bot/workflows/Clojurescript%20CI/badge.svg)](https://github.com/Wall-Brew-Co/brew-bot/actions?query=workflow%3A%22Clojurescript+CI%22)
 [![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/brew-bot.svg)](https://clojars.org/com.wallbrew/brew-bot)
 [![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/brew-bot)](https://cljdoc.org/d/com.wallbrew/brew-bot/CURRENT)
 [![GitHub](https://img.shields.io/github/license/Wall-Brew-Co/brew-bot)](https://github.com/Wall-Brew-Co/brew-bot/blob/master/LICENSE)
