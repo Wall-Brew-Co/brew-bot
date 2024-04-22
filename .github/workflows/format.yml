@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: git checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.3
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.WALL_BREW_BOT_PAT }}
