@@ -12,7 +12,7 @@
                  [com.wallbrew/common-beer-data "1.2.0"]
                  [com.wallbrew/common-beer-format "2.1.0"]
                  [nnichols "1.1.0"]
-                 [org.clojure/clojure "1.11.2"]
+                 [org.clojure/clojure "1.11.3"]
                  [org.clojure/clojurescript "1.11.132" :scope "provided"]]
 
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.03.13"]
