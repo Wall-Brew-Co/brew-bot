@@ -25,8 +25,13 @@ jobs:
             ${{ runner.os }}-clj
 
     - name: Install Clojure dependencies
-      run: |
-        lein deps && lein project-version
+      run: lein deps
+
+    - name: Validate Changelog Status
+      run: lein sealog check
+
+    - name: Display Version
+      run: lein sealog version
 
     - name: Run sanity tests
       run: lein test
@@ -42,7 +47,7 @@ jobs:
 
     - name: Resolve version
       id: versionchk
-      run: echo "::set-output name=VERSION::$(lein project-version)"
+      run: echo "VERSION=$(lein sealog version project.clj | tail -n 1)" >> $GITHUB_OUTPUT
 
     - name: Push Tag
       uses: hole19/git-tag-action@v1.0
