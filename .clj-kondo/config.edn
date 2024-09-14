@@ -1,36 +1,44 @@
-{:output  {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"}
- :linters {:aliased-namespace-symbol              {:level :warning}
-           :consistent-alias                      {:aliases {clojure.edn           edn
-                                                             clojure.java.io       io
-                                                             clojure.math          math
-                                                             clojure.set           set
-                                                             clojure.walk          walk
-                                                             clojure.zip           zip
-                                                             clojure.core.async    async
-                                                             clojure.data.csv      csv
-                                                             clojure.data.xml      xml
-                                                             clojure.tools.cli     cli
-                                                             clojure.java.shell    sh
-                                                             clojure.pprint        pp
-                                                             clojure.spec.alpha    spec
-                                                             clojure.string        str
-                                                             clojure.core.matrix   mat
-                                                             clojure.tools.logging log
-                                                             clojure.core.reducers r}}
-           :docstring-leading-trailing-whitespace {:level :warning}
-           :keyword-binding                       {:level :warning}
-           :main-without-gen-class                {:level :warning}
-           :missing-docstring                     {:level :warning}
-           :namespace-name-mismatch               {:level :warning}
-           :reduce-without-init                   {:level :warning}
-           :redundant-fn-wrapper                  {:level :warning}
-           :refer                                 {:level   :warning
-                                                   :exclude #{clojure.test cljs.test doo.runner}}
-           :refer-all                             {:exclude #{clojure.test}}
-           :shadowed-var                          {:level :warning}
-           :single-key-in                         {:level :warning}
-           :unresolved-symbol                     {:exclude [(clojure.test/is [match?])
-                                                             clojure.test.check.clojure-test/defspec]}
-           :unsorted-required-namespaces          {:level :warning}
-           :used-underscored-binding              {:level :warning}
-           :unused-value                          {:level :warning}}}
+{:exclude-files ".clj-kondo/imports/.*"
+ :output        {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"}
+ :ns-groups     [{:pattern "\\*\\.experimental\\.\\*"
+                  :name    experimental-features}
+                 {:pattern "\\*\\.impl"
+                  :name    implementation-only}]
+ :linters       {:aliased-namespace-symbol              {:level :warning}
+                 :consistent-alias                      {:aliases {clojure.edn           edn
+                                                                   clojure.java.io       io
+                                                                   clojure.math          math
+                                                                   clojure.set           set
+                                                                   clojure.walk          walk
+                                                                   clojure.zip           zip
+                                                                   clojure.core.async    async
+                                                                   clojure.data.csv      csv
+                                                                   clojure.data.xml      xml
+                                                                   clojure.tools.cli     cli
+                                                                   clojure.java.shell    sh
+                                                                   clojure.pprint        pp
+                                                                   clojure.spec.alpha    spec
+                                                                   clojure.string        str
+                                                                   clojure.core.matrix   mat
+                                                                   clojure.tools.logging log
+                                                                   clojure.core.reducers r}}
+                 :discouraged-var                       {clojure.core/read-string {:message "Use `clojure.edn/read-string` instead of `read-string`."}}
+                 :discouraged-namespace                 {experimental-features {:message "These functions are considered experimental and can break or change implementation in future releases."}
+                                                         implementation-only   {:message "These functions are considered internal implementation details and are not part of their respective public api."}}
+                 :docstring-leading-trailing-whitespace {:level :warning}
+                 :keyword-binding                       {:level :warning}
+                 :main-without-gen-class                {:level :warning}
+                 :missing-docstring                     {:level :warning}
+                 :namespace-name-mismatch               {:level :warning}
+                 :reduce-without-init                   {:level :warning}
+                 :redundant-fn-wrapper                  {:level :warning}
+                 :refer                                 {:level   :warning
+                                                         :exclude #{clojure.test cljs.test doo.runner}}
+                 :refer-all                             {:exclude #{clojure.test}}
+                 :shadowed-var                          {:level :warning}
+                 :single-key-in                         {:level :warning}
+                 :unresolved-symbol                     {:exclude [(clojure.test/is [match?])
+                                                                   clojure.test.check.clojure-test/defspec]}
+                 :unsorted-required-namespaces          {:level :warning}
+                 :used-underscored-binding              {:level :warning}
+                 :unused-value                          {:level :warning}}}
