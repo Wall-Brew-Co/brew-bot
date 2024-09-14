@@ -1,5 +1,5 @@
 (defproject com.wallbrew/brew-bot "3.2.1"
-  :description "A Library to generate randomized beer recipes"
+  :description "A library to generate randomized beer recipes."
   :url "https://github.com/Wall-Brew-Co/brew-bot"
   :license {:name         "MIT"
             :url          "https://opensource.org/licenses/MIT"
@@ -7,6 +7,9 @@
             :comments     "Same-as all Wall-Brew projects"}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/brew-bot"}
+  :pom-addition [:organization
+                 [:name "Wall Brew Co."]
+                 [:url "https://wallbrew.com"]]
   :dependencies [[cljx-sampling "0.1.0"]
                  [com.wallbrew/brewtility "2.0.1"]
                  [com.wallbrew/common-beer-data "1.2.0"]
