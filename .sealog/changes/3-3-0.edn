@@ -1,0 +1,11 @@
+{:version      {:major 3
+                :minor 3
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      ["Dropped unnecessary `^:const` metadata from `default-values`."]
+                :security   []}
+ :timestamp    "2024-09-20T16:25:18.295065289Z"}

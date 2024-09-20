@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [3.3.0 - 2024-09-20](#330---2024-09-20)
+* [3.2.2 - 2024-09-14](#322---2024-09-14)
 * [3.2.1 - 2024-03-10](#321---2024-03-10)
 * [3.2.0 - 2022-10-23](#320---2022-10-23)
 * [3.1.0 - 2022-07-10](#310---2022-07-10)
@@ -15,6 +17,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [2.0.0 - 2019-10523](#200---2019-10523)
 * [1.0.0 - 2019-10-12](#100---2019-10-12)
 * [0.0.0 - 2019-07-13](#000---2019-07-13)
+
+## 3.3.0 - 2024-09-20
+
+* Fixed
+  * Dropped unnecessary `^:const` metadata from `default-values`.
+
+## 3.2.2 - 2024-09-14
+
+* Fixed
+  * Updated the organization name in the POM file to `Wall Brew Co.`
 
 ## 3.2.1 - 2024-03-10
 

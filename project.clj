@@ -1,4 +1,4 @@
-(defproject com.wallbrew/brew-bot "3.2.2"
+(defproject com.wallbrew/brew-bot "3.3.0"
   :description "A library to generate randomized beer recipes."
   :url "https://github.com/Wall-Brew-Co/brew-bot"
   :license {:name         "MIT"

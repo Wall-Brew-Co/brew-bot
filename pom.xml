@@ -4,7 +4,7 @@
   <groupId>com.wallbrew</groupId>
   <artifactId>brew-bot</artifactId>
   <packaging>jar</packaging>
-  <version>3.2.2</version>
+  <version>3.3.0</version>
   <name>brew-bot</name>
   <description>A library to generate randomized beer recipes.</description>
   <url>https://github.com/Wall-Brew-Co/brew-bot</url>
@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/brew-bot</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/brew-bot.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/brew-bot.git</developerConnection>
-    <tag>7c4a2c4161b0957a987f86ba64c4989cdc098576</tag>
+    <tag>89f69dec41da74318a7f8b62fbeebabd54869ccd</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
