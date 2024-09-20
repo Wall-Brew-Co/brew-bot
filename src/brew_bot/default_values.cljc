@@ -2,23 +2,23 @@
   "Default values for beer recipe generators")
 
 
-(def ^:const common-beer-format-version 1)
+(def common-beer-format-version 1)
 
-(def ^:const amount-cutoff 2.26796) ; 5 pounds in kilograms
+(def amount-cutoff 2.26796) ; 5 pounds in kilograms
 
-(def ^:const ingredient-amounts
+(def ingredient-amounts
   [0.01 0.025 0.05 0.075 0.1])
 
 
-(def ^:const minimum-ingredient-amount
+(def minimum-ingredient-amount
   (apply min ingredient-amounts))
 
 
-(def ^:const hop-times
+(def hop-times
   [120 90 60 45 30 15 10 5 1])
 
 
-(def ^:const bittering-hop-time-weights
+(def bittering-hop-time-weights
   {120 100.0
    90  80.0
    60  60.0
@@ -30,7 +30,7 @@
    1   0.0})
 
 
-(def ^:const aroma-hop-time-weights
+(def aroma-hop-time-weights
   {1   100.0
    5   80.0
    10  60.0
@@ -42,7 +42,7 @@
    120 0.0})
 
 
-(def ^:const both-hop-time-weights
+(def both-hop-time-weights
   {120 20.0
    90  40.0
    60  60.0
@@ -54,7 +54,7 @@
    1   20.0})
 
 
-(def ^:const bittering-hop-use-weights
+(def bittering-hop-use-weights
   {"boil"        200.0
    "dry hop"     20.0
    "mash"        40.0
@@ -62,7 +62,7 @@
    "aroma"       10.0})
 
 
-(def ^:const aroma-hop-use-weights
+(def aroma-hop-use-weights
   {"boil"        200.0
    "dry hop"     80.0
    "mash"        10.0
@@ -70,7 +70,7 @@
    "aroma"       40.0})
 
 
-(def ^:const both-hop-use-weights
+(def both-hop-use-weights
   {"boil"        200.0
    "dry hop"     80.0
    "mash"        10.0
@@ -78,7 +78,7 @@
    "aroma"       10.0})
 
 
-(def ^:const common-beer-format-default-mash
+(def common-beer-format-default-mash
   {:name       "Single Step Infusion"
    :version    common-beer-format-version
    :grain-temp 22.0
@@ -90,7 +90,7 @@
                              :infuse-amount 10.0}}]})
 
 
-(def ^:const common-beer-format-recipe-defaults
+(def common-beer-format-recipe-defaults
   {:name         "My Recipe"
    :version      common-beer-format-version
    :brewer       "brew-bot"

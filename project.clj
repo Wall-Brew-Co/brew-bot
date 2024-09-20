@@ -1,5 +1,5 @@
-(defproject com.wallbrew/brew-bot "3.2.1"
-  :description "A Library to generate randomized beer recipes"
+(defproject com.wallbrew/brew-bot "3.3.0"
+  :description "A library to generate randomized beer recipes."
   :url "https://github.com/Wall-Brew-Co/brew-bot"
   :license {:name         "MIT"
             :url          "https://opensource.org/licenses/MIT"
@@ -7,6 +7,9 @@
             :comments     "Same-as all Wall-Brew projects"}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/brew-bot"}
+  :pom-addition [:organization
+                 [:name "Wall Brew Co."]
+                 [:url "https://wallbrew.com"]]
   :dependencies [[cljx-sampling "0.1.0"]
                  [com.wallbrew/brewtility "2.0.1"]
                  [com.wallbrew/common-beer-data "1.2.0"]
@@ -17,10 +20,10 @@
 
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.08.29"]
             [com.wallbrew/lein-sealog "1.6.0"]
-            [lein-cljsbuild "1.1.8"]
-            [lein-project-version "0.1.0"]
+            [com.wallbrew/bouncer "1.0.0"]
+            [lein-cljsbuild/lein-cljsbuild "1.1.8"]
             [mvxcvi/cljstyle "0.16.630"]
-            [ns-sort "1.0.3"]]
+            [ns-sort/ns-sort "1.0.3"]]
 
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user

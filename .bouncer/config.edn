@@ -1,0 +1,15 @@
+{:comment       "The default configuration for Wall Brew projects."
+ :project-rules {:license {:comment  "https://github.com/Wall-Brew-Co/open-source?tab=readme-ov-file#licensing"
+                           :disabled false}
+                 :plugins {:disabled          false
+                           :available-plugins [{:comment        "https://github.com/Wall-Brew-Co/rebroadcast?tab=readme-ov-file#sealog-configuration"
+                                                :plugin-name    "com.wallbrew/lein-sealog"
+                                                :plugin-version "1.6.0"}
+                                               {:comment        "https://github.com/Wall-Brew-Co/rebroadcast?tab=readme-ov-file#clj-kondo-configuration"
+                                                :plugin-name    "com.github.clj-kondo/lein-clj-kondo"
+                                                :plugin-version "2024.08.29"}
+                                               {:plugin-name    "lein-cljsbuild/lein-cljsbuild"
+                                                :plugin-version "1.1.8"}
+                                               {:comment        "https://github.com/Wall-Brew-Co/rebroadcast?tab=readme-ov-file#cljstyle-configuration"
+                                                :plugin-name    "mvxcvi/cljstyle"
+                                                :plugin-version "0.16.630"}]}}}
