@@ -20,10 +20,10 @@
 
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.08.29"]
             [com.wallbrew/lein-sealog "1.6.0"]
-            [lein-cljsbuild "1.1.8"]
-            [lein-project-version "0.1.0"]
+            [com.wallbrew/bouncer "1.0.0"]
+            [lein-cljsbuild/lein-cljsbuild "1.1.8"]
             [mvxcvi/cljstyle "0.16.630"]
-            [ns-sort "1.0.3"]]
+            [ns-sort/ns-sort "1.0.3"]]
 
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user
