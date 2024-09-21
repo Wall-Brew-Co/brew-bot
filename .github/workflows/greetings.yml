@@ -4,6 +4,8 @@ on: [pull_request, issues]
 
 jobs:
   greeting:
+    # This job requires the Wall Brew Bot Token, so it is only run on non-forked repositories
+    if: github.repository_owner == 'Wall-Brew-Co'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/first-interaction@v1
