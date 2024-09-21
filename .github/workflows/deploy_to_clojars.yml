@@ -6,6 +6,8 @@ on:
 
 jobs:
   deploy:
+    # This job requires the Wall Brew Bot Token, so it is only run on non-forked repositories
+    if: github.repository_owner == 'Wall-Brew-Co'
 
     runs-on: ubuntu-latest
 
