@@ -1,10 +1,10 @@
 restricted:
   - changed-files:
-    - any-glob-to-any-file: ['LICENSE', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'CODEOWNERS', '.github/**/*', '.cljstyle', 'SECURITY.md', '.clj-kondo/**/*', '.gitignore']
+    - any-glob-to-any-file: ['LICENSE', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'CODEOWNERS', '.github/**/*', '.cljstyle', 'SECURITY.md', '.clj-kondo/**/*', '.gitignore', '.bouncer/**/*']
 
 dotfiles:
   - changed-files:
-    - any-glob-to-any-file: ['.github/**/*', '.cljstyle', '.clj-kondo/**/*' , '.gitignore']
+    - any-glob-to-any-file: ['.github/**/*', '.cljstyle', '.clj-kondo/**/*' , '.gitignore', '.bouncer/**/*', '.sealog/**/*']
 
 documentation:
   - changed-files:
@@ -20,7 +20,7 @@ test code:
 
 tooling:
   - changed-files:
-    - any-glob-to-any-file: ['deps.edn', 'Makefile', 'bin/**/*', '**/*.sh']
+    - any-glob-to-any-file: ['deps.edn', 'Makefile', 'bin/**/*', '**/*.sh', '.bouncer/**/*']
 
 clojure:
   - changed-files:
