@@ -7,7 +7,7 @@
     "configMigration": true,
     "configWarningReuseIssue": false,
     "extends": [
-        "config:base"
+        "config:recommended"
     ],
     "labels": [
         "dependencies",
