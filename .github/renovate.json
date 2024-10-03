@@ -1,0 +1,36 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "assigneesFromCodeOwners": true,
+    "automerge": true,
+    "branchPrefix": "dependencies/",
+    "commitBodyTable": true,
+    "configMigration": true,
+    "configWarningReuseIssue": false,
+    "extends": [
+        "config:base"
+    ],
+    "labels": [
+        "dependencies",
+        "automated"
+    ],
+    "lockFileMaintenance": {
+        "enabled": true,
+        "schedule": [
+            "after 11am and before 8pm on monday"
+        ]
+    },
+    "packageRules": [
+        {
+            "matchDatasources": [
+                "npm"
+            ],
+            "minimumReleaseAge": "3 days"
+        }
+    ],
+    "rebaseWhen": "behind-base-branch",
+    "reviewersFromCodeOwners": true,
+    "schedule": [
+        "after 11am and before 8pm every weekday"
+    ],
+    "timezone": "America/Chicago"
+}
