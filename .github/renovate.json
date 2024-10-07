@@ -9,6 +9,9 @@
     "extends": [
         "config:recommended"
     ],
+    "github-actions": {
+        "enabled": false
+    },
     "labels": [
         "dependencies",
         "automated"
