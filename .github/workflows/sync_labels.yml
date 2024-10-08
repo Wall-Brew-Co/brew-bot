@@ -1,3 +1,4 @@
+# Synchronize labels on the repository with the labels defined in .github/labels.yml
 name: Sync labels
 
 on:
@@ -12,10 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout latest commit
+      - name: Checkout Repository
+        id: checkout
         uses: actions/checkout@v4.2.1
 
-      - name: Synchronize labels
+      - name: Synchronize Labels
+        id: sync-labels
         uses: micnncim/action-label-syncer@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
