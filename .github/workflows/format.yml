@@ -1,3 +1,5 @@
+# Automatically format clojure code using cljstyle
+# For more information, please visit: https://github.com/Wall-Brew-Co/open-source/blob/master/README.md#automating-opinions
 name: Formatter
 
 on: [pull_request]
@@ -10,22 +12,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: git checkout
+      # Checkout the repository with our Wall Brew Bot Token
+      # We need this so any changes can be committed back to the repository
+      - name: Checkout Repository
+        id: checkout
         uses: actions/checkout@v4.2.1
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.WALL_BREW_BOT_PAT }}
 
       - name: Install cljstyle
+        id: install-cljstyle
         uses: just-sultanov/setup-cljstyle@v1
         with:
           version: '0.14.0'
 
-      - name: Format Clojure code
+      - name: Format Clojure Code
+        id: format
         run: |
           cljstyle fix --report --report-timing --verbose
 
-      - name: Commit changes
+      - name: Commit Changes
+        id: commit
         uses: stefanzweifel/git-auto-commit-action@v5.0.1
         with:
           commit_message: |
