@@ -1,31 +1,39 @@
+# Verifies that the project is compatible with cljdoc, and that our documentation will render correctly.
 name: Check cljdoc compatibility
 
 on: ["pull_request", "workflow_dispatch"]
 
 jobs:
   check-cljdoc:
+
+    # Cancel any runs in progress for the same workflow and PR
     concurrency:
       group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: true
+
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.1
+      - name: Checkout Repository
+        id: checkout
+        uses: actions/checkout@v4.2.1
 
-      - name: Cache maven dependencies
+      - name: Cache Maven Dependencies
+        id: cache-maven
         uses: actions/cache@v4
         env:
           cache-name: cache-maven
         with:
           path: ~/.m2
-          save-always: true
           key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
             ${{ runner.os }}-clj
 
-      - name: Package the library as a jar
+      - name: Package The Library As A Jar
+        id: package
         run: lein jar
 
       - name: cljdoc Check
+        id: cljdoc-check
         uses: cljdoc/cljdoc-check-action@v0.0.3
 
 # This file was automatically copied and populated by rebroadcast
