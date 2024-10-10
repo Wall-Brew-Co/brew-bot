@@ -1,3 +1,5 @@
+# Jobs to lint the repository for various issues
+# For more information, please visit: https://github.com/Wall-Brew-Co/open-source/blob/master/README.md#automating-opinions
 name: Linter
 
 on: ["workflow_dispatch", "pull_request"]
@@ -11,11 +13,13 @@ jobs:
 
     steps:
       - name: Checkout Repository
+        id: checkout
         uses: actions/checkout@v4.2.1
         with:
           ref: ${{ github.head_ref }}
 
-      - name: misspell
+      - name: Check Spelling
+        id: spell-check
         uses: reviewdog/action-misspell@v1
         with:
           github_token: ${{ secrets.WALL_BREW_BOT_PAT }}
@@ -34,11 +38,13 @@ jobs:
 
     steps:
       - name: Checkout Repository
+        id: checkout
         uses: actions/checkout@v4.2.1
         with:
           ref: ${{ github.head_ref }}
 
       - name: Lint Clojure
+        id: clj-kondo
         uses: nnichols/clojure-lint-action@v2
         with:
           github_token: ${{ secrets.WALL_BREW_BOT_PAT }}
@@ -46,50 +52,56 @@ jobs:
           level: error
           filter_mode: file
 
+  # https://github.com/Wall-Brew-Co/lein-sealog
   sealog:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
+        id: checkout
         uses: actions/checkout@v4.2.1
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Cache maven dependencies
+      - name: Cache Maven Dependencies
+        id: cache-maven
         uses: actions/cache@v4
         env:
-            cache-name: cache-maven
+          cache-name: cache-maven
         with:
-            path: ~/.m2
-            save-always: true
-            key: ${{ runner.os }}-clj-lint-sealog-${{ hashFiles('**/project.clj') }}
-            restore-keys: |
-              ${{ runner.os }}-clj
+          path: ~/.m2
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
+          restore-keys: |
+            ${{ runner.os }}-clj
 
       - name: Validate Sealog Entries
+        id: validate-changelog
         run: lein sealog check
 
+  # https://github.com/Wall-Brew-Co/bouncer
   bouncer:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
+        id: checkout
         uses: actions/checkout@v4.2.1
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Cache maven dependencies
+      - name: Cache Maven Dependencies
+        id: cache-maven
         uses: actions/cache@v4
         env:
-            cache-name: cache-maven
+          cache-name: cache-maven
         with:
-            path: ~/.m2
-            save-always: true
-            key: ${{ runner.os }}-clj-lint-bouncer-${{ hashFiles('**/project.clj') }}
-            restore-keys: |
-              ${{ runner.os }}-clj
+          path: ~/.m2
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
+          restore-keys: |
+            ${{ runner.os }}-clj
 
-      - name: Validate Sealog Entries
+      - name: Validate Bouncer Rules
+        id: validate-bouncer
         run: lein bouncer check
 
 # This file was automatically copied and populated by rebroadcast

@@ -1,3 +1,4 @@
+# Scan code for security vulnerabilities using clj-holmes
 name: Static Code Analysis
 
 on:
@@ -14,23 +15,28 @@ permissions:
 
 jobs:
   clj-holmes:
+    # This job is intended to run on Wall Brew Co repositories only
+    if: github.repository_owner == 'Wall-Brew-Co'
     name: Run clj-holmes scanning
     runs-on: ubuntu-latest
     permissions:
       contents: read
       security-events: write
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
+        id: checkout
         uses: actions/checkout@v4.2.1
 
-      - name: Scan code
+      - name: Scan Code
+        id: scan
         uses: clj-holmes/clj-holmes-action@53daa4da4ff495cccf791e4ba4222a8317ddae9e
         with:
           output-type: 'sarif'
           output-file: 'clj-holmes-results.sarif'
           fail-on-result: 'false'
 
-      - name: Upload analysis results to GitHub Security tab
+      - name: Upload Analysis Results To GitHub Security Tab
+        id: upload-results
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ${{github.workspace}}/clj-holmes-results.sarif
