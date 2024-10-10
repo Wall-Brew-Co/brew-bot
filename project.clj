@@ -12,7 +12,7 @@
                  [:url "https://wallbrew.com"]]
   :dependencies [[cljx-sampling "0.1.0"]
                  [com.wallbrew/brewtility "2.2.1"]
-                 [com.wallbrew/common-beer-data "1.2.0"]
+                 [com.wallbrew/common-beer-data "1.6.0"]
                  [com.wallbrew/common-beer-format "2.1.0"]
                  [nnichols "1.1.0"]
                  [org.clojure/clojure "1.12.0"]

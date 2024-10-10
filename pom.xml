@@ -78,7 +78,7 @@
     <dependency>
       <groupId>com.wallbrew</groupId>
       <artifactId>common-beer-data</artifactId>
-      <version>1.2.0</version>
+      <version>1.6.0</version>
     </dependency>
     <dependency>
       <groupId>com.wallbrew</groupId>
