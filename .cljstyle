@@ -1,5 +1,5 @@
-{:files {:extensions #{"clj" "cljs" "cljc" "cljx" "edn"}
-         :ignore     #{"target" ".git" ".idea" ".vscode" "node_modules" ".clj-kondo" ".calva" ".lsp"}}
+{:files {:extensions #{"clj" "cljc" "cljs" "cljx" "edn"}
+         :ignore     #{".calva" ".clj-kondo" ".git" ".idea" ".lsp" ".vscode" "node_modules" "target"}}
  :rules {:namespaces  {:enabled? false}
          :indentation {:indents {#"defspec"  [[:inner 0]]
                                  #"defstate" [[:inner 0]]
