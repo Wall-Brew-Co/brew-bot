@@ -1,8 +1,7 @@
 (ns brew-bot.core-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
-            [brew-bot.core :as sut]
+  (:require [brew-bot.core :as sut]
             [clojure.spec.alpha :as spec]
+            [clojure.test :refer [deftest is testing]]
             [common-beer-data.core :as data]
             [common-beer-format.fermentables :as fermentables]
             [common-beer-format.hops :as hops]

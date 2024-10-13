@@ -1,4 +1,4 @@
 {:changelog-filename        "CHANGELOG.md"
- :changelog-entry-directory ".sealog/changes/"
+ :changelog-entry-directory ".wallbrew/sealog/changes/"
  :version-scheme            :semver3
  :pretty-print-edn?         true}
