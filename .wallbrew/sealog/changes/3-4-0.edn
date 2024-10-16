@@ -1,0 +1,12 @@
+{:version      {:major 3
+                :minor 4
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Ingredient sampling functions `brew-bot.sampling.api/sample` and `brew-bot.sampling.api/weighted-sample`."
+                             "A macro `brew-bot.sampling.api/with-seed` to set a seed for the internal random generator over multiple sampling calls."]
+                :changed    []
+                :deprecated []
+                :removed    ["Dependency on `cljx-sampling` has been removed."]
+                :fixed      []
+                :security   []}
+ :timestamp    "2024-10-16T22:50:03.860273568Z"}

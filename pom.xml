@@ -4,7 +4,7 @@
   <groupId>com.wallbrew</groupId>
   <artifactId>brew-bot</artifactId>
   <packaging>jar</packaging>
-  <version>3.3.0</version>
+  <version>3.4.0</version>
   <name>brew-bot</name>
   <description>A library to generate randomized beer recipes.</description>
   <url>https://github.com/Wall-Brew-Co/brew-bot</url>
@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/brew-bot</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/brew-bot.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/brew-bot.git</developerConnection>
-    <tag>89f69dec41da74318a7f8b62fbeebabd54869ccd</tag>
+    <tag>d8cc43d4dd696f59be284cc823c60a64650d0f99</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -66,11 +66,6 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>cljx-sampling</groupId>
-      <artifactId>cljx-sampling</artifactId>
-      <version>0.1.0</version>
-    </dependency>
-    <dependency>
       <groupId>com.wallbrew</groupId>
       <artifactId>brewtility</artifactId>
       <version>2.2.1</version>
@@ -86,9 +81,9 @@
       <version>2.4.1</version>
     </dependency>
     <dependency>
-      <groupId>nnichols</groupId>
-      <artifactId>nnichols</artifactId>
-      <version>1.1.0</version>
+      <groupId>com.wallbrew</groupId>
+      <artifactId>spoon</artifactId>
+      <version>1.4.0</version>
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
