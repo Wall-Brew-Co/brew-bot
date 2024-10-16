@@ -1,19 +1,17 @@
 (ns brew-bot.selectors
   "Beer recipe generators"
   (:require [brew-bot.default-values :as defaults]
-            [cljx-sampling.core :as rnd]
+            [brew-bot.sampling.api :as sampling]
             [clojure.string :as str]
-            [common-beer-format.hops :as hops]
-            [nnichols.util :as nu]))
+            [com.wallbrew.spoon.core :as spoon]
+            [common-beer-format.hops :as hops]))
 
 
 (defn selected-amount
   "Given a list of ingredients, return the total amount of ingredients"
   [selections]
   (let [amounts (map :amount selections)]
-    (if (seq amounts)
-      (apply + amounts)
-      0)))
+    (apply + 0 amounts)))
 
 
 (defn make-random-selection
@@ -22,9 +20,9 @@
   [ingredients selections count-cutoff]
   (let [selected-ingredient (if (and (number? count-cutoff)
                                      (>= (count selections) count-cutoff))
-                              (rand-nth selections)
-                              (nu/rand-val ingredients))]
-    (assoc selected-ingredient :amount (rand-nth defaults/ingredient-amounts))))
+                              (first (sampling/sample selections))
+                              (-> (sampling/sample ingredients) first second))]
+    (assoc selected-ingredient :amount (first (sampling/sample defaults/ingredient-amounts)))))
 
 
 (defn select-ingredients-random
@@ -52,7 +50,7 @@
   [ingredients weights default-weight]
   (let [reducing-fn          (fn [m k v] (assoc m k (update-selection-probability k v weights default-weight)))
         weighted-ingredients (reduce-kv reducing-fn {} ingredients)
-        probabilities        (nu/filter-by-values :probability weighted-ingredients)]
+        probabilities        (spoon/filter-by-values :probability weighted-ingredients)]
     (if (empty? probabilities)
       (throw (ex-info "No matching :selection-weights were provided and no :default-weight was declared" {:weights weights}))
       probabilities)))
@@ -64,7 +62,7 @@
                                (>= (count selections) count-cutoff))
                         selections
                         (vals ingredients))
-        selection (first (rnd/sample selection-set :weigh :probability :replace true))]
+        selection     (first (sampling/weighted-sample :probability selection-set))]
     (assoc selection :amount defaults/minimum-ingredient-amount)))
 
 
@@ -86,22 +84,24 @@
 (defn random-hop-timing
   "Select a random hop use and timing"
   [hop]
-  (assoc hop :use (rand-nth (into [] hops/hop-uses)) :time (rand-nth defaults/hop-times)))
+  (let [hop-use  (first (sampling/sample hops/hop-uses))
+        hop-time (first (sampling/sample defaults/hop-times))]
+    (assoc hop hops/use hop-use hops/time hop-time)))
 
 
 (defn weighted-hop-timing
   "Select hop timings and uses with the provided weights"
   [hop {:keys [use-weights time-weights]}]
-  (let [hop-use  (first (rnd/sample hops/hop-uses :weigh use-weights :replace true))
-        hop-time (first (rnd/sample defaults/hop-times :weigh time-weights :replace true))]
-    (assoc hop :use hop-use :time hop-time)))
+  (let [hop-use  (first (sampling/weighted-sample use-weights hops/hop-uses))
+        hop-time (first (sampling/weighted-sample time-weights defaults/hop-times))]
+    (assoc hop hops/use hop-use hops/time hop-time)))
 
 
 (defn inferred-hop-timing
   "Select hop timings and uses based on the hop's type.
    Bittering hops will often be boiled for longer, and aroma hops are biased towards short boils and secondary additions."
   [hop]
-  (let [hop-type                   (str/lower-case (str (:type hop)))
+  (let [hop-type                   (str/lower-case (str (hops/type hop)))
         [use-weights time-weights] (case hop-type
                                      "bittering" [defaults/bittering-hop-use-weights defaults/bittering-hop-time-weights]
                                      "aroma"     [defaults/aroma-hop-use-weights defaults/aroma-hop-time-weights]
@@ -116,6 +116,6 @@
   (let [strategy (or timing-strategy :random)
         selection-fn (case strategy
                        :random   random-hop-timing
-                       :weighted (nu/rpartial weighted-hop-timing opts)
+                       :weighted #(weighted-hop-timing % opts)
                        :inferred inferred-hop-timing)]
     (map selection-fn hops)))

@@ -1,9 +1,14 @@
 (ns brew-bot.default-values
   "Default values for beer recipe generators"
-  (:require [common-beer-format.hops :as hops]))
+  (:require [common-beer-format.hops :as hops]
+            [common-beer-format.mash :as mash]
+            [common-beer-format.recipes :as recipe]))
 
 
-(def common-beer-format-version 1)
+(def common-beer-format-version
+  "The BeerXML version this library is based on."
+  1)
+
 
 (def amount-cutoff 2.26796) ; 5 pounds in kilograms
 
@@ -80,23 +85,23 @@
 
 
 (def common-beer-format-default-mash
-  {:name       "Single Step Infusion"
-   :version    common-beer-format-version
-   :grain-temp 22.0
-   :mash-steps [{:mash-step {:name          "Sugar Conversion Step"
-                             :version       common-beer-format-version
-                             :type          "Infusion"
-                             :step-temp     68.0
-                             :step-time     60.0
-                             :infuse-amount 10.0}}]})
+  {mash/name       "Single Step Infusion"
+   mash/version    common-beer-format-version
+   mash/grain-temp 22.0
+   mash/mash-steps [{mash/mash-step {mash/name          "Sugar Conversion Step"
+                                     mash/version       common-beer-format-version
+                                     mash/type          mash/infusion
+                                     mash/step-temp     68.0
+                                     mash/step-time     60.0
+                                     mash/infuse-amount 10.0}}]})
 
 
 (def common-beer-format-recipe-defaults
-  {:name         "My Recipe"
-   :version      common-beer-format-version
-   :brewer       "brew-bot"
-   :batch-size   19 ; Roughly 5 gallons, common homebrew size
-   :boil-size    19 ; Roughly 5 gallons, common homebrew size
-   :miscs        []
-   :waters       []
-   :mash         common-beer-format-default-mash})
+  {recipe/name       "My Recipe"
+   recipe/version    common-beer-format-version
+   recipe/brewer     "brew-bot"
+   recipe/batch-size 19 ; Roughly 5 gallons, common homebrew size
+   recipe/boil-size  19 ; Roughly 5 gallons, common homebrew size
+   recipe/miscs      []
+   recipe/waters     []
+   recipe/mash       common-beer-format-default-mash})

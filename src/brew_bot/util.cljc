@@ -1,6 +1,6 @@
 (ns brew-bot.util
   "Common fns required across brew-bot"
-  (:require [nnichols.string :as nstr]))
+  (:require [com.wallbrew.spoon.string :as spoon.string]))
 
 
 (defn max-n-kv
@@ -51,9 +51,9 @@
   "Given a vector of common-beer-format conforming ::fermentable maps, determine if the recipe is 'Extract', 'Partial Mash', or 'All Grain'"
   [fermentables]
   (let [all-grain? (and (seq fermentables)
-                        (every? #(nstr/string-compare "grain" (:type %)) fermentables))
+                        (every? #(spoon.string/same-text? "grain" (:type %)) fermentables))
         all-extract? (and (seq fermentables)
-                          (every? #(contains? #{"sugar" "extract" "dry extract"} (nstr/prepare-for-compare (:type %))) fermentables))]
+                          (every? #(contains? #{"sugar" "extract" "dry extract"} (spoon.string/prepare-for-compare (:type %))) fermentables))]
     (cond
       all-grain?            "All Grain"
       all-extract?          "Extract"
