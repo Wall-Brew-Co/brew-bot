@@ -1,5 +1,6 @@
 (ns brew-bot.default-values
-  "Default values for beer recipe generators")
+  "Default values for beer recipe generators"
+  (:require [common-beer-format.hops :as hops]))
 
 
 (def common-beer-format-version 1)
@@ -55,27 +56,27 @@
 
 
 (def bittering-hop-use-weights
-  {"boil"        200.0
-   "dry hop"     20.0
-   "mash"        40.0
-   "first wort"  40.0
-   "aroma"       10.0})
+  {hops/boil       200.0
+   hops/dry-hop    20.0
+   hops/mash       40.0
+   hops/first-wort 40.0
+   hops/aroma      10.0})
 
 
 (def aroma-hop-use-weights
-  {"boil"        200.0
-   "dry hop"     80.0
-   "mash"        10.0
-   "first wort"  10.0
-   "aroma"       40.0})
+  {hops/boil       200.0
+   hops/dry-hop    80.0
+   hops/mash       10.0
+   hops/first-wort 10.0
+   hops/aroma      40.0})
 
 
 (def both-hop-use-weights
-  {"boil"        200.0
-   "dry hop"     80.0
-   "mash"        10.0
-   "first wort"  10.0
-   "aroma"       10.0})
+  {hops/boil       200.0
+   hops/dry-hop    80.0
+   hops/mash       10.0
+   hops/first-wort 10.0
+   hops/aroma      10.0})
 
 
 (def common-beer-format-default-mash

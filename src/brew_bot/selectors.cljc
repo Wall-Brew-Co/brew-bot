@@ -86,15 +86,15 @@
 (defn random-hop-timing
   "Select a random hop use and timing"
   [hop]
-  (assoc hop :use  (rand-nth (into [] hops/hop-uses))
-         :time (rand-nth defaults/hop-times)))
+  (assoc hop :use (rand-nth (into [] hops/hop-uses)) :time (rand-nth defaults/hop-times)))
 
 
 (defn weighted-hop-timing
   "Select hop timings and uses with the provided weights"
   [hop {:keys [use-weights time-weights]}]
-  (assoc hop :use  (first (rnd/sample hops/hop-uses :weigh use-weights :replace true))
-         :time (first (rnd/sample defaults/hop-times :weigh time-weights :replace true))))
+  (let [hop-use  (first (rnd/sample hops/hop-uses :weigh use-weights :replace true))
+        hop-time (first (rnd/sample defaults/hop-times :weigh time-weights :replace true))]
+    (assoc hop :use hop-use :time hop-time)))
 
 
 (defn inferred-hop-timing
