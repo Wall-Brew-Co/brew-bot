@@ -5,8 +5,12 @@
             [common-beer-data.core :as data]
             [common-beer-format.fermentables :as fermentables]
             [common-beer-format.hops :as hops]
-            [common-beer-format.yeasts :as yeasts]
-            [nnichols.util :as nu]))
+            [common-beer-format.yeasts :as yeasts]))
+
+
+(def rand-val
+  "Like `rand-nth`, but for the values of a map"
+  (comp rand-nth vals))
 
 
 (deftest min-max-kv-test
@@ -20,16 +24,16 @@
 
 (deftest transformer-tests
   (testing "Ensure all common-beer-format transformers create valid wrappers"
-    (let [random-fermentables (sut/fermentables->cbf-fermentables (take 100 (repeatedly #(nu/rand-val data/all-fermentables))))
-          sample-fermentable  (nu/rand-val data/all-fermentables)
-          random-hops         (sut/hops->cbf-hops (take 100 (repeatedly #(nu/rand-val data/all-hops))))
-          sample-hop          (nu/rand-val data/all-hops)
-          random-yeasts       (sut/yeasts->cbf-yeasts (take 100 (repeatedly #(nu/rand-val data/all-yeasts))))
-          sample-yeast        (nu/rand-val data/all-yeasts)]
+    (let [random-fermentables (sut/fermentables->cbf-fermentables (take 100 (repeatedly #(rand-val data/all-fermentables))))
+          sample-fermentable  (rand-val data/all-fermentables)
+          random-hops         (sut/hops->cbf-hops (take 100 (repeatedly #(rand-val data/all-hops))))
+          sample-hop          (rand-val data/all-hops)
+          random-yeasts       (sut/yeasts->cbf-yeasts (take 100 (repeatedly #(rand-val data/all-yeasts))))
+          sample-yeast        (rand-val data/all-yeasts)]
       (is (spoon.spec/test-valid? ::fermentables/fermentables random-fermentables))
       (is (false? (empty? random-fermentables)))
       (is (distinct? (map #(get-in % [:fermentable :name]) random-fermentables)))
-      (is (= 3 (:amount (:fermentable (nu/only (sut/fermentables->cbf-fermentables [(assoc sample-fermentable :amount 1) (assoc sample-fermentable :amount 2)]))))))
+      (is (= 3 (:amount (:fermentable (first (sut/fermentables->cbf-fermentables [(assoc sample-fermentable :amount 1) (assoc sample-fermentable :amount 2)]))))))
       (is (spoon.spec/test-valid? ::hops/hops random-hops))
       (is (false? (empty? random-hops)))
       (is (distinct? (map #(get-in % [:fermentable :name]) random-hops)))
@@ -39,21 +43,21 @@
       (is (spoon.spec/test-valid? ::yeasts/yeasts random-yeasts))
       (is (false? (empty? random-yeasts)))
       (is (distinct? (map #(get-in % [:fermentable :name]) random-yeasts)))
-      (is (= 3 (:amount (:yeast (nu/only (sut/yeasts->cbf-yeasts [(assoc sample-yeast :amount 1) (assoc sample-yeast :amount 2)])))))))))
+      (is (= 3 (:amount (:yeast (first (sut/yeasts->cbf-yeasts [(assoc sample-yeast :amount 1) (assoc sample-yeast :amount 2)])))))))))
 
 
 (deftest determine-recipe-type-test
   (testing "Ensure the correct recipe type is selected based on the ingredients"
     #?(:clj (is (thrown-with-msg? Exception #"Cannot determine recipe type with an empty collection of fermentables" (sut/determine-recipe-type []))))
     #?(:cljs (is (thrown-with-msg? js/Error #"Cannot determine recipe type with an empty collection of fermentables" (sut/determine-recipe-type []))))
-    (is (= "All Grain" (sut/determine-recipe-type (take 10 (repeatedly #(nu/rand-val (data/select-fermentables {:include-grains? true})))))))
-    (is (= "Extract" (sut/determine-recipe-type (take 10 (repeatedly #(nu/rand-val (data/select-fermentables {:include-sugars? true :include-dry-extracts? true :include-extracts? true})))))))
-    (is (= "Partial Mash" (sut/determine-recipe-type (concat (take 10 (repeatedly #(nu/rand-val (data/select-fermentables {:include-grains? true})))) (take 10 (repeatedly #(nu/rand-val (data/select-fermentables {:include-sugars? true :include-dry-extracts? true :include-extracts? true}))))))))))
+    (is (= "All Grain" (sut/determine-recipe-type (take 10 (repeatedly #(rand-val (data/select-fermentables {:include-grains? true})))))))
+    (is (= "Extract" (sut/determine-recipe-type (take 10 (repeatedly #(rand-val (data/select-fermentables {:include-sugars? true :include-dry-extracts? true :include-extracts? true})))))))
+    (is (= "Partial Mash" (sut/determine-recipe-type (concat (take 10 (repeatedly #(rand-val (data/select-fermentables {:include-grains? true})))) (take 10 (repeatedly #(rand-val (data/select-fermentables {:include-sugars? true :include-dry-extracts? true :include-extracts? true}))))))))))
 
 
 (deftest determine-boil-time-test
   (testing "Ensure boil times are appropriately calculated"
-    (let [sample-hop (nu/rand-val data/all-hops)]
+    (let [sample-hop (rand-val data/all-hops)]
       (is (= 60 (sut/determine-boil-time [])))
       (is (= 60 (sut/determine-boil-time [(assoc sample-hop :time 15) (assoc sample-hop :time 30) (assoc sample-hop :time 45)])))
       (is (= 90 (sut/determine-boil-time [(assoc sample-hop :time 15) (assoc sample-hop :time 90) (assoc sample-hop :time 45)]))))))
