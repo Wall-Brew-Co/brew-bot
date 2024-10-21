@@ -12,7 +12,7 @@
                  [:url "https://wallbrew.com"]]
   :dependencies [[com.wallbrew/brewtility "2.2.1"]
                  [com.wallbrew/common-beer-data "1.6.0"]
-                 [com.wallbrew/common-beer-format "2.4.1"]
+                 [com.wallbrew/common-beer-format "2.6.0"]
                  [com.wallbrew/spoon "1.4.0"]
                  [org.clojure/clojure "1.12.0"]
                  [org.clojure/clojurescript "1.11.132" :scope "provided"]]
