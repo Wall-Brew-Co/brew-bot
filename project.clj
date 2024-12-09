@@ -21,7 +21,7 @@
             [com.wallbrew/lein-sealog "1.8.0"]
             [com.wallbrew/bouncer "1.1.1"]
             [lein-cljsbuild/lein-cljsbuild "1.1.8"]
-            [mvxcvi/cljstyle "0.16.630"]]
+            [mvxcvi/cljstyle "0.17.642"]]
 
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user
