@@ -1,0 +1,12 @@
+{:version      {:major 3
+                :minor 5
+                :patch 0},
+ :version-type :semver3,
+ :changes      {:added      [],
+                :changed    [],
+                :deprecated [],
+                :removed    [],
+                :fixed      ["Enabled `*warn-on-reflections*` globally."
+                             "Fixed outstanding reflection."]
+                :security   []},
+ :timestamp    "2025-01-18T00:16:51.937351Z"}
