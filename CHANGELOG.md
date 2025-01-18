@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [3.5.0 - 2025-01-18](#350---2025-01-18)
 * [3.4.0 - 2024-10-16](#340---2024-10-16)
 * [3.3.0 - 2024-09-20](#330---2024-09-20)
 * [3.2.2 - 2024-09-14](#322---2024-09-14)
@@ -18,6 +19,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [2.0.0 - 2019-10523](#200---2019-10523)
 * [1.0.0 - 2019-10-12](#100---2019-10-12)
 * [0.0.0 - 2019-07-13](#000---2019-07-13)
+
+## 3.5.0 - 2025-01-18
+
+* Fixed
+  * Enabled `*warn-on-reflections*` globally.
+  * Fixed outstanding reflection.
 
 ## 3.4.0 - 2024-10-16
 
