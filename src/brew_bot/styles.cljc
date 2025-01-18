@@ -24,7 +24,7 @@
   "Determine on a normalized scale how close `data-point` was to `conforming-point` given the `scale`
    Shorter distances are scored higher, and currently this is determined quadratically"
   [scale conforming-point data-point]
-  (let [distance          (Math/abs (- data-point conforming-point))
+  (let [distance          (abs (- data-point conforming-point))
         fraction-of-scale (/ distance scale)]
     (Math/pow (- 1 fraction-of-scale) 2.0)))
 
