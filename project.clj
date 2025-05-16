@@ -16,7 +16,7 @@
                  [com.wallbrew/common-beer-format "2.6.0"]
                  [com.wallbrew/spoon "1.5.0"]
                  [org.clojure/clojure "1.12.0"]
-                 [org.clojure/clojurescript "1.12.38" :scope "provided"]]
+                 [org.clojure/clojurescript "1.12.42" :scope "provided"]]
 
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2025.04.07"]
             [com.wallbrew/lein-sealog "1.9.0"]
