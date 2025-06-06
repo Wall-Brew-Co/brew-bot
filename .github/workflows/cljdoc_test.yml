@@ -39,7 +39,7 @@ jobs:
 
       - name: Install Leiningen
         id: install-leiningen
-        uses: DeLaGuardo/setup-clojure@13.2
+        uses: DeLaGuardo/setup-clojure@13.4
         with:
           lein: 'latest'
           clj-kondo: 'latest'
