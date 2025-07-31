@@ -23,7 +23,7 @@ jobs:
 
       - name: Greet New Contributors
         id: greet
-        uses: actions/first-interaction@v1
+        uses: actions/first-interaction@v2
         with:
           repo-token: ${{ secrets.WALL_BREW_BOT_PAT }}
           issue-message: 'Thank you for taking the time to let us know!'
