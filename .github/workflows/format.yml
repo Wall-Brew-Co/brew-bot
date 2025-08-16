@@ -28,7 +28,7 @@ jobs:
       # We need this so any changes can be committed back to the repository
       - name: Checkout Repository
         id: checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.WALL_BREW_BOT_PAT }}
