@@ -25,7 +25,7 @@ jobs:
 
       - name: Label Pull Requests
         id: label
-        uses: actions/labeler@v5
+        uses: actions/labeler@v6
         with:
           repo-token: "${{ secrets.WALL_BREW_BOT_PAT }}"
 
