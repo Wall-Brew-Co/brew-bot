@@ -49,7 +49,7 @@ jobs:
 
       - name: Upload Analysis Results To GitHub Security Tab
         id: upload-results
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: ${{github.workspace}}/clj-holmes-results.sarif
 
