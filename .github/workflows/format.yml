@@ -28,14 +28,14 @@ jobs:
       # We need this so any changes can be committed back to the repository
       - name: Checkout Repository
         id: checkout
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v6.0.1
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.WALL_BREW_BOT_PAT }}
 
       - name: Setup Java
         id: install-java
-        uses: actions/setup-java@v5.0.0
+        uses: actions/setup-java@v5.1.0
         with:
           distribution: 'adopt'
           java-version: '21'
