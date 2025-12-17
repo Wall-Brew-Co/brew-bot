@@ -25,9 +25,9 @@ jobs:
         id: greet
         uses: actions/first-interaction@v3
         with:
-          repo-token: ${{ secrets.WALL_BREW_BOT_PAT }}
-          issue-message: 'Thank you for taking the time to let us know!'
-          pr-message: 'Congratulations! This is your first contribution!'
+          repo_token: ${{ secrets.WALL_BREW_BOT_PAT }}
+          issue_message: 'Thank you for taking the time to let us know!'
+          pr_message: 'Congratulations! This is your first contribution!'
 
       - name: Echo Status
         id: echo-status
