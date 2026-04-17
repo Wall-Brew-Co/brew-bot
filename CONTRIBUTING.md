@@ -4,6 +4,7 @@ Wall Brew strives to make contributions as simple as possible while ensuring our
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Code of Conduct](#code-of-conduct)
   - [Our Pledge](#our-pledge)
