@@ -79,6 +79,7 @@ jobs:
           reporter: github-pr-review
           level: error
           filter_mode: file
+          clj_kondo_version: RELEASE
 
       - name: Echo Status
         id: echo-status
