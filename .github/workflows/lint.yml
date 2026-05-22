@@ -73,7 +73,7 @@ jobs:
 
       - name: Lint Clojure
         id: clj-kondo
-        uses: nnichols/clojure-lint-action@v6
+        uses: nnichols/clojure-lint-action@4e36472a53457190ece3af2f28238e9d5cf4c93e
         with:
           github_token: ${{ secrets.WALL_BREW_BOT_PAT }}
           reporter: github-pr-review
