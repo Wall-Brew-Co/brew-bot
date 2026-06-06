@@ -4,10 +4,18 @@ name: Linter
 
 on: ["workflow_dispatch", "pull_request"]
 
+permissions:
+  contents: read
+
 jobs:
   spell-check:
     # This job requires the Wall Brew Bot Token, so it is only run on non-forked repositories
     if: github.repository_owner == 'Wall-Brew-Co'
+
+    # reviewdog posts review comments back to the pull request
+    permissions:
+      contents: read
+      pull-requests: write
 
     runs-on: ubuntu-latest
 
@@ -24,15 +32,17 @@ jobs:
         id: echo-git-ref
         run: echo "Using ${{ github.ref }} branch from ${{ github.repository }} repository"
 
+      # https://github.com/actions/checkout
       - name: Checkout Repository
         id: checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           ref: ${{ github.head_ref }}
 
+      # https://github.com/reviewdog/action-misspell
       - name: Check Spelling
         id: spell-check
-        uses: reviewdog/action-misspell@v1
+        uses: reviewdog/action-misspell@d6429416b12b09b4e2768307d53bef58d172e962 # v1
         with:
           github_token: ${{ secrets.WALL_BREW_BOT_PAT }}
           locale: "US"
@@ -50,6 +60,11 @@ jobs:
     # This job requires the Wall Brew Bot Token, so it is only run on non-forked repositories
     if: github.repository_owner == 'Wall-Brew-Co'
 
+    # reviewdog posts review comments back to the pull request
+    permissions:
+      contents: read
+      pull-requests: write
+
     runs-on: ubuntu-latest
 
     steps:
@@ -65,15 +80,17 @@ jobs:
         id: echo-git-ref
         run: echo "Using ${{ github.ref }} branch from ${{ github.repository }} repository"
 
+      # https://github.com/actions/checkout
       - name: Checkout Repository
         id: checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           ref: ${{ github.head_ref }}
 
+      # https://github.com/nnichols/clojure-lint-action
       - name: Lint Clojure
         id: clj-kondo
-        uses: nnichols/clojure-lint-action@v6
+        uses: nnichols/clojure-lint-action@259704d3e7206a55e83db52ff9abbfafd95fdf7a # v10
         with:
           github_token: ${{ secrets.WALL_BREW_BOT_PAT }}
           reporter: github-pr-review
@@ -101,31 +118,38 @@ jobs:
         id: echo-git-ref
         run: echo "Using ${{ github.ref }} branch from ${{ github.repository }} repository"
 
+      # https://github.com/actions/checkout
       - name: Checkout Repository
         id: checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           ref: ${{ github.head_ref }}
 
+      # https://github.com/actions/setup-java
       - name: Setup Java
         id: install-java
-        uses: actions/setup-java@v5.2.0
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: '21'
           # This should match system.properties
 
+      # https://github.com/DeLaGuardo/setup-clojure
       - name: Install Leiningen
         id: install-leiningen
-        uses: DeLaGuardo/setup-clojure@13.5
+        uses: DeLaGuardo/setup-clojure@4c7a6f613e5089821bb3bb2a33a3ee115578580d # 13.6.1
         with:
-          lein: 'latest'
-          clj-kondo: 'latest'
-          cljstyle: 'latest'
+          # renovate: datasource=github-releases depName=technomancy/leiningen
+          lein: '2.12.0'
+          # renovate: datasource=github-releases depName=clj-kondo/clj-kondo versioning=loose
+          clj-kondo: '2026.05.25'
+          # renovate: datasource=github-releases depName=greglook/cljstyle
+          cljstyle: '0.17.642'
 
+      # https://github.com/actions/cache
       - name: Cache Maven Dependencies
         id: cache-maven
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         env:
           cache-name: cache-maven
         with:
@@ -167,31 +191,38 @@ jobs:
         id: echo-git-ref
         run: echo "Using ${{ github.ref }} branch from ${{ github.repository }} repository"
 
+      # https://github.com/actions/checkout
       - name: Checkout Repository
         id: checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           ref: ${{ github.head_ref }}
 
+      # https://github.com/actions/setup-java
       - name: Setup Java
         id: install-java
-        uses: actions/setup-java@v5.2.0
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: '21'
           # This should match system.properties
 
+      # https://github.com/DeLaGuardo/setup-clojure
       - name: Install Leiningen
         id: install-leiningen
-        uses: DeLaGuardo/setup-clojure@13.5
+        uses: DeLaGuardo/setup-clojure@4c7a6f613e5089821bb3bb2a33a3ee115578580d # 13.6.1
         with:
-          lein: 'latest'
-          clj-kondo: 'latest'
-          cljstyle: 'latest'
+          # renovate: datasource=github-releases depName=technomancy/leiningen
+          lein: '2.12.0'
+          # renovate: datasource=github-releases depName=clj-kondo/clj-kondo versioning=loose
+          clj-kondo: '2026.05.25'
+          # renovate: datasource=github-releases depName=greglook/cljstyle
+          cljstyle: '0.17.642'
 
+      # https://github.com/actions/cache
       - name: Cache Maven Dependencies
         id: cache-maven
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         env:
           cache-name: cache-maven
         with:

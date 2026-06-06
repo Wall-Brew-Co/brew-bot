@@ -6,6 +6,11 @@ on:
     branches:
     - master
 
+# tdg-github-action opens TODO issues via the GITHUB_TOKEN
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   todo:
 
@@ -24,13 +29,15 @@ jobs:
         id: echo-git-ref
         run: echo "Using ${{ github.ref }} branch from ${{ github.repository }} repository"
 
+      # https://github.com/actions/checkout
       - name: Checkout Repository
         id: checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
+      # https://github.com/ribtoks/tdg-github-action
       - name: Generate TODO Tickets
         id: todo
-        uses: ribtoks/tdg-github-action@master
+        uses: ribtoks/tdg-github-action@7cc4b6643e790dde39ac8bf2cfc8c08c660afbb2 # v0.4.17-beta
         with:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}

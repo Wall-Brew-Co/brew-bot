@@ -8,6 +8,11 @@ on:
     paths:
       - .github/labels.yml
 
+# action-label-syncer manages repository labels via the GITHUB_TOKEN
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   label-sync:
     runs-on: ubuntu-latest
@@ -25,13 +30,15 @@ jobs:
         id: echo-git-ref
         run: echo "Using ${{ github.ref }} branch from ${{ github.repository }} repository"
 
+      # https://github.com/actions/checkout
       - name: Checkout Repository
         id: checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
+      # https://github.com/micnncim/action-label-syncer
       - name: Synchronize Labels
         id: sync-labels
-        uses: micnncim/action-label-syncer@v1
+        uses: micnncim/action-label-syncer@3abd5ab72fda571e69fffd97bd4e0033dd5f495c # v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
