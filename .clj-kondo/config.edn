@@ -32,6 +32,7 @@
                  :namespace-name-mismatch               {:level :warning}
                  :reduce-without-init                   {:level :warning}
                  :redundant-fn-wrapper                  {:level :warning}
+                 :redundant-ignore                      {:level :off}
                  :refer                                 {:level   :warning
                                                          :exclude #{clojure.test cljs.test doo.runner}}
                  :refer-all                             {:exclude #{clojure.test}}
@@ -42,4 +43,5 @@
                                                                    clojure.test.check.clojure-test/defspec]}
                  :unsorted-required-namespaces          {:level :warning}
                  :used-underscored-binding              {:level :warning}
-                 :unused-value                          {:level :warning}}}
+                 :unused-value                          {:level :warning}
+                 :clojure-lsp/unused-public-var         {:exclude-when-defined-by #{clojure.test.check.clojure-test/defspec}}}}
