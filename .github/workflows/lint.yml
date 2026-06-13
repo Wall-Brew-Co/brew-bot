@@ -90,7 +90,7 @@ jobs:
       # https://github.com/nnichols/clojure-lint-action
       - name: Lint Clojure
         id: clj-kondo
-        uses: nnichols/clojure-lint-action@259704d3e7206a55e83db52ff9abbfafd95fdf7a # v10
+        uses: nnichols/clojure-lint-action@0cf2245e83a1b3c74ebe487ef18d96a483fc5f36 # v11
         with:
           github_token: ${{ secrets.WALL_BREW_BOT_PAT }}
           reporter: github-pr-review
@@ -140,7 +140,7 @@ jobs:
         uses: DeLaGuardo/setup-clojure@4c7a6f613e5089821bb3bb2a33a3ee115578580d # 13.6.1
         with:
           # renovate: datasource=github-releases depName=technomancy/leiningen
-          lein: '2.12.0'
+          lein: '2.13.0'
           # renovate: datasource=github-releases depName=clj-kondo/clj-kondo versioning=loose
           clj-kondo: '2026.05.25'
           # renovate: datasource=github-releases depName=greglook/cljstyle
@@ -213,7 +213,7 @@ jobs:
         uses: DeLaGuardo/setup-clojure@4c7a6f613e5089821bb3bb2a33a3ee115578580d # 13.6.1
         with:
           # renovate: datasource=github-releases depName=technomancy/leiningen
-          lein: '2.12.0'
+          lein: '2.13.0'
           # renovate: datasource=github-releases depName=clj-kondo/clj-kondo versioning=loose
           clj-kondo: '2026.05.25'
           # renovate: datasource=github-releases depName=greglook/cljstyle
